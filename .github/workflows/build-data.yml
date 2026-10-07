@@ -1,0 +1,125 @@
+# Builds place data for countries/regions on a temporary GitHub computer
+# and uploads it straight to Cloudflare R2. Nothing is kept afterwards.
+# Run it from GitHub: Actions > "Build place data" > Run workflow.
+# Needs three repository secrets: R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY.
+name: Build place data
+
+on:
+  workflow_dispatch:
+    inputs:
+      regions:
+        description: 'Geofabrik paths, space separated, e.g. north-america/us/washington north-america/us/oregon'
+        required: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      regions: ${{ steps.list.outputs.regions }}
+    steps:
+      - id: list
+        run: echo "regions=$(echo '${{ github.event.inputs.regions }}' | tr -s ' ' '\n' | grep . | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
+
+  # One region per job, one after another, each publishing on its own, so progress is visible
+  # and one failure doesn't lose the others.
+  build:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        region: ${{ fromJSON(needs.plan.outputs.regions) }}
+    name: build ${{ matrix.region }}
+    env:
+      BUCKET: ${{ secrets.R2_BUCKET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install duckdb osmium
+
+      - name: Fetch what is already published (so borders merge)
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          mkdir -p dist
+          aws s3 sync "s3://$BUCKET" dist --endpoint-url "$R2" --exclude "*" --include "index.json" --include "tiles/*"
+          python3 - <<'PY'
+          import glob, gzip
+          for f in glob.glob('dist/tiles/*.json') + glob.glob('dist/index.json'):
+              b = open(f, 'rb').read()
+              if b[:2] == b'\x1f\x8b':
+                  open(f, 'wb').write(gzip.decompress(b))
+          PY
+          (cd dist && (md5sum tiles/*.json 2>/dev/null || true) > before.md5)
+
+      # The R2 keys must NOT be present here: the Overture download would try to use them and be refused.
+      - name: Build the region
+        env:
+          MATCH_RULES: ${{ secrets.MATCH_RULES }}
+        run: |
+          region="${{ matrix.region }}"
+          name="$(basename "$region")"
+          curl -sfL -o "$name.osm.pbf" "https://download.geofabrik.de/$region-latest.osm.pbf"
+          python3 pipeline/build.py --pbf "$name.osm.pbf" --poly "https://download.geofabrik.de/$region.poly" --out dist
+          rm -f "$name.osm.pbf"
+
+      - name: Publish (tiles first, index last)
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          # Several regions may be building at the same time, so upload only the tiles THIS job
+          # changed, and merge our part into the latest published index instead of replacing it.
+          mkdir -p gz/tiles
+          (cd dist && md5sum tiles/*.json > after.md5)
+          python3 - <<'PY'
+          import gzip, os
+          before = dict(l.split()[::-1] for l in open('dist/before.md5')) if os.path.exists('dist/before.md5') else {}
+          n = 0
+          for line in open('dist/after.md5'):
+              h, f = line.split()
+              if before.get(f) != h:
+                  open('gz/' + f, 'wb').write(gzip.compress(open('dist/' + f, 'rb').read(), 9))
+                  n += 1
+          print('tiles to upload:', n)
+          PY
+          aws s3 sync gz/tiles "s3://$BUCKET/tiles" --endpoint-url "$R2" --content-type application/json --content-encoding gzip
+          for attempt in 1 2 3; do
+            aws s3 cp "s3://$BUCKET/index.json" latest.gz --endpoint-url "$R2"
+            python3 - <<'PY'
+          import gzip, json, time
+          raw = open('latest.gz', 'rb').read()
+          if raw[:2] == b'\x1f\x8b': raw = gzip.decompress(raw)
+          latest = json.loads(raw)
+          mine = json.load(open('dist/index.json'))
+          ids = {c['id'] for c in latest['covered']}
+          latest['covered'] += [c for c in mine['covered'] if c['id'] not in ids]
+          before = json.load(open('dist/index.json'))
+          # only the tiles this job wrote
+          written = {l.split()[1].split('/')[-1][:-5] for l in open('dist/after.md5')}
+          import os
+          changed = set()
+          prev = dict(l.split()[::-1] for l in open('dist/before.md5')) if os.path.exists('dist/before.md5') else {}
+          for l in open('dist/after.md5'):
+              h, f = l.split()
+              if prev.get(f) != h: changed.add(f.split('/')[-1][:-5])
+          for k in changed:
+              latest['tiles'][k] = mine['tiles'].get(k) or len(json.load(open('dist/tiles/%s.json' % k))['places'])
+          latest['built'] = mine['built']; latest['overture'] = mine['overture']
+          open('index.json', 'w').write(json.dumps(latest, indent=1))
+          open('index.gz', 'wb').write(gzip.compress(json.dumps(latest, indent=1).encode(), 9))
+          PY
+            aws s3 cp index.gz "s3://$BUCKET/index.json" --endpoint-url "$R2" --content-type application/json --content-encoding gzip
+            sleep 5
+            aws s3 cp "s3://$BUCKET/index.json" check.gz --endpoint-url "$R2"
+            if python3 -c "import gzip,json,sys; d=json.loads(gzip.decompress(open('check.gz','rb').read())); mine=json.load(open('dist/index.json')); sys.exit(0 if all(c['id'] in {x['id'] for x in d['covered']} for c in mine['covered'][-1:]) else 1)"; then break; fi
+          done
