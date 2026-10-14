@@ -12,7 +12,7 @@ uploads it as maps/<id>/city.pmtiles, then DELETES the local copy. The catalogue
 always rebuilt from places.json plus the sizes of what is really published, so it can never disagree with the storage
 and several machines can build at the same time.
 
-Uploads use `aws s3` (no size limit) when R2_ENDPOINT and AWS_* variables are set (GitHub Actions does this),
+Uploads use `aws s3` (no size limit) when S3_ENDPOINT (or R2_ENDPOINT), S3_BUCKET and AWS_* variables are set (GitHub Actions does this),
 otherwise `npx wrangler` (max 300 MB per file, so bigger places must be split in places.json).
 """
 import argparse, functools, json, os, re, subprocess, sys, tempfile, time, urllib.request
@@ -20,8 +20,14 @@ import argparse, functools, json, os, re, subprocess, sys, tempfile, time, urlli
 print = functools.partial(print, flush=True)  # show progress straight away, even when output goes to a file
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, '..', '..'))
-BUCKET = os.environ.get('R2_BUCKET', '')
-PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
+# Where to upload (any S3-compatible storage: Cloudflare R2, Backblaze B2) and where the same files can be read publicly.
+BUCKET = os.environ.get('S3_BUCKET') or os.environ.get('R2_BUCKET') or ''
+ENDPOINT = os.environ.get('S3_ENDPOINT') or os.environ.get('R2_ENDPOINT') or ''
+if ENDPOINT and not ENDPOINT.startswith('http'):
+    ENDPOINT = 'https://' + ENDPOINT
+PUBLIC = os.environ.get('MAPS_PUBLIC_URL') or 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
+if not PUBLIC.startswith('http'):
+    PUBLIC = 'https://' + PUBLIC
 DEFAULT_SOURCE = 'https://build.protomaps.com/20261008.pmtiles'
 MAX_WRANGLER_MB = 300
 UA = {'User-Agent': 'map-build/1.0'}
@@ -41,12 +47,12 @@ def dry_size_mb(pm, source, bbox, maxzoom=15):
 
 
 def use_aws():
-    return bool(os.environ.get('R2_ENDPOINT') and os.environ.get('AWS_ACCESS_KEY_ID'))
+    return bool(ENDPOINT and os.environ.get('AWS_ACCESS_KEY_ID'))
 
 
 def upload(local, remote, ctype):
     if use_aws():
-        r = run(['aws', 's3', 'cp', local, f's3://{BUCKET}/{remote}', '--endpoint-url', os.environ['R2_ENDPOINT'], '--content-type', ctype])
+        r = run(['aws', 's3', 'cp', local, f's3://{BUCKET}/{remote}', '--endpoint-url', ENDPOINT, '--content-type', ctype])
     else:
         r = run(['npx', 'wrangler', 'r2', 'object', 'put', f'{BUCKET}/{remote}', '--file', local, '--content-type', ctype, '--remote'], cwd=REPO)
     return r.returncode == 0
