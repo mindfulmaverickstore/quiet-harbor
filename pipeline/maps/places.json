@@ -1265,6 +1265,1026 @@
     48.329
    ],
    "packs": []
+  },
+  {
+   "id": "piemonte",
+   "name": "Italy: Piedmont",
+   "kind": "region",
+   "bbox": [
+    6.6,
+    44.0,
+    9.2,
+    46.5
+   ],
+   "packs": []
+  },
+  {
+   "id": "valledaosta",
+   "name": "Italy: Aosta Valley",
+   "kind": "region",
+   "bbox": [
+    6.8,
+    45.4,
+    7.95,
+    45.99
+   ],
+   "packs": []
+  },
+  {
+   "id": "lombardia",
+   "name": "Italy: Lombardy",
+   "kind": "region",
+   "bbox": [
+    8.5,
+    44.7,
+    11.45,
+    46.65
+   ],
+   "packs": []
+  },
+  {
+   "id": "trentinoaltoadige",
+   "name": "Italy: Trentino-Alto Adige",
+   "kind": "region",
+   "bbox": [
+    10.38,
+    45.67,
+    12.48,
+    47.1
+   ],
+   "packs": []
+  },
+  {
+   "id": "veneto",
+   "name": "Italy: Veneto",
+   "kind": "region",
+   "bbox": [
+    10.6,
+    44.8,
+    13.1,
+    46.7
+   ],
+   "packs": []
+  },
+  {
+   "id": "friuli",
+   "name": "Italy: Friuli Venezia Giulia",
+   "kind": "region",
+   "bbox": [
+    12.3,
+    45.58,
+    13.92,
+    46.65
+   ],
+   "packs": []
+  },
+  {
+   "id": "liguria",
+   "name": "Italy: Liguria",
+   "kind": "region",
+   "bbox": [
+    7.5,
+    43.75,
+    10.07,
+    44.68
+   ],
+   "packs": []
+  },
+  {
+   "id": "emiliaromagna",
+   "name": "Italy: Emilia-Romagna",
+   "kind": "region",
+   "bbox": [
+    9.2,
+    43.73,
+    12.77,
+    45.15
+   ],
+   "packs": []
+  },
+  {
+   "id": "umbria",
+   "name": "Italy: Umbria",
+   "kind": "region",
+   "bbox": [
+    11.9,
+    42.35,
+    13.27,
+    43.62
+   ],
+   "packs": []
+  },
+  {
+   "id": "marche",
+   "name": "Italy: Marche",
+   "kind": "region",
+   "bbox": [
+    12.18,
+    42.68,
+    13.92,
+    43.97
+   ],
+   "packs": []
+  },
+  {
+   "id": "lazio",
+   "name": "Italy: Lazio",
+   "kind": "region",
+   "bbox": [
+    11.45,
+    40.78,
+    13.87,
+    42.85
+   ],
+   "packs": []
+  },
+  {
+   "id": "abruzzo",
+   "name": "Italy: Abruzzo",
+   "kind": "region",
+   "bbox": [
+    13.0,
+    41.68,
+    14.78,
+    42.9
+   ],
+   "packs": []
+  },
+  {
+   "id": "molise",
+   "name": "Italy: Molise",
+   "kind": "region",
+   "bbox": [
+    13.9,
+    41.37,
+    15.17,
+    42.07
+   ],
+   "packs": []
+  },
+  {
+   "id": "campania",
+   "name": "Italy: Campania",
+   "kind": "region",
+   "bbox": [
+    13.77,
+    39.99,
+    15.8,
+    41.51
+   ],
+   "packs": []
+  },
+  {
+   "id": "puglia",
+   "name": "Italy: Puglia",
+   "kind": "region",
+   "bbox": [
+    14.93,
+    39.79,
+    18.52,
+    42.23
+   ],
+   "packs": []
+  },
+  {
+   "id": "basilicata",
+   "name": "Italy: Basilicata",
+   "kind": "region",
+   "bbox": [
+    15.34,
+    39.9,
+    16.87,
+    41.14
+   ],
+   "packs": []
+  },
+  {
+   "id": "calabria",
+   "name": "Italy: Calabria",
+   "kind": "region",
+   "bbox": [
+    15.63,
+    37.9,
+    17.2,
+    40.15
+   ],
+   "packs": []
+  },
+  {
+   "id": "sicilia",
+   "name": "Italy: Sicily",
+   "kind": "region",
+   "bbox": [
+    11.93,
+    35.49,
+    15.65,
+    38.82
+   ],
+   "packs": []
+  },
+  {
+   "id": "sardegna",
+   "name": "Italy: Sardinia",
+   "kind": "region",
+   "bbox": [
+    8.13,
+    38.86,
+    9.84,
+    41.31
+   ],
+   "packs": []
+  },
+  {
+   "id": "andalucia",
+   "name": "Spain: Andalusia",
+   "kind": "region",
+   "bbox": [
+    -7.52,
+    35.95,
+    -1.63,
+    38.73
+   ],
+   "packs": []
+  },
+  {
+   "id": "aragon",
+   "name": "Spain: Aragon",
+   "kind": "region",
+   "bbox": [
+    -2.2,
+    39.85,
+    0.77,
+    42.93
+   ],
+   "packs": []
+  },
+  {
+   "id": "asturias",
+   "name": "Spain: Asturias",
+   "kind": "region",
+   "bbox": [
+    -7.2,
+    42.85,
+    -4.5,
+    43.67
+   ],
+   "packs": []
+  },
+  {
+   "id": "baleares",
+   "name": "Spain: Balearic Islands",
+   "kind": "region",
+   "bbox": [
+    1.2,
+    38.6,
+    4.4,
+    40.1
+   ],
+   "packs": []
+  },
+  {
+   "id": "canarias",
+   "name": "Spain: Canary Islands",
+   "kind": "region",
+   "bbox": [
+    -18.2,
+    27.6,
+    -13.3,
+    29.5
+   ],
+   "packs": []
+  },
+  {
+   "id": "cantabria",
+   "name": "Spain: Cantabria",
+   "kind": "region",
+   "bbox": [
+    -4.9,
+    42.95,
+    -3.15,
+    43.55
+   ],
+   "packs": []
+  },
+  {
+   "id": "castillalamancha",
+   "name": "Spain: Castilla-La Mancha",
+   "kind": "region",
+   "bbox": [
+    -5.4,
+    38.0,
+    -1.0,
+    41.35
+   ],
+   "packs": []
+  },
+  {
+   "id": "castillayleon",
+   "name": "Spain: Castilla y Leon",
+   "kind": "region",
+   "bbox": [
+    -7.1,
+    40.0,
+    -1.7,
+    43.2
+   ],
+   "packs": []
+  },
+  {
+   "id": "cataluna",
+   "name": "Spain: Catalonia",
+   "kind": "region",
+   "bbox": [
+    0.15,
+    40.52,
+    3.35,
+    42.87
+   ],
+   "packs": []
+  },
+  {
+   "id": "extremadura",
+   "name": "Spain: Extremadura",
+   "kind": "region",
+   "bbox": [
+    -7.55,
+    37.9,
+    -4.65,
+    40.5
+   ],
+   "packs": []
+  },
+  {
+   "id": "galicia",
+   "name": "Spain: Galicia",
+   "kind": "region",
+   "bbox": [
+    -9.3,
+    41.8,
+    -6.7,
+    43.8
+   ],
+   "packs": []
+  },
+  {
+   "id": "larioja",
+   "name": "Spain: La Rioja",
+   "kind": "region",
+   "bbox": [
+    -3.2,
+    41.95,
+    -1.7,
+    42.65
+   ],
+   "packs": []
+  },
+  {
+   "id": "madridregion",
+   "name": "Spain: Madrid region",
+   "kind": "region",
+   "bbox": [
+    -4.6,
+    39.88,
+    -3.05,
+    41.17
+   ],
+   "packs": []
+  },
+  {
+   "id": "murcia",
+   "name": "Spain: Murcia",
+   "kind": "region",
+   "bbox": [
+    -2.4,
+    37.4,
+    -0.65,
+    38.8
+   ],
+   "packs": []
+  },
+  {
+   "id": "navarra",
+   "name": "Spain: Navarre",
+   "kind": "region",
+   "bbox": [
+    -2.5,
+    41.9,
+    -0.7,
+    43.3
+   ],
+   "packs": []
+  },
+  {
+   "id": "paisvasco",
+   "name": "Spain: Basque Country",
+   "kind": "region",
+   "bbox": [
+    -3.5,
+    42.45,
+    -1.7,
+    43.5
+   ],
+   "packs": []
+  },
+  {
+   "id": "valenciaregion",
+   "name": "Spain: Valencia region",
+   "kind": "region",
+   "bbox": [
+    -1.55,
+    37.8,
+    0.7,
+    40.8
+   ],
+   "packs": []
+  },
+  {
+   "id": "iledefrance",
+   "name": "France: Ile-de-France",
+   "kind": "region",
+   "bbox": [
+    1.45,
+    48.1,
+    3.56,
+    49.25
+   ],
+   "packs": []
+  },
+  {
+   "id": "hautsdefrance",
+   "name": "France: Hauts-de-France",
+   "kind": "region",
+   "bbox": [
+    1.55,
+    48.8,
+    4.3,
+    51.1
+   ],
+   "packs": []
+  },
+  {
+   "id": "normandie",
+   "name": "France: Normandy",
+   "kind": "region",
+   "bbox": [
+    -1.95,
+    48.3,
+    1.8,
+    50.1
+   ],
+   "packs": []
+  },
+  {
+   "id": "bretagne",
+   "name": "France: Brittany",
+   "kind": "region",
+   "bbox": [
+    -5.15,
+    47.28,
+    -1.0,
+    48.9
+   ],
+   "packs": []
+  },
+  {
+   "id": "paysdelaloire",
+   "name": "France: Pays de la Loire",
+   "kind": "region",
+   "bbox": [
+    -2.6,
+    46.27,
+    0.9,
+    48.6
+   ],
+   "packs": []
+  },
+  {
+   "id": "centrevaldeloire",
+   "name": "France: Centre-Val de Loire",
+   "kind": "region",
+   "bbox": [
+    0.05,
+    46.35,
+    3.13,
+    48.95
+   ],
+   "packs": []
+  },
+  {
+   "id": "grandest",
+   "name": "France: Grand Est",
+   "kind": "region",
+   "bbox": [
+    3.4,
+    47.4,
+    8.25,
+    50.2
+   ],
+   "packs": []
+  },
+  {
+   "id": "bourgognefranchecomte",
+   "name": "France: Burgundy-Franche-Comte",
+   "kind": "region",
+   "bbox": [
+    2.85,
+    46.15,
+    7.15,
+    48.4
+   ],
+   "packs": []
+  },
+  {
+   "id": "nouvelleaquitaine",
+   "name": "France: Nouvelle-Aquitaine",
+   "kind": "region",
+   "bbox": [
+    -2.1,
+    42.75,
+    2.6,
+    47.2
+   ],
+   "packs": []
+  },
+  {
+   "id": "occitanie",
+   "name": "France: Occitanie",
+   "kind": "region",
+   "bbox": [
+    -0.35,
+    42.33,
+    4.85,
+    45.05
+   ],
+   "packs": []
+  },
+  {
+   "id": "auvergnerhonealpes",
+   "name": "France: Auvergne-Rhone-Alpes",
+   "kind": "region",
+   "bbox": [
+    2.05,
+    44.1,
+    7.2,
+    46.8
+   ],
+   "packs": []
+  },
+  {
+   "id": "provence",
+   "name": "France: Provence-Alpes-Cote d Azur",
+   "kind": "region",
+   "bbox": [
+    4.2,
+    42.98,
+    7.72,
+    45.13
+   ],
+   "packs": []
+  },
+  {
+   "id": "corse",
+   "name": "France: Corsica",
+   "kind": "region",
+   "bbox": [
+    8.5,
+    41.3,
+    9.6,
+    43.05
+   ],
+   "packs": []
+  },
+  {
+   "id": "bangkok",
+   "name": "Bangkok",
+   "kind": "city",
+   "bbox": [
+    100.247,
+    13.576,
+    100.756,
+    13.936
+   ],
+   "packs": []
+  },
+  {
+   "id": "tokyo",
+   "name": "Tokyo",
+   "kind": "city",
+   "bbox": [
+    139.346,
+    35.496,
+    139.954,
+    35.856
+   ],
+   "packs": []
+  },
+  {
+   "id": "kyoto",
+   "name": "Kyoto",
+   "kind": "city",
+   "bbox": [
+    135.466,
+    34.832,
+    136.07,
+    35.192
+   ],
+   "packs": []
+  },
+  {
+   "id": "seoul",
+   "name": "Seoul",
+   "kind": "city",
+   "bbox": [
+    126.666,
+    37.386,
+    127.29,
+    37.746
+   ],
+   "packs": []
+  },
+  {
+   "id": "singapore",
+   "name": "Singapore",
+   "kind": "city",
+   "bbox": [
+    103.573,
+    1.172,
+    104.067,
+    1.532
+   ],
+   "packs": []
+  },
+  {
+   "id": "hongkong",
+   "name": "Hong Kong",
+   "kind": "city",
+   "bbox": [
+    113.902,
+    22.139,
+    114.436,
+    22.499
+   ],
+   "packs": []
+  },
+  {
+   "id": "ubud",
+   "name": "Ubud",
+   "kind": "city",
+   "bbox": [
+    115.013,
+    -8.687,
+    115.512,
+    -8.327
+   ],
+   "packs": []
+  },
+  {
+   "id": "sydney",
+   "name": "Sydney",
+   "kind": "city",
+   "bbox": [
+    150.912,
+    -34.049,
+    151.507,
+    -33.689
+   ],
+   "packs": []
+  },
+  {
+   "id": "melbourne",
+   "name": "Melbourne",
+   "kind": "city",
+   "bbox": [
+    144.65,
+    -37.994,
+    145.276,
+    -37.634
+   ],
+   "packs": []
+  },
+  {
+   "id": "auckland",
+   "name": "Auckland",
+   "kind": "city",
+   "bbox": [
+    174.455,
+    -37.029,
+    175.072,
+    -36.669
+   ],
+   "packs": []
+  },
+  {
+   "id": "dubai",
+   "name": "Dubai",
+   "kind": "city",
+   "bbox": [
+    54.998,
+    25.025,
+    55.544,
+    25.385
+   ],
+   "packs": []
+  },
+  {
+   "id": "cairo",
+   "name": "Cairo",
+   "kind": "city",
+   "bbox": [
+    30.95,
+    29.864,
+    31.521,
+    30.224
+   ],
+   "packs": []
+  },
+  {
+   "id": "capetown",
+   "name": "Cape Town",
+   "kind": "city",
+   "bbox": [
+    18.126,
+    -34.105,
+    18.722,
+    -33.745
+   ],
+   "packs": []
+  },
+  {
+   "id": "riodejaneiro",
+   "name": "Rio de Janeiro",
+   "kind": "city",
+   "bbox": [
+    -43.441,
+    -23.087,
+    -42.905,
+    -22.727
+   ],
+   "packs": []
+  },
+  {
+   "id": "saopaulo",
+   "name": "Sao Paulo",
+   "kind": "city",
+   "bbox": [
+    -46.903,
+    -23.73,
+    -46.364,
+    -23.37
+   ],
+   "packs": []
+  },
+  {
+   "id": "buenosaires",
+   "name": "Buenos Aires",
+   "kind": "city",
+   "bbox": [
+    -58.682,
+    -34.784,
+    -58.081,
+    -34.424
+   ],
+   "packs": []
+  },
+  {
+   "id": "telaviv",
+   "name": "Tel Aviv",
+   "kind": "city",
+   "bbox": [
+    34.49,
+    31.905,
+    35.073,
+    32.265
+   ],
+   "packs": []
+  },
+  {
+   "id": "taipei",
+   "name": "Taipei",
+   "kind": "city",
+   "bbox": [
+    121.293,
+    24.853,
+    121.838,
+    25.213
+   ],
+   "packs": []
+  },
+  {
+   "id": "kualalumpur",
+   "name": "Kuala Lumpur",
+   "kind": "city",
+   "bbox": [
+    101.439,
+    2.959,
+    101.934,
+    3.319
+   ],
+   "packs": []
+  },
+  {
+   "id": "hanoi",
+   "name": "Hanoi",
+   "kind": "city",
+   "bbox": [
+    105.59,
+    20.849,
+    106.119,
+    21.209
+   ],
+   "packs": []
+  },
+  {
+   "id": "hochiminhcity",
+   "name": "Ho Chi Minh City",
+   "kind": "city",
+   "bbox": [
+    106.378,
+    10.643,
+    106.881,
+    11.003
+   ],
+   "packs": []
+  },
+  {
+   "id": "manila",
+   "name": "Manila",
+   "kind": "city",
+   "bbox": [
+    120.729,
+    14.42,
+    121.239,
+    14.78
+   ],
+   "packs": []
+  },
+  {
+   "id": "mumbai",
+   "name": "Mumbai",
+   "kind": "city",
+   "bbox": [
+    72.616,
+    18.896,
+    73.139,
+    19.256
+   ],
+   "packs": []
+  },
+  {
+   "id": "delhi",
+   "name": "Delhi",
+   "kind": "city",
+   "bbox": [
+    76.928,
+    28.434,
+    77.49,
+    28.794
+   ],
+   "packs": []
+  },
+  {
+   "id": "bangalore",
+   "name": "Bangalore",
+   "kind": "city",
+   "bbox": [
+    77.341,
+    12.792,
+    77.848,
+    13.152
+   ],
+   "packs": []
+  },
+  {
+   "id": "phuket",
+   "name": "Phuket",
+   "kind": "city",
+   "bbox": [
+    98.143,
+    7.7,
+    98.642,
+    8.06
+   ],
+   "packs": []
+  },
+  {
+   "id": "colombo",
+   "name": "Colombo",
+   "kind": "city",
+   "bbox": [
+    79.612,
+    6.747,
+    80.11,
+    7.107
+   ],
+   "packs": []
+  },
+  {
+   "id": "kathmandu",
+   "name": "Kathmandu",
+   "kind": "city",
+   "bbox": [
+    85.045,
+    27.537,
+    85.603,
+    27.897
+   ],
+   "packs": []
+  },
+  {
+   "id": "lima",
+   "name": "Lima",
+   "kind": "city",
+   "bbox": [
+    -77.295,
+    -12.226,
+    -76.79,
+    -11.866
+   ],
+   "packs": []
+  },
+  {
+   "id": "bogota",
+   "name": "Bogota",
+   "kind": "city",
+   "bbox": [
+    -74.32,
+    4.531,
+    -73.824,
+    4.891
+   ],
+   "packs": []
+  },
+  {
+   "id": "santiago",
+   "name": "Santiago",
+   "kind": "city",
+   "bbox": [
+    -70.965,
+    -33.629,
+    -70.373,
+    -33.269
+   ],
+   "packs": []
+  },
+  {
+   "id": "medellin",
+   "name": "Medellin",
+   "kind": "city",
+   "bbox": [
+    -75.83,
+    6.064,
+    -75.333,
+    6.424
+   ],
+   "packs": []
+  },
+  {
+   "id": "cartagena",
+   "name": "Cartagena",
+   "kind": "city",
+   "bbox": [
+    -75.731,
+    10.211,
+    -75.228,
+    10.571
+   ],
+   "packs": []
+  },
+  {
+   "id": "nairobi",
+   "name": "Nairobi",
+   "kind": "city",
+   "bbox": [
+    36.575,
+    -1.472,
+    37.069,
+    -1.112
+   ],
+   "packs": []
+  },
+  {
+   "id": "marrakech",
+   "name": "Marrakech",
+   "kind": "city",
+   "bbox": [
+    -8.271,
+    31.45,
+    -7.691,
+    31.809
+   ],
+   "packs": []
+  },
+  {
+   "id": "tbilisi",
+   "name": "Tbilisi",
+   "kind": "city",
+   "bbox": [
+    44.496,
+    41.535,
+    45.158,
+    41.895
+   ],
+   "packs": []
   }
  ]
 }
