@@ -26,7 +26,7 @@ jobs:
       ids: ${{ steps.list.outputs.ids }}
       any: ${{ steps.list.outputs.any }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: list
         run: |
           want="${{ github.event.inputs.places }}"
@@ -49,7 +49,7 @@ jobs:
         id: ${{ fromJSON(needs.plan.outputs.ids) }}
     name: map ${{ matrix.id }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Get the pmtiles program
         env:
           GH_TOKEN: ${{ github.token }}
@@ -72,7 +72,7 @@ jobs:
     if: always() && needs.plan.outputs.any == 'yes'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Rebuild and upload catalog.json
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
