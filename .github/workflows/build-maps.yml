@@ -1,0 +1,83 @@
+# Builds our map packs on temporary GitHub computers and uploads them straight to Cloudflare R2.
+# Run it from GitHub: Actions > "Build maps" > Run workflow.
+#   places: "missing" (not yet published), "all" (rebuild everything), or ids separated by spaces
+# Needs repository secrets R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and R2_BUCKET.
+# One place per job (a few minutes each), one after another in small groups; a final job rebuilds catalog.json.
+# A standard GitHub computer has about 14 GB of free disk and 6 hours, which is plenty for one place at a time.
+# It is NOT enough for the whole-planet file (about 68 GB); that needs a bigger machine.
+name: Build maps
+
+on:
+  workflow_dispatch:
+    inputs:
+      places:
+        description: 'missing, all, or place ids separated by spaces (see pipeline/maps/places.json)'
+        required: true
+        default: 'missing'
+      source:
+        description: 'Planet build to cut from'
+        required: true
+        default: 'https://build.protomaps.com/20261008.pmtiles'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      ids: ${{ steps.list.outputs.ids }}
+      any: ${{ steps.list.outputs.any }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list
+        run: |
+          want="${{ github.event.inputs.places }}"
+          if [ "$want" = "missing" ]; then want="$(python3 pipeline/maps/build_maps.py --missing)"; fi
+          if [ "$want" = "all" ]; then want="$(python3 pipeline/maps/build_maps.py --all-ids)"; fi
+          ids="$(echo "$want" | tr -s ' ' '\n' | grep . | jq -R . | jq -sc .)"
+          echo "ids=$ids" >> "$GITHUB_OUTPUT"
+          echo "any=$([ "$ids" = "[]" ] && echo no || echo yes)" >> "$GITHUB_OUTPUT"
+          echo "Will build: $ids"
+
+  build:
+    needs: plan
+    if: needs.plan.outputs.any == 'yes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      max-parallel: 5
+      fail-fast: false
+      matrix:
+        id: ${{ fromJSON(needs.plan.outputs.ids) }}
+    name: map ${{ matrix.id }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get the pmtiles program
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download -R protomaps/go-pmtiles -p '*Linux_x86_64*' -D tool
+          cd tool && (ls *.tar.gz >/dev/null 2>&1 && tar xzf *.tar.gz || unzip -o *.zip) && chmod +x pmtiles && ./pmtiles version
+      - name: Cut the map and upload it
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          python3 pipeline/maps/build_maps.py --pmtiles ./tool/pmtiles --source '${{ github.event.inputs.source }}' --only ${{ matrix.id }} --no-catalog
+          python3 pipeline/maps/build_maps.py --status | head -1
+
+  catalog:
+    needs: [plan, build]
+    if: always() && needs.plan.outputs.any == 'yes'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild and upload catalog.json
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python3 pipeline/maps/build_maps.py --catalog-only

@@ -1,0 +1,1270 @@
+{
+ "_help": "Every map we offer. kind: city | country | region. bbox is [west, south, east, north]. packs lists language packs the place usually needs. parent (optional) says which bigger pack contains it. Add a line, run build_maps.py with --only <id>, and the app picks it up from catalog.json.",
+ "places": [
+  {
+   "id": "chiangmai",
+   "name": "Chiang Mai",
+   "kind": "city",
+   "bbox": [
+    98.7,
+    18.6,
+    99.3,
+    19.0
+   ],
+   "packs": [
+    "all_languages"
+   ]
+  },
+  {
+   "id": "lisbon",
+   "name": "Lisbon",
+   "kind": "city",
+   "bbox": [
+    -9.455,
+    38.54,
+    -8.825,
+    38.9
+   ],
+   "packs": []
+  },
+  {
+   "id": "porto",
+   "name": "Porto",
+   "kind": "city",
+   "bbox": [
+    -8.957,
+    40.98,
+    -8.3,
+    41.34
+   ],
+   "packs": []
+  },
+  {
+   "id": "minho",
+   "name": "Braga and Minho",
+   "kind": "city",
+   "bbox": [
+    -8.95,
+    41.45,
+    -8.3,
+    41.85
+   ],
+   "packs": []
+  },
+  {
+   "id": "coimbra",
+   "name": "Coimbra",
+   "kind": "city",
+   "bbox": [
+    -8.75,
+    40.0,
+    -8.1,
+    40.4
+   ],
+   "packs": []
+  },
+  {
+   "id": "algarve",
+   "name": "Algarve",
+   "kind": "region",
+   "bbox": [
+    -8.99,
+    36.95,
+    -7.38,
+    37.35
+   ],
+   "packs": []
+  },
+  {
+   "id": "newyork",
+   "name": "New York",
+   "kind": "city",
+   "bbox": [
+    -74.332,
+    40.533,
+    -73.68,
+    40.893
+   ],
+   "packs": []
+  },
+  {
+   "id": "losangeles",
+   "name": "Los Angeles",
+   "kind": "city",
+   "bbox": [
+    -118.542,
+    33.872,
+    -117.946,
+    34.232
+   ],
+   "packs": []
+  },
+  {
+   "id": "sanfrancisco",
+   "name": "San Francisco",
+   "kind": "city",
+   "bbox": [
+    -122.732,
+    37.595,
+    -122.107,
+    37.955
+   ],
+   "packs": []
+  },
+  {
+   "id": "chicago",
+   "name": "Chicago",
+   "kind": "city",
+   "bbox": [
+    -87.962,
+    41.698,
+    -87.298,
+    42.058
+   ],
+   "packs": []
+  },
+  {
+   "id": "seattle",
+   "name": "Seattle",
+   "kind": "city",
+   "bbox": [
+    -122.699,
+    47.426,
+    -121.966,
+    47.786
+   ],
+   "packs": []
+  },
+  {
+   "id": "portlandoregon",
+   "name": "Portland (Oregon)",
+   "kind": "city",
+   "bbox": [
+    -123.031,
+    45.335,
+    -122.326,
+    45.695
+   ],
+   "packs": []
+  },
+  {
+   "id": "austin",
+   "name": "Austin",
+   "kind": "city",
+   "bbox": [
+    -98.029,
+    30.087,
+    -97.457,
+    30.447
+   ],
+   "packs": []
+  },
+  {
+   "id": "vancouver",
+   "name": "Vancouver",
+   "kind": "city",
+   "bbox": [
+    -123.499,
+    49.103,
+    -122.742,
+    49.463
+   ],
+   "packs": []
+  },
+  {
+   "id": "toronto",
+   "name": "Toronto",
+   "kind": "city",
+   "bbox": [
+    -79.725,
+    43.473,
+    -79.042,
+    43.833
+   ],
+   "packs": []
+  },
+  {
+   "id": "mexicocity",
+   "name": "Mexico City",
+   "kind": "city",
+   "bbox": [
+    -99.395,
+    19.253,
+    -98.871,
+    19.613
+   ],
+   "packs": []
+  },
+  {
+   "id": "boston",
+   "name": "Boston",
+   "kind": "city",
+   "bbox": [
+    -71.393,
+    42.18,
+    -70.725,
+    42.54
+   ],
+   "packs": []
+  },
+  {
+   "id": "washingtondc",
+   "name": "Washington DC",
+   "kind": "city",
+   "bbox": [
+    -77.354,
+    38.727,
+    -76.719,
+    39.087
+   ],
+   "packs": []
+  },
+  {
+   "id": "miami",
+   "name": "Miami",
+   "kind": "city",
+   "bbox": [
+    -80.466,
+    25.582,
+    -79.918,
+    25.942
+   ],
+   "packs": []
+  },
+  {
+   "id": "denver",
+   "name": "Denver",
+   "kind": "city",
+   "bbox": [
+    -105.312,
+    39.559,
+    -104.669,
+    39.919
+   ],
+   "packs": []
+  },
+  {
+   "id": "montreal",
+   "name": "Montreal",
+   "kind": "city",
+   "bbox": [
+    -73.92,
+    45.322,
+    -73.215,
+    45.682
+   ],
+   "packs": []
+  },
+  {
+   "id": "philadelphia",
+   "name": "Philadelphia",
+   "kind": "city",
+   "bbox": [
+    -75.487,
+    39.773,
+    -74.843,
+    40.133
+   ],
+   "packs": []
+  },
+  {
+   "id": "sandiego",
+   "name": "San Diego",
+   "kind": "city",
+   "bbox": [
+    -117.455,
+    32.536,
+    -116.867,
+    32.896
+   ],
+   "packs": []
+  },
+  {
+   "id": "atlanta",
+   "name": "Atlanta",
+   "kind": "city",
+   "bbox": [
+    -84.685,
+    33.569,
+    -84.091,
+    33.929
+   ],
+   "packs": []
+  },
+  {
+   "id": "neworleans",
+   "name": "New Orleans",
+   "kind": "city",
+   "bbox": [
+    -90.357,
+    29.771,
+    -89.786,
+    30.131
+   ],
+   "packs": []
+  },
+  {
+   "id": "nashville",
+   "name": "Nashville",
+   "kind": "city",
+   "bbox": [
+    -87.088,
+    35.983,
+    -86.476,
+    36.343
+   ],
+   "packs": []
+  },
+  {
+   "id": "honolulu",
+   "name": "Honolulu",
+   "kind": "city",
+   "bbox": [
+    -158.123,
+    21.127,
+    -157.593,
+    21.487
+   ],
+   "packs": []
+  },
+  {
+   "id": "calgary",
+   "name": "Calgary",
+   "kind": "city",
+   "bbox": [
+    -114.465,
+    50.865,
+    -113.679,
+    51.225
+   ],
+   "packs": []
+  },
+  {
+   "id": "ottawa",
+   "name": "Ottawa",
+   "kind": "city",
+   "bbox": [
+    -76.049,
+    45.242,
+    -75.345,
+    45.602
+   ],
+   "packs": []
+  },
+  {
+   "id": "victoriabc",
+   "name": "Victoria (BC)",
+   "kind": "city",
+   "bbox": [
+    -123.738,
+    48.248,
+    -122.993,
+    48.608
+   ],
+   "packs": []
+  },
+  {
+   "id": "lasvegas",
+   "name": "Las Vegas",
+   "kind": "city",
+   "bbox": [
+    -115.446,
+    35.99,
+    -114.834,
+    36.35
+   ],
+   "packs": []
+  },
+  {
+   "id": "phoenix",
+   "name": "Phoenix",
+   "kind": "city",
+   "bbox": [
+    -112.37,
+    33.268,
+    -111.778,
+    33.628
+   ],
+   "packs": []
+  },
+  {
+   "id": "minneapolis",
+   "name": "Minneapolis",
+   "kind": "city",
+   "bbox": [
+    -93.614,
+    44.798,
+    -92.916,
+    45.158
+   ],
+   "packs": []
+  },
+  {
+   "id": "portlandmaine",
+   "name": "Portland (Maine)",
+   "kind": "city",
+   "bbox": [
+    -70.598,
+    43.479,
+    -69.915,
+    43.839
+   ],
+   "packs": []
+  },
+  {
+   "id": "santafe",
+   "name": "Santa Fe",
+   "kind": "city",
+   "bbox": [
+    -106.242,
+    35.507,
+    -105.634,
+    35.867
+   ],
+   "packs": []
+  },
+  {
+   "id": "quebeccity",
+   "name": "Quebec City",
+   "kind": "city",
+   "bbox": [
+    -71.569,
+    46.634,
+    -70.847,
+    46.994
+   ],
+   "packs": []
+  },
+  {
+   "id": "bc-southwest",
+   "name": "British Columbia: South Coast and Vancouver Island",
+   "kind": "region",
+   "bbox": [
+    -128.8,
+    48.2,
+    -121.0,
+    51.5
+   ],
+   "packs": []
+  },
+  {
+   "id": "bc-southeast",
+   "name": "British Columbia: Okanagan and Kootenays",
+   "kind": "region",
+   "bbox": [
+    -121.0,
+    48.9,
+    -114.0,
+    51.5
+   ],
+   "packs": []
+  },
+  {
+   "id": "bc-central",
+   "name": "British Columbia: Central",
+   "kind": "region",
+   "bbox": [
+    -128.0,
+    51.5,
+    -117.0,
+    55.0
+   ],
+   "packs": []
+  },
+  {
+   "id": "bc-north",
+   "name": "British Columbia: North (district level)",
+   "kind": "region",
+   "bbox": [
+    -139.1,
+    55.0,
+    -114.0,
+    60.0
+   ],
+   "packs": [],
+   "maxzoom": 12
+  },
+  {
+   "id": "bc-northeast",
+   "name": "British Columbia: Northeast (district level)",
+   "kind": "region",
+   "bbox": [
+    -125.0,
+    51.5,
+    -114.0,
+    55.0
+   ],
+   "packs": [],
+   "maxzoom": 12
+  },
+  {
+   "id": "ab-south",
+   "name": "Alberta: South",
+   "kind": "region",
+   "bbox": [
+    -120.0,
+    48.9,
+    -110.0,
+    53.5
+   ],
+   "packs": []
+  },
+  {
+   "id": "ab-north",
+   "name": "Alberta: North (district level)",
+   "kind": "region",
+   "bbox": [
+    -120.0,
+    53.5,
+    -110.0,
+    60.0
+   ],
+   "packs": [],
+   "maxzoom": 12
+  },
+  {
+   "id": "wa-west",
+   "name": "Washington: West",
+   "kind": "region",
+   "bbox": [
+    -124.9,
+    45.5,
+    -120.8,
+    49.1
+   ],
+   "packs": []
+  },
+  {
+   "id": "wa-east",
+   "name": "Washington: East",
+   "kind": "region",
+   "bbox": [
+    -120.8,
+    45.5,
+    -116.9,
+    49.1
+   ],
+   "packs": []
+  },
+  {
+   "id": "oregon",
+   "name": "Oregon",
+   "kind": "region",
+   "bbox": [
+    -124.7,
+    41.9,
+    -116.4,
+    46.3
+   ],
+   "packs": []
+  },
+  {
+   "id": "ca-south",
+   "name": "California: South",
+   "kind": "region",
+   "bbox": [
+    -121.5,
+    32.5,
+    -114.1,
+    35.8
+   ],
+   "packs": []
+  },
+  {
+   "id": "ca-central",
+   "name": "California: Central",
+   "kind": "region",
+   "bbox": [
+    -124.5,
+    35.8,
+    -117.0,
+    38.6
+   ],
+   "packs": []
+  },
+  {
+   "id": "ca-north",
+   "name": "California: North",
+   "kind": "region",
+   "bbox": [
+    -124.5,
+    38.6,
+    -117.0,
+    42.1
+   ],
+   "packs": []
+  },
+  {
+   "id": "tuscany",
+   "name": "Tuscany",
+   "kind": "region",
+   "bbox": [
+    9.6,
+    42.3,
+    12.4,
+    44.5
+   ],
+   "packs": []
+  },
+  {
+   "id": "luxembourg",
+   "name": "Luxembourg",
+   "kind": "country",
+   "bbox": [
+    5.7,
+    49.4,
+    6.55,
+    50.2
+   ],
+   "packs": []
+  },
+  {
+   "id": "iceland",
+   "name": "Iceland",
+   "kind": "country",
+   "bbox": [
+    -24.6,
+    63.3,
+    -13.4,
+    66.6
+   ],
+   "packs": []
+  },
+  {
+   "id": "malta",
+   "name": "Malta",
+   "kind": "country",
+   "bbox": [
+    14.1,
+    35.78,
+    14.62,
+    36.1
+   ],
+   "packs": []
+  },
+  {
+   "id": "cyprus",
+   "name": "Cyprus",
+   "kind": "country",
+   "bbox": [
+    32.2,
+    34.5,
+    34.7,
+    35.75
+   ],
+   "packs": []
+  },
+  {
+   "id": "estonia",
+   "name": "Estonia",
+   "kind": "country",
+   "bbox": [
+    21.7,
+    57.5,
+    28.3,
+    59.8
+   ],
+   "packs": []
+  },
+  {
+   "id": "london",
+   "name": "London",
+   "kind": "city",
+   "bbox": [
+    -0.525,
+    51.327,
+    0.269,
+    51.687
+   ],
+   "packs": []
+  },
+  {
+   "id": "paris",
+   "name": "Paris",
+   "kind": "city",
+   "bbox": [
+    1.977,
+    48.677,
+    2.728,
+    49.037
+   ],
+   "packs": []
+  },
+  {
+   "id": "berlin",
+   "name": "Berlin",
+   "kind": "city",
+   "bbox": [
+    12.999,
+    52.34,
+    13.811,
+    52.7
+   ],
+   "packs": []
+  },
+  {
+   "id": "madrid",
+   "name": "Madrid",
+   "kind": "city",
+   "bbox": [
+    -4.028,
+    40.237,
+    -3.379,
+    40.597
+   ],
+   "packs": []
+  },
+  {
+   "id": "barcelona",
+   "name": "Barcelona",
+   "kind": "city",
+   "bbox": [
+    1.839,
+    41.207,
+    2.498,
+    41.567
+   ],
+   "packs": []
+  },
+  {
+   "id": "rome",
+   "name": "Rome",
+   "kind": "city",
+   "bbox": [
+    12.164,
+    41.723,
+    12.828,
+    42.083
+   ],
+   "packs": []
+  },
+  {
+   "id": "amsterdam",
+   "name": "Amsterdam",
+   "kind": "city",
+   "bbox": [
+    4.5,
+    52.188,
+    5.309,
+    52.548
+   ],
+   "packs": []
+  },
+  {
+   "id": "vienna",
+   "name": "Vienna",
+   "kind": "city",
+   "bbox": [
+    16.003,
+    48.028,
+    16.744,
+    48.388
+   ],
+   "packs": []
+  },
+  {
+   "id": "prague",
+   "name": "Prague",
+   "kind": "city",
+   "bbox": [
+    14.053,
+    49.895,
+    14.823,
+    50.255
+   ],
+   "packs": []
+  },
+  {
+   "id": "istanbul",
+   "name": "Istanbul",
+   "kind": "city",
+   "bbox": [
+    28.651,
+    40.828,
+    29.306,
+    41.188
+   ],
+   "packs": []
+  },
+  {
+   "id": "dublin",
+   "name": "Dublin",
+   "kind": "city",
+   "bbox": [
+    -6.674,
+    53.17,
+    -5.846,
+    53.53
+   ],
+   "packs": []
+  },
+  {
+   "id": "edinburgh",
+   "name": "Edinburgh",
+   "kind": "city",
+   "bbox": [
+    -3.63,
+    55.773,
+    -2.747,
+    56.133
+   ],
+   "packs": []
+  },
+  {
+   "id": "copenhagen",
+   "name": "Copenhagen",
+   "kind": "city",
+   "bbox": [
+    12.13,
+    55.496,
+    13.006,
+    55.856
+   ],
+   "packs": []
+  },
+  {
+   "id": "stockholm",
+   "name": "Stockholm",
+   "kind": "city",
+   "bbox": [
+    17.584,
+    59.149,
+    18.553,
+    59.509
+   ],
+   "packs": []
+  },
+  {
+   "id": "oslo",
+   "name": "Oslo",
+   "kind": "city",
+   "bbox": [
+    10.259,
+    59.734,
+    11.245,
+    60.094
+   ],
+   "packs": []
+  },
+  {
+   "id": "helsinki",
+   "name": "Helsinki",
+   "kind": "city",
+   "bbox": [
+    24.442,
+    59.99,
+    25.435,
+    60.35
+   ],
+   "packs": []
+  },
+  {
+   "id": "brussels",
+   "name": "Brussels",
+   "kind": "city",
+   "bbox": [
+    3.96,
+    50.67,
+    4.743,
+    51.03
+   ],
+   "packs": []
+  },
+  {
+   "id": "munich",
+   "name": "Munich",
+   "kind": "city",
+   "bbox": [
+    11.212,
+    47.955,
+    11.952,
+    48.315
+   ],
+   "packs": []
+  },
+  {
+   "id": "hamburg",
+   "name": "Hamburg",
+   "kind": "city",
+   "bbox": [
+    9.578,
+    53.371,
+    10.41,
+    53.731
+   ],
+   "packs": []
+  },
+  {
+   "id": "frankfurt",
+   "name": "Frankfurt",
+   "kind": "city",
+   "bbox": [
+    8.297,
+    49.931,
+    9.067,
+    50.291
+   ],
+   "packs": []
+  },
+  {
+   "id": "cologne",
+   "name": "Cologne",
+   "kind": "city",
+   "bbox": [
+    6.568,
+    50.758,
+    7.352,
+    51.117
+   ],
+   "packs": []
+  },
+  {
+   "id": "zurich",
+   "name": "Zurich",
+   "kind": "city",
+   "bbox": [
+    8.177,
+    47.197,
+    8.907,
+    47.557
+   ],
+   "packs": []
+  },
+  {
+   "id": "geneva",
+   "name": "Geneva",
+   "kind": "city",
+   "bbox": [
+    5.786,
+    46.024,
+    6.5,
+    46.384
+   ],
+   "packs": []
+  },
+  {
+   "id": "milan",
+   "name": "Milan",
+   "kind": "city",
+   "bbox": [
+    8.838,
+    45.284,
+    9.542,
+    45.644
+   ],
+   "packs": []
+  },
+  {
+   "id": "venice",
+   "name": "Venice",
+   "kind": "city",
+   "bbox": [
+    11.963,
+    45.261,
+    12.668,
+    45.621
+   ],
+   "packs": []
+  },
+  {
+   "id": "naples",
+   "name": "Naples",
+   "kind": "city",
+   "bbox": [
+    13.942,
+    40.672,
+    14.595,
+    41.032
+   ],
+   "packs": []
+  },
+  {
+   "id": "athens",
+   "name": "Athens",
+   "kind": "city",
+   "bbox": [
+    23.414,
+    37.804,
+    24.041,
+    38.164
+   ],
+   "packs": []
+  },
+  {
+   "id": "budapest",
+   "name": "Budapest",
+   "kind": "city",
+   "bbox": [
+    18.675,
+    47.318,
+    19.406,
+    47.678
+   ],
+   "packs": []
+  },
+  {
+   "id": "warsaw",
+   "name": "Warsaw",
+   "kind": "city",
+   "bbox": [
+    20.609,
+    52.05,
+    21.416,
+    52.41
+   ],
+   "packs": []
+  },
+  {
+   "id": "krakow",
+   "name": "Krakow",
+   "kind": "city",
+   "bbox": [
+    19.56,
+    49.885,
+    20.33,
+    50.245
+   ],
+   "packs": []
+  },
+  {
+   "id": "valencia",
+   "name": "Valencia",
+   "kind": "city",
+   "bbox": [
+    -0.696,
+    39.29,
+    -0.056,
+    39.65
+   ],
+   "packs": []
+  },
+  {
+   "id": "seville",
+   "name": "Seville",
+   "kind": "city",
+   "bbox": [
+    -6.295,
+    37.209,
+    -5.674,
+    37.569
+   ],
+   "packs": []
+  },
+  {
+   "id": "malaga",
+   "name": "Malaga",
+   "kind": "city",
+   "bbox": [
+    -4.73,
+    36.541,
+    -4.113,
+    36.901
+   ],
+   "packs": []
+  },
+  {
+   "id": "manchester",
+   "name": "Manchester",
+   "kind": "city",
+   "bbox": [
+    -2.658,
+    53.301,
+    -1.827,
+    53.661
+   ],
+   "packs": []
+  },
+  {
+   "id": "glasgow",
+   "name": "Glasgow",
+   "kind": "city",
+   "bbox": [
+    -4.692,
+    55.684,
+    -3.812,
+    56.044
+   ],
+   "packs": []
+  },
+  {
+   "id": "bristol",
+   "name": "Bristol",
+   "kind": "city",
+   "bbox": [
+    -2.984,
+    51.275,
+    -2.191,
+    51.635
+   ],
+   "packs": []
+  },
+  {
+   "id": "birmingham",
+   "name": "Birmingham",
+   "kind": "city",
+   "bbox": [
+    -2.296,
+    52.306,
+    -1.485,
+    52.666
+   ],
+   "packs": []
+  },
+  {
+   "id": "lyon",
+   "name": "Lyon",
+   "kind": "city",
+   "bbox": [
+    4.482,
+    45.584,
+    5.19,
+    45.944
+   ],
+   "packs": []
+  },
+  {
+   "id": "marseille",
+   "name": "Marseille",
+   "kind": "city",
+   "bbox": [
+    5.03,
+    43.117,
+    5.709,
+    43.477
+   ],
+   "packs": []
+  },
+  {
+   "id": "nice",
+   "name": "Nice",
+   "kind": "city",
+   "bbox": [
+    6.92,
+    43.53,
+    7.604,
+    43.89
+   ],
+   "packs": []
+  },
+  {
+   "id": "bordeaux",
+   "name": "Bordeaux",
+   "kind": "city",
+   "bbox": [
+    -0.928,
+    44.658,
+    -0.231,
+    45.018
+   ],
+   "packs": []
+  },
+  {
+   "id": "rotterdam",
+   "name": "Rotterdam",
+   "kind": "city",
+   "bbox": [
+    4.077,
+    51.744,
+    4.878,
+    52.104
+   ],
+   "packs": []
+  },
+  {
+   "id": "riga",
+   "name": "Riga",
+   "kind": "city",
+   "bbox": [
+    23.652,
+    56.77,
+    24.558,
+    57.13
+   ],
+   "packs": []
+  },
+  {
+   "id": "vilnius",
+   "name": "Vilnius",
+   "kind": "city",
+   "bbox": [
+    24.852,
+    54.507,
+    25.707,
+    54.867
+   ],
+   "packs": []
+  },
+  {
+   "id": "bucharest",
+   "name": "Bucharest",
+   "kind": "city",
+   "bbox": [
+    25.757,
+    44.247,
+    26.448,
+    44.607
+   ],
+   "packs": []
+  },
+  {
+   "id": "sofia",
+   "name": "Sofia",
+   "kind": "city",
+   "bbox": [
+    22.986,
+    42.518,
+    23.658,
+    42.878
+   ],
+   "packs": []
+  },
+  {
+   "id": "belgrade",
+   "name": "Belgrade",
+   "kind": "city",
+   "bbox": [
+    20.101,
+    44.607,
+    20.797,
+    44.967
+   ],
+   "packs": []
+  },
+  {
+   "id": "zagreb",
+   "name": "Zagreb",
+   "kind": "city",
+   "bbox": [
+    15.627,
+    45.635,
+    16.336,
+    45.995
+   ],
+   "packs": []
+  },
+  {
+   "id": "ljubljana",
+   "name": "Ljubljana",
+   "kind": "city",
+   "bbox": [
+    14.15,
+    45.877,
+    14.862,
+    46.237
+   ],
+   "packs": []
+  },
+  {
+   "id": "bratislava",
+   "name": "Bratislava",
+   "kind": "city",
+   "bbox": [
+    16.737,
+    47.969,
+    17.478,
+    48.329
+   ],
+   "packs": []
+  }
+ ]
+}
