@@ -20,7 +20,7 @@ import argparse, functools, json, os, re, subprocess, sys, tempfile, time, urlli
 print = functools.partial(print, flush=True)  # show progress straight away, even when output goes to a file
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, '..', '..'))
-BUCKET = os.environ['R2_BUCKET']
+BUCKET = os.environ.get('R2_BUCKET', '')
 PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
 DEFAULT_SOURCE = 'https://build.protomaps.com/20261008.pmtiles'
 MAX_WRANGLER_MB = 300
