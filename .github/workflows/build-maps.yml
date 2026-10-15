@@ -20,9 +20,9 @@ on:
         required: true
         default: 'r2'
       source:
-        description: 'Planet build to cut from'
+        description: 'Planet build to cut from: latest, or a full address'
         required: true
-        default: 'https://build.protomaps.com/20261008.pmtiles'
+        default: 'latest'
 
 jobs:
   plan:
@@ -37,7 +37,8 @@ jobs:
           want="${{ github.event.inputs.places }}"
           if [ "$want" = "missing" ]; then want="$(python3 pipeline/maps/build_maps.py --missing)"; fi
           if [ "$want" = "all" ]; then want="$(python3 pipeline/maps/build_maps.py --all-ids)"; fi
-          ids="$(echo "$want" | tr -s ' ' '\n' | grep . | jq -R . | jq -sc .)"
+          # Several places per job, so the few minutes of setting up are shared.
+          ids="$(echo "$want" | tr -s ' ' '\n' | grep . | paste -d' ' - - - - - - | jq -R . | jq -sc .)"
           echo "ids=$ids" >> "$GITHUB_OUTPUT"
           echo "any=$([ "$ids" = "[]" ] && echo no || echo yes)" >> "$GITHUB_OUTPUT"
           echo "Will build: $ids"
@@ -48,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     strategy:
-      max-parallel: 5
+      max-parallel: 20
       fail-fast: false
       matrix:
         id: ${{ fromJSON(needs.plan.outputs.ids) }}

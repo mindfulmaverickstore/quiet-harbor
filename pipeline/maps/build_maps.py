@@ -28,7 +28,17 @@ if ENDPOINT and not ENDPOINT.startswith('http'):
 PUBLIC = os.environ.get('MAPS_PUBLIC_URL') or 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
 if not PUBLIC.startswith('http'):
     PUBLIC = 'https://' + PUBLIC
-DEFAULT_SOURCE = 'https://build.protomaps.com/20261008.pmtiles'
+# "latest" means the newest planet build Protomaps lists: they delete old builds, so a fixed address stops working.
+DEFAULT_SOURCE = 'latest'
+BUILDS_LIST = 'https://build-metadata.protomaps.dev/builds.json'
+
+
+def resolve_source(source):
+    if source != 'latest':
+        return source
+    req = urllib.request.Request(BUILDS_LIST, headers=UA)
+    key = json.load(urllib.request.urlopen(req, timeout=60))[-1]['key']
+    return f'https://build.protomaps.com/{key}'
 MAX_WRANGLER_MB = 300
 UA = {'User-Agent': 'map-build/1.0'}
 
@@ -94,6 +104,7 @@ def main():
     ap.add_argument('--missing', action='store_true')
     ap.add_argument('--all-ids', action='store_true', help='print every id in places.json (one line)')
     a = ap.parse_args()
+    a.source = resolve_source(a.source)
 
     places = json.load(open(os.path.join(HERE, 'places.json')))['places']
     if a.all_ids:
@@ -112,6 +123,7 @@ def main():
     if not a.catalog_only:
         if not a.pmtiles:
             sys.exit('--pmtiles /path/to/pmtiles is required')
+        failed = []
         for p in places:
             if a.only and p['id'] not in a.only:
                 continue
@@ -128,12 +140,17 @@ def main():
                 r = run([a.pmtiles, 'extract', a.source, out, f'--bbox={",".join(map(str, p["bbox"]))}', f'--maxzoom={mz}'])
                 if r.returncode != 0 or not os.path.exists(out):
                     print('  extract failed:', (r.stderr or r.stdout)[-200:])
+                    failed.append(p['id'])
                     continue
                 size_mb = os.path.getsize(out) / 1e6
                 if not a.no_upload and not upload(out, f"maps/{p['id']}/city.pmtiles", 'application/octet-stream'):
                     print('  upload failed')
+                    failed.append(p['id'])
                     continue
             print(f'  done: {size_mb:.0f} MB')
+        # A job must not report success when a map did not get built.
+        if failed:
+            sys.exit(f"failed: {' '.join(failed)}")
 
     if not a.sizes and not a.no_catalog:
         cat = build_catalog(places)
