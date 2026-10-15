@@ -15,7 +15,7 @@ and several machines can build at the same time.
 Uploads use `aws s3` (no size limit) when S3_ENDPOINT (or R2_ENDPOINT), S3_BUCKET and AWS_* variables are set (GitHub Actions does this),
 otherwise `npx wrangler` (max 300 MB per file, so bigger places must be split in places.json).
 """
-import argparse, functools, json, os, re, subprocess, sys, tempfile, time, urllib.request
+import argparse, email.utils, functools, json, os, re, subprocess, sys, tempfile, time, urllib.request
 
 print = functools.partial(print, flush=True)  # show progress straight away, even when output goes to a file
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -75,25 +75,35 @@ def upload(local, remote, ctype):
     return r.returncode == 0
 
 
-def published_bytes(pid):
-    """Size in bytes of the published map for this id, or None if it isn't there."""
+def published_info(pid):
+    """(size in bytes, version) of the published map for this id, or None if it isn't there.
+    The version is the day it was uploaded (YYYYMMDD). The app puts it on the map's web address, so a rebuilt map is a
+    new address and a phone never mixes pieces of the old file with the new one."""
     try:
         req = urllib.request.Request(f'{PUBLIC}/maps/{pid}/city.pmtiles', method='HEAD', headers=UA)
         with urllib.request.urlopen(req, timeout=20) as r:
-            return int(r.headers.get('Content-Length') or 0)
+            modified = email.utils.parsedate_to_datetime(r.headers['Last-Modified']) if r.headers.get('Last-Modified') else None
+            return int(r.headers.get('Content-Length') or 0), modified.strftime('%Y%m%d') if modified else '0'
     except Exception:
         return None
+
+
+def published_bytes(pid):
+    """Size in bytes of the published map for this id, or None if it isn't there."""
+    info = published_info(pid)
+    return info[0] if info else None
 
 
 def build_catalog(places):
     maps = []
     for p in places:
-        size = published_bytes(p['id'])
-        if size is None:
+        info = published_info(p['id'])
+        if info is None:
             continue
+        size, version = info
         maps.append({
             'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'bbox': p['bbox'], 'mb': max(1, round(size / 1e6)),
-            'packs': p.get('packs', []), 'parent': p.get('parent'), 'maxzoom': p.get('maxzoom', 15),
+            'packs': p.get('packs', []), 'parent': p.get('parent'), 'maxzoom': p.get('maxzoom', 15), 'v': version,
         })
     return {'maps': maps}
 
