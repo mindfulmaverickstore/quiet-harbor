@@ -47,8 +47,15 @@ def run(cmd, **kw):
     return subprocess.run(cmd, capture_output=True, text=True, **kw)
 
 
-def dry_size_mb(pm, source, bbox, maxzoom=15):
-    out = run([pm, 'extract', source, os.devnull, f'--bbox={",".join(map(str, bbox))}', f'--maxzoom={maxzoom}', '--dry-run'])
+def cut_area(place):
+    """What to cut out: the place's exact outline when it has one (a file in regions/), else its box."""
+    if place.get('region'):
+        return f'--region={os.path.join(HERE, place["region"])}'
+    return f'--bbox={",".join(map(str, place["bbox"]))}'
+
+
+def dry_size_mb(pm, source, place, maxzoom=15):
+    out = run([pm, 'extract', source, os.devnull, cut_area(place), f'--maxzoom={maxzoom}', '--dry-run'])
     m = re.search(r'archive size of ([\d.]+) (\w+)', out.stdout + out.stderr)
     if not m:
         return None
@@ -96,6 +103,8 @@ def main():
     ap.add_argument('--pmtiles')
     ap.add_argument('--source', default=DEFAULT_SOURCE)
     ap.add_argument('--only', nargs='*')
+    ap.add_argument('--places', default='places.json', help='which list of places to use (a file next to this script)')
+    ap.add_argument('--sizes-out', help='with --sizes: write the measured sizes to this file as JSON')
     ap.add_argument('--sizes', action='store_true')
     ap.add_argument('--catalog-only', action='store_true')
     ap.add_argument('--no-catalog', action='store_true', help='do not rebuild the catalogue afterwards (a later job does it)')
@@ -106,7 +115,7 @@ def main():
     a = ap.parse_args()
     a.source = resolve_source(a.source)
 
-    places = json.load(open(os.path.join(HERE, 'places.json')))['places']
+    places = json.load(open(os.path.join(HERE, a.places)))['places']
     if a.all_ids:
         print(' '.join(p['id'] for p in places))
         return
@@ -124,13 +133,15 @@ def main():
         if not a.pmtiles:
             sys.exit('--pmtiles /path/to/pmtiles is required')
         failed = []
+        sizes = []
         for p in places:
             if a.only and p['id'] not in a.only:
                 continue
             mz = p.get('maxzoom', 15)
-            mb = dry_size_mb(a.pmtiles, a.source, p['bbox'], mz)
+            mb = dry_size_mb(a.pmtiles, a.source, p, mz)
             print(f"{p['id']}: about {mb:.0f} MB" if mb else f"{p['id']}: size unknown")
             if a.sizes:
+                sizes.append({'id': p['id'], 'name': p['name'], 'mb': round(mb) if mb else None})
                 continue
             if mb and mb > MAX_WRANGLER_MB and not use_aws():
                 print(f'  skipped: over {MAX_WRANGLER_MB} MB without the aws uploader; split it in places.json')
@@ -140,7 +151,7 @@ def main():
                 # The Protomaps server now and then answers with a temporary error (502): try again a few times.
                 for attempt, wait in enumerate((0, 20, 60, 180)):
                     time.sleep(wait)
-                    r = run([a.pmtiles, 'extract', a.source, out, f'--bbox={",".join(map(str, p["bbox"]))}', f'--maxzoom={mz}'])
+                    r = run([a.pmtiles, 'extract', a.source, out, cut_area(p), f'--maxzoom={mz}'])
                     if r.returncode == 0 and os.path.exists(out):
                         break
                     print(f'  extract attempt {attempt + 1} failed:', (r.stderr or r.stdout)[-120:].strip())
@@ -154,6 +165,8 @@ def main():
                     failed.append(p['id'])
                     continue
             print(f'  done: {size_mb:.0f} MB')
+        if a.sizes and a.sizes_out:
+            json.dump(sizes, open(a.sizes_out, 'w'))
         # A job must not report success when a map did not get built.
         if failed:
             sys.exit(f"failed: {' '.join(failed)}")

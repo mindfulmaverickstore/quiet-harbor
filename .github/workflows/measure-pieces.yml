@@ -1,0 +1,80 @@
+# Measures how big each world piece would be, without uploading anything. Run from GitHub: Actions > "Measure pieces" > Run workflow.
+# Reads pipeline/maps/world-pieces.json (one piece per country, cut by its outline) and writes a table of sizes to the run summary.
+# The sizes are for zoom 15 from the newest Protomaps planet build.
+name: Measure pieces
+
+on:
+  workflow_dispatch:
+    inputs:
+      places:
+        description: 'File of pieces to measure (next to build_maps.py)'
+        required: true
+        default: 'world-pieces.json'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      groups: ${{ steps.list.outputs.groups }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: list
+        run: |
+          ids="$(python3 -c "import json;print(' '.join(p['id'] for p in json.load(open('pipeline/maps/${{ github.event.inputs.places }}'))['places']))")"
+          groups="$(echo "$ids" | tr -s ' ' '\n' | grep . | paste -d' ' - - - - - - | jq -R . | jq -sc .)"
+          echo "groups=$groups" >> "$GITHUB_OUTPUT"
+
+  measure:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        group: ${{ fromJSON(needs.plan.outputs.groups) }}
+    name: measure ${{ matrix.group }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Get the pmtiles program
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download -R protomaps/go-pmtiles -p '*Linux_x86_64*' -D tool
+          cd tool && (ls *.tar.gz >/dev/null 2>&1 && tar xzf *.tar.gz || unzip -o *.zip) && chmod +x pmtiles
+      - name: Measure
+        run: python3 pipeline/maps/build_maps.py --pmtiles ./tool/pmtiles --places ${{ github.event.inputs.places }} --only ${{ matrix.group }} --sizes --sizes-out sizes.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sizes-${{ strategy.job-index }}
+          path: sizes.json
+          if-no-files-found: ignore
+
+  summary:
+    needs: measure
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: parts
+          pattern: sizes-*
+          merge-multiple: false
+      - name: Table of sizes
+        run: |
+          python3 - <<'PY'
+          import glob, json, os
+          rows = [r for f in glob.glob('parts/*/sizes.json') for r in json.load(open(f))]
+          rows.sort(key=lambda r: -(r['mb'] or 0))
+          total = sum(r['mb'] or 0 for r in rows)
+          lines = [f'**{len(rows)} pieces measured, {total/1000:.1f} GB in total**', '', '| Piece | Name | MB |', '|---|---|---|']
+          lines += [f"| {r['id']} | {r['name']} | {r['mb'] if r['mb'] is not None else 'unknown'} |" for r in rows]
+          open(os.environ['GITHUB_STEP_SUMMARY'], 'w').write('\n'.join(lines))
+          json.dump(rows, open('all-sizes.json', 'w'))
+          print(json.dumps(rows))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: all-sizes
+          path: all-sizes.json

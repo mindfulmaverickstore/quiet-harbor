@@ -19,6 +19,10 @@ on:
         description: 'Where to upload: r2 (Cloudflare) or b2 (Backblaze)'
         required: true
         default: 'r2'
+      round:
+        description: 'Which attempt this is (the workflow starts later rounds itself)'
+        required: false
+        default: '1'
       source:
         description: 'Planet build to cut from: latest, or a full address'
         required: true
@@ -93,3 +97,32 @@ jobs:
           S3_BUCKET: ${{ github.event.inputs.target == 'b2' && secrets.B2_BUCKET || secrets.R2_BUCKET }}
           MAPS_PUBLIC_URL: ${{ github.event.inputs.target == 'b2' && format('{0}/{1}', secrets.B2_ENDPOINT, secrets.B2_BUCKET) || '' }}
         run: python3 pipeline/maps/build_maps.py --catalog-only
+
+  # Maps that still failed after their own retries get another go later, so one bad hour at the source isn't the end of it.
+  # Three rounds, 30 minutes apart, then it stops and the failures stay on record.
+  again:
+    needs: [plan, build, catalog]
+    if: always() && needs.plan.outputs.any == 'yes' && github.event.inputs.round < '3'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Start another round for what is missing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          S3_ENDPOINT: ${{ github.event.inputs.target == 'b2' && secrets.B2_ENDPOINT || format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+          S3_BUCKET: ${{ github.event.inputs.target == 'b2' && secrets.B2_BUCKET || secrets.R2_BUCKET }}
+          MAPS_PUBLIC_URL: ${{ github.event.inputs.target == 'b2' && format('{0}/{1}', secrets.B2_ENDPOINT, secrets.B2_BUCKET) || '' }}
+        run: |
+          want='${{ github.event.inputs.places }}'
+          missing="$(python3 pipeline/maps/build_maps.py --missing)"
+          if [ "$want" = "missing" ] || [ "$want" = "all" ]; then todo="$missing"; else
+            todo=""; for id in $want; do case " $missing " in *" $id "*) todo="$todo $id";; esac; done
+          fi
+          todo="$(echo $todo)"
+          if [ -z "$todo" ]; then echo "Nothing missing."; exit 0; fi
+          echo "Still missing: $todo"
+          sleep 1800
+          next=$(( ${{ github.event.inputs.round }} + 1 ))
+          gh workflow run build-maps.yml -f places="$todo" -f target='${{ github.event.inputs.target }}' -f source='${{ github.event.inputs.source }}' -f round="$next"
