@@ -137,7 +137,13 @@ def main():
                 continue
             with tempfile.TemporaryDirectory() as tmp:
                 out = os.path.join(tmp, 'city.pmtiles')
-                r = run([a.pmtiles, 'extract', a.source, out, f'--bbox={",".join(map(str, p["bbox"]))}', f'--maxzoom={mz}'])
+                # The Protomaps server now and then answers with a temporary error (502): try again a few times.
+                for attempt, wait in enumerate((0, 20, 60, 180)):
+                    time.sleep(wait)
+                    r = run([a.pmtiles, 'extract', a.source, out, f'--bbox={",".join(map(str, p["bbox"]))}', f'--maxzoom={mz}'])
+                    if r.returncode == 0 and os.path.exists(out):
+                        break
+                    print(f'  extract attempt {attempt + 1} failed:', (r.stderr or r.stdout)[-120:].strip())
                 if r.returncode != 0 or not os.path.exists(out):
                     print('  extract failed:', (r.stderr or r.stdout)[-200:])
                     failed.append(p['id'])
