@@ -17897,6 +17897,45 @@
     8.859
    ],
    "packs": []
+  },
+  {
+   "id": "portugal-north",
+   "name": "Portugal (north)",
+   "kind": "country",
+   "bbox": [
+    -9.172,
+    39.5,
+    -6.216,
+    42.154
+   ],
+   "packs": [],
+   "region": "regions/portugal-north.geojson"
+  },
+  {
+   "id": "portugal-south",
+   "name": "Portugal (south)",
+   "kind": "country",
+   "bbox": [
+    -9.497,
+    36.966,
+    -6.951,
+    39.5
+   ],
+   "packs": [],
+   "region": "regions/portugal-south.geojson"
+  },
+  {
+   "id": "portugal-islands",
+   "name": "Portugal (islands)",
+   "kind": "country",
+   "bbox": [
+    -31.285,
+    30.029,
+    -15.855,
+    39.728
+   ],
+   "packs": [],
+   "region": "regions/portugal-islands.geojson"
   }
  ]
 }
