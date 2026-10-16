@@ -21902,6 +21902,20 @@
    "packs": [],
    "region": "regions/w-zwe.geojson",
    "country": "zw"
+  },
+  {
+   "id": "northern-ireland",
+   "name": "Northern Ireland",
+   "kind": "region",
+   "bbox": [
+    -8.174,
+    54.0,
+    -5.4,
+    55.3
+   ],
+   "packs": [],
+   "country": "gb",
+   "region": "regions/northern-ireland.geojson"
   }
  ]
 }
