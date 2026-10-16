@@ -103,7 +103,7 @@ def build_catalog(places):
         size, version = info
         maps.append({
             'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'bbox': p['bbox'], 'mb': max(1, round(size / 1e6)),
-            'packs': p.get('packs', []), 'parent': p.get('parent'), 'maxzoom': p.get('maxzoom', 15), 'v': version,
+            'packs': p.get('packs', []), 'parent': p.get('parent'), 'maxzoom': p.get('maxzoom', 15), 'v': version, 'country': p.get('country'),
         })
     return {'maps': maps}
 
