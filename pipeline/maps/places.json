@@ -21916,6 +21916,19 @@
    "packs": [],
    "country": "gb",
    "region": "regions/northern-ireland.geojson"
+  },
+  {
+   "id": "viana-do-castelo",
+   "name": "Viana do Castelo",
+   "kind": "city",
+   "bbox": [
+    -8.95,
+    41.55,
+    -8.65,
+    41.85
+   ],
+   "packs": [],
+   "country": "pt"
   }
  ]
 }
