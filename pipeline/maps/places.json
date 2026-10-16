@@ -888,7 +888,11 @@
     55.856
    ],
    "packs": [],
-   "country": "dk"
+   "country": "dk",
+   "names": {
+    "dk": "Copenhagen",
+    "se": "Malmö"
+   }
   },
   {
    "id": "stockholm",
@@ -2071,7 +2075,11 @@
     1.532
    ],
    "packs": [],
-   "country": "sg"
+   "country": "sg",
+   "names": {
+    "sg": "Singapore",
+    "my": "Johor Bahru"
+   }
   },
   {
    "id": "hongkong",
@@ -2565,7 +2573,11 @@
     -3.928
    ],
    "packs": [],
-   "country": "cd"
+   "country": "cd",
+   "names": {
+    "cd": "Kinshasa",
+    "cg": "Brazzaville"
+   }
   },
   {
    "id": "lagos",
@@ -5516,7 +5528,11 @@
     32.0
    ],
    "packs": [],
-   "country": "mx"
+   "country": "mx",
+   "names": {
+    "mx": "Ciudad Juárez",
+    "us": "El Paso"
+   }
   },
   {
    "id": "cantho",
@@ -9351,7 +9367,11 @@
     8.187
    ],
    "packs": [],
-   "country": "co"
+   "country": "co",
+   "names": {
+    "co": "Cúcuta",
+    "ve": "San Cristóbal"
+   }
   },
   {
    "id": "homs",
@@ -10677,7 +10697,11 @@
     42.611
    ],
    "packs": [],
-   "country": "us"
+   "country": "us",
+   "names": {
+    "us": "Detroit",
+    "ca": "Windsor"
+   }
   },
   {
    "id": "mingguang",
@@ -13030,7 +13054,11 @@
     26.16
    ],
    "packs": [],
-   "country": "mx"
+   "country": "mx",
+   "names": {
+    "mx": "Matamoros",
+    "us": "Brownsville"
+   }
   },
   {
    "id": "tonghua",
@@ -15331,7 +15359,11 @@
     27.756
    ],
    "packs": [],
-   "country": "mx"
+   "country": "mx",
+   "names": {
+    "mx": "Nuevo Laredo",
+    "us": "Laredo"
+   }
   },
   {
    "id": "toyama",
@@ -19218,7 +19250,11 @@
     -25.224
    ],
    "packs": [],
-   "country": "py"
+   "country": "py",
+   "names": {
+    "py": "Ciudad del Este",
+    "br": "Foz do Iguaçu"
+   }
   },
   {
    "id": "rosetta",
@@ -19430,6 +19466,2442 @@
    "packs": [],
    "region": "regions/portugal-islands.geojson",
    "country": "pt"
+  },
+  {
+   "id": "w-abw",
+   "name": "Aruba",
+   "kind": "country",
+   "bbox": [
+    -70.062,
+    12.418,
+    -69.877,
+    12.632
+   ],
+   "packs": [],
+   "region": "regions/w-abw.geojson",
+   "country": "aw"
+  },
+  {
+   "id": "w-afg",
+   "name": "Afghanistan",
+   "kind": "country",
+   "bbox": [
+    60.493,
+    29.396,
+    74.817,
+    38.473
+   ],
+   "packs": [],
+   "region": "regions/w-afg.geojson",
+   "country": "af"
+  },
+  {
+   "id": "w-ago",
+   "name": "Angola",
+   "kind": "country",
+   "bbox": [
+    11.669,
+    -18.019,
+    24.052,
+    -4.391
+   ],
+   "packs": [],
+   "region": "regions/w-ago.geojson",
+   "country": "ao"
+  },
+  {
+   "id": "w-aia",
+   "name": "Anguilla",
+   "kind": "country",
+   "bbox": [
+    -63.429,
+    18.169,
+    -62.926,
+    18.601
+   ],
+   "packs": [],
+   "region": "regions/w-aia.geojson",
+   "country": "ai"
+  },
+  {
+   "id": "w-ala",
+   "name": "Aland",
+   "kind": "country",
+   "bbox": [
+    19.513,
+    59.904,
+    21.097,
+    60.481
+   ],
+   "packs": [],
+   "region": "regions/w-ala.geojson",
+   "country": "ax"
+  },
+  {
+   "id": "w-alb",
+   "name": "Albania",
+   "kind": "country",
+   "bbox": [
+    19.282,
+    39.64,
+    21.035,
+    42.647
+   ],
+   "packs": [],
+   "region": "regions/w-alb.geojson",
+   "country": "al"
+  },
+  {
+   "id": "w-and",
+   "name": "Andorra",
+   "kind": "country",
+   "bbox": [
+    1.406,
+    42.429,
+    1.765,
+    42.649
+   ],
+   "packs": [],
+   "region": "regions/w-and.geojson",
+   "country": "ad"
+  },
+  {
+   "id": "w-are",
+   "name": "United Arab Emirates",
+   "kind": "country",
+   "bbox": [
+    51.576,
+    22.621,
+    56.383,
+    26.075
+   ],
+   "packs": [],
+   "region": "regions/w-are.geojson",
+   "country": "ae"
+  },
+  {
+   "id": "w-arm",
+   "name": "Armenia",
+   "kind": "country",
+   "bbox": [
+    43.445,
+    38.871,
+    46.599,
+    41.29
+   ],
+   "packs": [],
+   "region": "regions/w-arm.geojson",
+   "country": "am"
+  },
+  {
+   "id": "w-asm",
+   "name": "American Samoa",
+   "kind": "country",
+   "bbox": [
+    -171.087,
+    -14.533,
+    -168.16,
+    -11.051
+   ],
+   "packs": [],
+   "region": "regions/w-asm.geojson",
+   "country": "as"
+  },
+  {
+   "id": "w-atf",
+   "name": "French Southern and Antarctic Lands",
+   "kind": "country",
+   "bbox": [
+    39.728,
+    -49.722,
+    77.585,
+    -11.551
+   ],
+   "packs": [],
+   "region": "regions/w-atf.geojson",
+   "country": "tf"
+  },
+  {
+   "id": "w-atg",
+   "name": "Antigua and Barbuda",
+   "kind": "country",
+   "bbox": [
+    -62.348,
+    16.932,
+    -61.668,
+    17.728
+   ],
+   "packs": [],
+   "region": "regions/w-atg.geojson",
+   "country": "ag"
+  },
+  {
+   "id": "w-aze",
+   "name": "Azerbaijan",
+   "kind": "country",
+   "bbox": [
+    44.784,
+    38.396,
+    50.626,
+    41.89
+   ],
+   "packs": [],
+   "region": "regions/w-aze.geojson",
+   "country": "az"
+  },
+  {
+   "id": "w-bdi",
+   "name": "Burundi",
+   "kind": "country",
+   "bbox": [
+    28.987,
+    -4.458,
+    30.832,
+    -2.303
+   ],
+   "packs": [],
+   "region": "regions/w-bdi.geojson",
+   "country": "bi"
+  },
+  {
+   "id": "w-ben",
+   "name": "Benin",
+   "kind": "country",
+   "bbox": [
+    0.761,
+    6.246,
+    3.837,
+    12.383
+   ],
+   "packs": [],
+   "region": "regions/w-ben.geojson",
+   "country": "bj"
+  },
+  {
+   "id": "w-bfa",
+   "name": "Burkina Faso",
+   "kind": "country",
+   "bbox": [
+    -5.509,
+    9.392,
+    2.39,
+    15.08
+   ],
+   "packs": [],
+   "region": "regions/w-bfa.geojson",
+   "country": "bf"
+  },
+  {
+   "id": "w-bgd",
+   "name": "Bangladesh",
+   "kind": "country",
+   "bbox": [
+    88.022,
+    20.746,
+    92.643,
+    26.612
+   ],
+   "packs": [],
+   "region": "regions/w-bgd.geojson",
+   "country": "bd"
+  },
+  {
+   "id": "w-bgr",
+   "name": "Bulgaria",
+   "kind": "country",
+   "bbox": [
+    22.363,
+    41.241,
+    28.604,
+    44.214
+   ],
+   "packs": [],
+   "region": "regions/w-bgr.geojson",
+   "country": "bg"
+  },
+  {
+   "id": "w-bhr",
+   "name": "Bahrain",
+   "kind": "country",
+   "bbox": [
+    50.381,
+    25.58,
+    50.82,
+    26.287
+   ],
+   "packs": [],
+   "region": "regions/w-bhr.geojson",
+   "country": "bh"
+  },
+  {
+   "id": "w-bhs",
+   "name": "The Bahamas",
+   "kind": "country",
+   "bbox": [
+    -79.594,
+    20.914,
+    -72.755,
+    26.928
+   ],
+   "packs": [],
+   "region": "regions/w-bhs.geojson",
+   "country": "bs"
+  },
+  {
+   "id": "w-bih",
+   "name": "Bosnia and Herzegovina",
+   "kind": "country",
+   "bbox": [
+    15.717,
+    42.559,
+    19.61,
+    45.285
+   ],
+   "packs": [],
+   "region": "regions/w-bih.geojson",
+   "country": "ba"
+  },
+  {
+   "id": "w-blm",
+   "name": "Saint Barthelemy",
+   "kind": "country",
+   "bbox": [
+    -62.867,
+    17.882,
+    -62.792,
+    17.929
+   ],
+   "packs": [],
+   "region": "regions/w-blm.geojson",
+   "country": "bl"
+  },
+  {
+   "id": "w-blz",
+   "name": "Belize",
+   "kind": "country",
+   "bbox": [
+    -89.237,
+    15.889,
+    -87.783,
+    18.489
+   ],
+   "packs": [],
+   "region": "regions/w-blz.geojson",
+   "country": "bz"
+  },
+  {
+   "id": "w-bmu",
+   "name": "Bermuda",
+   "kind": "country",
+   "bbox": [
+    -64.883,
+    32.248,
+    -64.656,
+    32.389
+   ],
+   "packs": [],
+   "region": "regions/w-bmu.geojson",
+   "country": "bm"
+  },
+  {
+   "id": "w-bol",
+   "name": "Bolivia",
+   "kind": "country",
+   "bbox": [
+    -69.664,
+    -22.893,
+    -57.467,
+    -9.68
+   ],
+   "packs": [],
+   "region": "regions/w-bol.geojson",
+   "country": "bo"
+  },
+  {
+   "id": "w-brb",
+   "name": "Barbados",
+   "kind": "country",
+   "bbox": [
+    -59.654,
+    13.051,
+    -59.427,
+    13.345
+   ],
+   "packs": [],
+   "region": "regions/w-brb.geojson",
+   "country": "bb"
+  },
+  {
+   "id": "w-brn",
+   "name": "Brunei",
+   "kind": "country",
+   "bbox": [
+    114.064,
+    4.029,
+    115.361,
+    5.05
+   ],
+   "packs": [],
+   "region": "regions/w-brn.geojson",
+   "country": "bn"
+  },
+  {
+   "id": "w-btn",
+   "name": "Bhutan",
+   "kind": "country",
+   "bbox": [
+    88.733,
+    26.696,
+    92.089,
+    28.358
+   ],
+   "packs": [],
+   "region": "regions/w-btn.geojson",
+   "country": "bt"
+  },
+  {
+   "id": "w-bwa",
+   "name": "Botswana",
+   "kind": "country",
+   "bbox": [
+    19.979,
+    -26.882,
+    29.332,
+    -17.782
+   ],
+   "packs": [],
+   "region": "regions/w-bwa.geojson",
+   "country": "bw"
+  },
+  {
+   "id": "w-caf",
+   "name": "Central African Republic",
+   "kind": "country",
+   "bbox": [
+    14.389,
+    2.24,
+    27.415,
+    10.998
+   ],
+   "packs": [],
+   "region": "regions/w-caf.geojson",
+   "country": "cf"
+  },
+  {
+   "id": "w-civ",
+   "name": "Ivory Coast",
+   "kind": "country",
+   "bbox": [
+    -8.602,
+    4.346,
+    -2.513,
+    10.723
+   ],
+   "packs": [],
+   "region": "regions/w-civ.geojson",
+   "country": "ci"
+  },
+  {
+   "id": "w-cog",
+   "name": "Republic of the Congo",
+   "kind": "country",
+   "bbox": [
+    11.13,
+    -5.006,
+    18.631,
+    3.701
+   ],
+   "packs": [],
+   "region": "regions/w-cog.geojson",
+   "country": "cg"
+  },
+  {
+   "id": "w-cok",
+   "name": "Cook Islands",
+   "kind": "country",
+   "bbox": [
+    -165.825,
+    -21.939,
+    -157.313,
+    -8.947
+   ],
+   "packs": [],
+   "region": "regions/w-cok.geojson",
+   "country": "ck"
+  },
+  {
+   "id": "w-com",
+   "name": "Comoros",
+   "kind": "country",
+   "bbox": [
+    43.213,
+    -12.38,
+    44.529,
+    -11.361
+   ],
+   "packs": [],
+   "region": "regions/w-com.geojson",
+   "country": "km"
+  },
+  {
+   "id": "w-cpv",
+   "name": "Cabo Verde",
+   "kind": "country",
+   "bbox": [
+    -25.36,
+    14.804,
+    -22.667,
+    17.197
+   ],
+   "packs": [],
+   "region": "regions/w-cpv.geojson",
+   "country": "cv"
+  },
+  {
+   "id": "w-cri",
+   "name": "Costa Rica",
+   "kind": "country",
+   "bbox": [
+    -87.118,
+    5.515,
+    -82.571,
+    11.196
+   ],
+   "packs": [],
+   "region": "regions/w-cri.geojson",
+   "country": "cr"
+  },
+  {
+   "id": "w-cub",
+   "name": "Cuba",
+   "kind": "country",
+   "bbox": [
+    -84.947,
+    19.828,
+    -74.14,
+    23.266
+   ],
+   "packs": [],
+   "region": "regions/w-cub.geojson",
+   "country": "cu"
+  },
+  {
+   "id": "w-cuw",
+   "name": "Curaçao",
+   "kind": "country",
+   "bbox": [
+    -69.172,
+    12.041,
+    -68.74,
+    12.392
+   ],
+   "packs": [],
+   "region": "regions/w-cuw.geojson",
+   "country": "cw"
+  },
+  {
+   "id": "w-cym",
+   "name": "Cayman Islands",
+   "kind": "country",
+   "bbox": [
+    -81.417,
+    19.264,
+    -79.727,
+    19.758
+   ],
+   "packs": [],
+   "region": "regions/w-cym.geojson",
+   "country": "ky"
+  },
+  {
+   "id": "w-dji",
+   "name": "Djibouti",
+   "kind": "country",
+   "bbox": [
+    41.774,
+    10.93,
+    43.419,
+    12.68
+   ],
+   "packs": [],
+   "region": "regions/w-dji.geojson",
+   "country": "dj"
+  },
+  {
+   "id": "w-dma",
+   "name": "Dominica",
+   "kind": "country",
+   "bbox": [
+    -61.489,
+    15.202,
+    -61.256,
+    15.633
+   ],
+   "packs": [],
+   "region": "regions/w-dma.geojson",
+   "country": "dm"
+  },
+  {
+   "id": "w-dom",
+   "name": "Dominican Republic",
+   "kind": "country",
+   "bbox": [
+    -71.993,
+    17.546,
+    -68.356,
+    19.935
+   ],
+   "packs": [],
+   "region": "regions/w-dom.geojson",
+   "country": "do"
+  },
+  {
+   "id": "w-ecu",
+   "name": "Ecuador",
+   "kind": "country",
+   "bbox": [
+    -92.012,
+    -4.993,
+    -75.227,
+    1.664
+   ],
+   "packs": [],
+   "region": "regions/w-ecu.geojson",
+   "country": "ec"
+  },
+  {
+   "id": "w-egy",
+   "name": "Egypt",
+   "kind": "country",
+   "bbox": [
+    24.697,
+    21.994,
+    36.899,
+    31.615
+   ],
+   "packs": [],
+   "region": "regions/w-egy.geojson",
+   "country": "eg"
+  },
+  {
+   "id": "w-eri",
+   "name": "Eritrea",
+   "kind": "country",
+   "bbox": [
+    36.433,
+    12.38,
+    43.124,
+    18.005
+   ],
+   "packs": [],
+   "region": "regions/w-eri.geojson",
+   "country": "er"
+  },
+  {
+   "id": "w-esh",
+   "name": "Western Sahara",
+   "kind": "country",
+   "bbox": [
+    -17.1,
+    20.838,
+    -8.681,
+    27.661
+   ],
+   "packs": [],
+   "region": "regions/w-esh.geojson",
+   "country": "eh"
+  },
+  {
+   "id": "w-eth",
+   "name": "Ethiopia",
+   "kind": "country",
+   "bbox": [
+    32.99,
+    3.405,
+    47.931,
+    14.865
+   ],
+   "packs": [],
+   "region": "regions/w-eth.geojson",
+   "country": "et"
+  },
+  {
+   "id": "w-flk",
+   "name": "Falkland Islands",
+   "kind": "country",
+   "bbox": [
+    -61.318,
+    -52.407,
+    -57.734,
+    -51.028
+   ],
+   "packs": [],
+   "region": "regions/w-flk.geojson",
+   "country": "fk"
+  },
+  {
+   "id": "w-fro",
+   "name": "Faroe Islands",
+   "kind": "country",
+   "bbox": [
+    -7.644,
+    61.396,
+    -6.276,
+    62.399
+   ],
+   "packs": [],
+   "region": "regions/w-fro.geojson",
+   "country": "fo"
+  },
+  {
+   "id": "w-fsm",
+   "name": "Federated States of Micronesia",
+   "kind": "country",
+   "bbox": [
+    138.064,
+    0.918,
+    163.047,
+    9.776
+   ],
+   "packs": [],
+   "region": "regions/w-fsm.geojson",
+   "country": "fm"
+  },
+  {
+   "id": "w-gab",
+   "name": "Gabon",
+   "kind": "country",
+   "bbox": [
+    8.709,
+    -3.909,
+    14.492,
+    2.32
+   ],
+   "packs": [],
+   "region": "regions/w-gab.geojson",
+   "country": "ga"
+  },
+  {
+   "id": "w-geo",
+   "name": "Georgia",
+   "kind": "country",
+   "bbox": [
+    39.991,
+    41.044,
+    46.692,
+    43.563
+   ],
+   "packs": [],
+   "region": "regions/w-geo.geojson",
+   "country": "ge"
+  },
+  {
+   "id": "w-ggy",
+   "name": "Guernsey",
+   "kind": "country",
+   "bbox": [
+    -2.673,
+    49.412,
+    -2.17,
+    49.731
+   ],
+   "packs": [],
+   "region": "regions/w-ggy.geojson",
+   "country": "gg"
+  },
+  {
+   "id": "w-gha",
+   "name": "Ghana",
+   "kind": "country",
+   "bbox": [
+    -3.261,
+    4.738,
+    1.185,
+    11.147
+   ],
+   "packs": [],
+   "region": "regions/w-gha.geojson",
+   "country": "gh"
+  },
+  {
+   "id": "w-gib",
+   "name": "Gibraltar",
+   "kind": "country",
+   "bbox": [
+    -5.358,
+    36.111,
+    -5.339,
+    36.141
+   ],
+   "packs": [],
+   "region": "regions/w-gib.geojson",
+   "country": "gi"
+  },
+  {
+   "id": "w-gin",
+   "name": "Guinea",
+   "kind": "country",
+   "bbox": [
+    -15.081,
+    7.203,
+    -7.679,
+    12.662
+   ],
+   "packs": [],
+   "region": "regions/w-gin.geojson",
+   "country": "gn"
+  },
+  {
+   "id": "w-gmb",
+   "name": "Gambia",
+   "kind": "country",
+   "bbox": [
+    -16.82,
+    13.065,
+    -13.819,
+    13.819
+   ],
+   "packs": [],
+   "region": "regions/w-gmb.geojson",
+   "country": "gm"
+  },
+  {
+   "id": "w-gnb",
+   "name": "Guinea-Bissau",
+   "kind": "country",
+   "bbox": [
+    -16.709,
+    10.929,
+    -13.661,
+    12.679
+   ],
+   "packs": [],
+   "region": "regions/w-gnb.geojson",
+   "country": "gw"
+  },
+  {
+   "id": "w-gnq",
+   "name": "Equatorial Guinea",
+   "kind": "country",
+   "bbox": [
+    5.612,
+    -1.476,
+    11.335,
+    3.769
+   ],
+   "packs": [],
+   "region": "regions/w-gnq.geojson",
+   "country": "gq"
+  },
+  {
+   "id": "w-grd",
+   "name": "Grenada",
+   "kind": "country",
+   "bbox": [
+    -61.791,
+    12.003,
+    -61.422,
+    12.53
+   ],
+   "packs": [],
+   "region": "regions/w-grd.geojson",
+   "country": "gd"
+  },
+  {
+   "id": "w-grl",
+   "name": "Greenland",
+   "kind": "country",
+   "bbox": [
+    -73.057,
+    59.799,
+    -11.396,
+    83.622
+   ],
+   "packs": [],
+   "region": "regions/w-grl.geojson",
+   "country": "gl"
+  },
+  {
+   "id": "w-gtm",
+   "name": "Guatemala",
+   "kind": "country",
+   "bbox": [
+    -92.246,
+    13.731,
+    -88.222,
+    17.816
+   ],
+   "packs": [],
+   "region": "regions/w-gtm.geojson",
+   "country": "gt"
+  },
+  {
+   "id": "w-gum",
+   "name": "Guam",
+   "kind": "country",
+   "bbox": [
+    144.624,
+    13.241,
+    144.952,
+    13.654
+   ],
+   "packs": [],
+   "region": "regions/w-gum.geojson",
+   "country": "gu"
+  },
+  {
+   "id": "w-guy",
+   "name": "Guyana",
+   "kind": "country",
+   "bbox": [
+    -61.38,
+    1.187,
+    -56.482,
+    8.558
+   ],
+   "packs": [],
+   "region": "regions/w-guy.geojson",
+   "country": "gy"
+  },
+  {
+   "id": "w-hkg",
+   "name": "Hong Kong S.A.R.",
+   "kind": "country",
+   "bbox": [
+    113.837,
+    22.177,
+    114.397,
+    22.564
+   ],
+   "packs": [],
+   "region": "regions/w-hkg.geojson",
+   "country": "hk"
+  },
+  {
+   "id": "w-hmd",
+   "name": "Heard Island and McDonald Islands",
+   "kind": "country",
+   "bbox": [
+    73.236,
+    -53.193,
+    73.812,
+    -52.962
+   ],
+   "packs": [],
+   "region": "regions/w-hmd.geojson",
+   "country": "hm"
+  },
+  {
+   "id": "w-hnd",
+   "name": "Honduras",
+   "kind": "country",
+   "bbox": [
+    -89.362,
+    12.98,
+    -83.13,
+    17.419
+   ],
+   "packs": [],
+   "region": "regions/w-hnd.geojson",
+   "country": "hn"
+  },
+  {
+   "id": "w-hrv",
+   "name": "Croatia",
+   "kind": "country",
+   "bbox": [
+    13.505,
+    42.431,
+    19.405,
+    46.547
+   ],
+   "packs": [],
+   "region": "regions/w-hrv.geojson",
+   "country": "hr"
+  },
+  {
+   "id": "w-hti",
+   "name": "Haiti",
+   "kind": "country",
+   "bbox": [
+    -74.489,
+    18.028,
+    -71.644,
+    20.09
+   ],
+   "packs": [],
+   "region": "regions/w-hti.geojson",
+   "country": "ht"
+  },
+  {
+   "id": "w-imn",
+   "name": "Isle of Man",
+   "kind": "country",
+   "bbox": [
+    -4.79,
+    54.057,
+    -4.319,
+    54.416
+   ],
+   "packs": [],
+   "region": "regions/w-imn.geojson",
+   "country": "im"
+  },
+  {
+   "id": "w-iot",
+   "name": "British Indian Ocean Territory",
+   "kind": "country",
+   "bbox": [
+    71.261,
+    -7.432,
+    72.495,
+    -5.227
+   ],
+   "packs": [],
+   "region": "regions/w-iot.geojson",
+   "country": "io"
+  },
+  {
+   "id": "w-irl",
+   "name": "Ireland",
+   "kind": "country",
+   "bbox": [
+    -10.469,
+    51.446,
+    -5.994,
+    55.38
+   ],
+   "packs": [],
+   "region": "regions/w-irl.geojson",
+   "country": "ie"
+  },
+  {
+   "id": "w-irq",
+   "name": "Iraq",
+   "kind": "country",
+   "bbox": [
+    38.863,
+    29.071,
+    48.547,
+    37.374
+   ],
+   "packs": [],
+   "region": "regions/w-irq.geojson",
+   "country": "iq"
+  },
+  {
+   "id": "w-isr",
+   "name": "Israel",
+   "kind": "country",
+   "bbox": [
+    34.248,
+    29.49,
+    35.867,
+    33.401
+   ],
+   "packs": [],
+   "region": "regions/w-isr.geojson",
+   "country": "il"
+  },
+  {
+   "id": "w-jam",
+   "name": "Jamaica",
+   "kind": "country",
+   "bbox": [
+    -78.375,
+    17.704,
+    -76.198,
+    18.525
+   ],
+   "packs": [],
+   "region": "regions/w-jam.geojson",
+   "country": "jm"
+  },
+  {
+   "id": "w-jey",
+   "name": "Jersey",
+   "kind": "country",
+   "bbox": [
+    -2.242,
+    49.171,
+    -2.008,
+    49.267
+   ],
+   "packs": [],
+   "region": "regions/w-jey.geojson",
+   "country": "je"
+  },
+  {
+   "id": "w-jor",
+   "name": "Jordan",
+   "kind": "country",
+   "bbox": [
+    34.96,
+    29.2,
+    39.271,
+    33.244
+   ],
+   "packs": [],
+   "region": "regions/w-jor.geojson",
+   "country": "jo"
+  },
+  {
+   "id": "w-ken",
+   "name": "Kenya",
+   "kind": "country",
+   "bbox": [
+    33.894,
+    -4.672,
+    41.885,
+    5.03
+   ],
+   "packs": [],
+   "region": "regions/w-ken.geojson",
+   "country": "ke"
+  },
+  {
+   "id": "w-kgz",
+   "name": "Kyrgyzstan",
+   "kind": "country",
+   "bbox": [
+    69.226,
+    39.189,
+    80.257,
+    43.262
+   ],
+   "packs": [],
+   "region": "regions/w-kgz.geojson",
+   "country": "kg"
+  },
+  {
+   "id": "w-khm",
+   "name": "Cambodia",
+   "kind": "country",
+   "bbox": [
+    102.326,
+    10.418,
+    107.611,
+    14.705
+   ],
+   "packs": [],
+   "region": "regions/w-khm.geojson",
+   "country": "kh"
+  },
+  {
+   "id": "w-kna",
+   "name": "Saint Kitts and Nevis",
+   "kind": "country",
+   "bbox": [
+    -62.861,
+    17.101,
+    -62.537,
+    17.416
+   ],
+   "packs": [],
+   "region": "regions/w-kna.geojson",
+   "country": "kn"
+  },
+  {
+   "id": "w-kwt",
+   "name": "Kuwait",
+   "kind": "country",
+   "bbox": [
+    46.561,
+    28.536,
+    48.433,
+    30.092
+   ],
+   "packs": [],
+   "region": "regions/w-kwt.geojson",
+   "country": "kw"
+  },
+  {
+   "id": "w-lao",
+   "name": "Laos",
+   "kind": "country",
+   "bbox": [
+    100.097,
+    13.917,
+    107.664,
+    22.496
+   ],
+   "packs": [],
+   "region": "regions/w-lao.geojson",
+   "country": "la"
+  },
+  {
+   "id": "w-lbn",
+   "name": "Lebanon",
+   "kind": "country",
+   "bbox": [
+    35.1,
+    33.067,
+    36.598,
+    34.688
+   ],
+   "packs": [],
+   "region": "regions/w-lbn.geojson",
+   "country": "lb"
+  },
+  {
+   "id": "w-lbr",
+   "name": "Liberia",
+   "kind": "country",
+   "bbox": [
+    -11.476,
+    4.353,
+    -7.384,
+    8.553
+   ],
+   "packs": [],
+   "region": "regions/w-lbr.geojson",
+   "country": "lr"
+  },
+  {
+   "id": "w-lby",
+   "name": "Libya",
+   "kind": "country",
+   "bbox": [
+    9.31,
+    19.557,
+    25.153,
+    33.181
+   ],
+   "packs": [],
+   "region": "regions/w-lby.geojson",
+   "country": "ly"
+  },
+  {
+   "id": "w-lca",
+   "name": "Saint Lucia",
+   "kind": "country",
+   "bbox": [
+    -61.079,
+    13.715,
+    -60.883,
+    14.112
+   ],
+   "packs": [],
+   "region": "regions/w-lca.geojson",
+   "country": "lc"
+  },
+  {
+   "id": "w-lie",
+   "name": "Liechtenstein",
+   "kind": "country",
+   "bbox": [
+    9.476,
+    47.052,
+    9.616,
+    47.263
+   ],
+   "packs": [],
+   "region": "regions/w-lie.geojson",
+   "country": "li"
+  },
+  {
+   "id": "w-lka",
+   "name": "Sri Lanka",
+   "kind": "country",
+   "bbox": [
+    79.656,
+    5.927,
+    81.89,
+    9.828
+   ],
+   "packs": [],
+   "region": "regions/w-lka.geojson",
+   "country": "lk"
+  },
+  {
+   "id": "w-lso",
+   "name": "Lesotho",
+   "kind": "country",
+   "bbox": [
+    27.002,
+    -30.659,
+    29.436,
+    -28.572
+   ],
+   "packs": [],
+   "region": "regions/w-lso.geojson",
+   "country": "ls"
+  },
+  {
+   "id": "w-ltu",
+   "name": "Lithuania",
+   "kind": "country",
+   "bbox": [
+    20.925,
+    53.887,
+    26.801,
+    56.435
+   ],
+   "packs": [],
+   "region": "regions/w-ltu.geojson",
+   "country": "lt"
+  },
+  {
+   "id": "w-lva",
+   "name": "Latvia",
+   "kind": "country",
+   "bbox": [
+    20.969,
+    55.678,
+    28.217,
+    58.075
+   ],
+   "packs": [],
+   "region": "regions/w-lva.geojson",
+   "country": "lv"
+  },
+  {
+   "id": "w-mac",
+   "name": "Macao S.A.R",
+   "kind": "country",
+   "bbox": [
+    113.52,
+    22.105,
+    113.587,
+    22.221
+   ],
+   "packs": [],
+   "region": "regions/w-mac.geojson",
+   "country": "mo"
+  },
+  {
+   "id": "w-maf",
+   "name": "Saint Martin",
+   "kind": "country",
+   "bbox": [
+    -63.147,
+    18.033,
+    -63.011,
+    18.122
+   ],
+   "packs": [],
+   "region": "regions/w-maf.geojson",
+   "country": "mf"
+  },
+  {
+   "id": "w-mar",
+   "name": "Morocco",
+   "kind": "country",
+   "bbox": [
+    -17.014,
+    21.42,
+    -1.032,
+    35.927
+   ],
+   "packs": [],
+   "region": "regions/w-mar.geojson",
+   "country": "ma"
+  },
+  {
+   "id": "w-mco",
+   "name": "Monaco",
+   "kind": "country",
+   "bbox": [
+    7.366,
+    43.718,
+    7.437,
+    43.764
+   ],
+   "packs": [],
+   "region": "regions/w-mco.geojson",
+   "country": "mc"
+  },
+  {
+   "id": "w-mda",
+   "name": "Moldova",
+   "kind": "country",
+   "bbox": [
+    26.618,
+    45.469,
+    30.132,
+    48.486
+   ],
+   "packs": [],
+   "region": "regions/w-mda.geojson",
+   "country": "md"
+  },
+  {
+   "id": "w-mdv",
+   "name": "Maldives",
+   "kind": "country",
+   "bbox": [
+    72.685,
+    -0.689,
+    73.753,
+    7.107
+   ],
+   "packs": [],
+   "region": "regions/w-mdv.geojson",
+   "country": "mv"
+  },
+  {
+   "id": "w-mhl",
+   "name": "Marshall Islands",
+   "kind": "country",
+   "bbox": [
+    165.282,
+    4.574,
+    172.03,
+    14.611
+   ],
+   "packs": [],
+   "region": "regions/w-mhl.geojson",
+   "country": "mh"
+  },
+  {
+   "id": "w-mkd",
+   "name": "North Macedonia",
+   "kind": "country",
+   "bbox": [
+    20.445,
+    40.854,
+    23.01,
+    42.37
+   ],
+   "packs": [],
+   "region": "regions/w-mkd.geojson",
+   "country": "mk"
+  },
+  {
+   "id": "w-mli",
+   "name": "Mali",
+   "kind": "country",
+   "bbox": [
+    -12.264,
+    10.14,
+    4.236,
+    24.995
+   ],
+   "packs": [],
+   "region": "regions/w-mli.geojson",
+   "country": "ml"
+  },
+  {
+   "id": "w-mne",
+   "name": "Montenegro",
+   "kind": "country",
+   "bbox": [
+    18.442,
+    41.864,
+    20.354,
+    43.538
+   ],
+   "packs": [],
+   "region": "regions/w-mne.geojson",
+   "country": "me"
+  },
+  {
+   "id": "w-mng",
+   "name": "Mongolia",
+   "kind": "country",
+   "bbox": [
+    87.744,
+    41.622,
+    119.904,
+    52.129
+   ],
+   "packs": [],
+   "region": "regions/w-mng.geojson",
+   "country": "mn"
+  },
+  {
+   "id": "w-mnp",
+   "name": "Northern Mariana Islands",
+   "kind": "country",
+   "bbox": [
+    144.902,
+    14.111,
+    145.869,
+    20.555
+   ],
+   "packs": [],
+   "region": "regions/w-mnp.geojson",
+   "country": "mp"
+  },
+  {
+   "id": "w-mrt",
+   "name": "Mauritania",
+   "kind": "country",
+   "bbox": [
+    -17.081,
+    14.734,
+    -4.995,
+    27.285
+   ],
+   "packs": [],
+   "region": "regions/w-mrt.geojson",
+   "country": "mr"
+  },
+  {
+   "id": "w-msr",
+   "name": "Montserrat",
+   "kind": "country",
+   "bbox": [
+    -62.23,
+    16.675,
+    -62.141,
+    16.819
+   ],
+   "packs": [],
+   "region": "regions/w-msr.geojson",
+   "country": "ms"
+  },
+  {
+   "id": "w-mus",
+   "name": "Mauritius",
+   "kind": "country",
+   "bbox": [
+    56.524,
+    -20.517,
+    63.494,
+    -10.324
+   ],
+   "packs": [],
+   "region": "regions/w-mus.geojson",
+   "country": "mu"
+  },
+  {
+   "id": "w-mwi",
+   "name": "Malawi",
+   "kind": "country",
+   "bbox": [
+    32.668,
+    -17.132,
+    35.87,
+    -9.382
+   ],
+   "packs": [],
+   "region": "regions/w-mwi.geojson",
+   "country": "mw"
+  },
+  {
+   "id": "w-mys",
+   "name": "Malaysia",
+   "kind": "country",
+   "bbox": [
+    99.645,
+    0.857,
+    119.278,
+    7.356
+   ],
+   "packs": [],
+   "region": "regions/w-mys.geojson",
+   "country": "my"
+  },
+  {
+   "id": "w-nam",
+   "name": "Namibia",
+   "kind": "country",
+   "bbox": [
+    11.722,
+    -28.959,
+    25.26,
+    -16.96
+   ],
+   "packs": [],
+   "region": "regions/w-nam.geojson",
+   "country": "na"
+  },
+  {
+   "id": "w-ncl",
+   "name": "New Caledonia",
+   "kind": "country",
+   "bbox": [
+    163.616,
+    -22.671,
+    171.344,
+    -19.624
+   ],
+   "packs": [],
+   "region": "regions/w-ncl.geojson",
+   "country": "nc"
+  },
+  {
+   "id": "w-ner",
+   "name": "Niger",
+   "kind": "country",
+   "bbox": [
+    0.159,
+    11.696,
+    15.968,
+    23.498
+   ],
+   "packs": [],
+   "region": "regions/w-ner.geojson",
+   "country": "ne"
+  },
+  {
+   "id": "w-nfk",
+   "name": "Norfolk Island",
+   "kind": "country",
+   "bbox": [
+    167.912,
+    -29.08,
+    167.996,
+    -28.997
+   ],
+   "packs": [],
+   "region": "regions/w-nfk.geojson",
+   "country": "nf"
+  },
+  {
+   "id": "w-nic",
+   "name": "Nicaragua",
+   "kind": "country",
+   "bbox": [
+    -87.686,
+    10.713,
+    -82.726,
+    15.016
+   ],
+   "packs": [],
+   "region": "regions/w-nic.geojson",
+   "country": "ni"
+  },
+  {
+   "id": "w-niu",
+   "name": "Niue",
+   "kind": "country",
+   "bbox": [
+    -169.95,
+    -19.143,
+    -169.783,
+    -18.964
+   ],
+   "packs": [],
+   "region": "regions/w-niu.geojson",
+   "country": "nu"
+  },
+  {
+   "id": "w-nru",
+   "name": "Nauru",
+   "kind": "country",
+   "bbox": [
+    166.907,
+    -0.552,
+    166.958,
+    -0.49
+   ],
+   "packs": [],
+   "region": "regions/w-nru.geojson",
+   "country": "nr"
+  },
+  {
+   "id": "w-omn",
+   "name": "Oman",
+   "kind": "country",
+   "bbox": [
+    51.979,
+    16.735,
+    59.845,
+    26.386
+   ],
+   "packs": [],
+   "region": "regions/w-omn.geojson",
+   "country": "om"
+  },
+  {
+   "id": "w-pak",
+   "name": "Pakistan",
+   "kind": "country",
+   "bbox": [
+    60.844,
+    23.695,
+    77.049,
+    37.043
+   ],
+   "packs": [],
+   "region": "regions/w-pak.geojson",
+   "country": "pk"
+  },
+  {
+   "id": "w-pan",
+   "name": "Panama",
+   "kind": "country",
+   "bbox": [
+    -83.052,
+    7.213,
+    -77.163,
+    9.618
+   ],
+   "packs": [],
+   "region": "regions/w-pan.geojson",
+   "country": "pa"
+  },
+  {
+   "id": "w-pcn",
+   "name": "Pitcairn Islands",
+   "kind": "country",
+   "bbox": [
+    -130.753,
+    -25.077,
+    -124.778,
+    -23.924
+   ],
+   "packs": [],
+   "region": "regions/w-pcn.geojson",
+   "country": "pn"
+  },
+  {
+   "id": "w-plw",
+   "name": "Palau",
+   "kind": "country",
+   "bbox": [
+    131.131,
+    2.949,
+    134.727,
+    8.097
+   ],
+   "packs": [],
+   "region": "regions/w-plw.geojson",
+   "country": "pw"
+  },
+  {
+   "id": "w-png",
+   "name": "Papua New Guinea",
+   "kind": "country",
+   "bbox": [
+    140.852,
+    -11.636,
+    155.968,
+    -1.346
+   ],
+   "packs": [],
+   "region": "regions/w-png.geojson",
+   "country": "pg"
+  },
+  {
+   "id": "w-pri",
+   "name": "Puerto Rico",
+   "kind": "country",
+   "bbox": [
+    -67.938,
+    17.923,
+    -65.245,
+    18.523
+   ],
+   "packs": [],
+   "region": "regions/w-pri.geojson",
+   "country": "pr"
+  },
+  {
+   "id": "w-prk",
+   "name": "North Korea",
+   "kind": "country",
+   "bbox": [
+    124.211,
+    37.676,
+    130.696,
+    43.01
+   ],
+   "packs": [],
+   "region": "regions/w-prk.geojson",
+   "country": "kp"
+  },
+  {
+   "id": "w-pse",
+   "name": "Palestine",
+   "kind": "country",
+   "bbox": [
+    34.2,
+    31.211,
+    35.568,
+    32.542
+   ],
+   "packs": [],
+   "region": "regions/w-pse.geojson",
+   "country": "ps"
+  },
+  {
+   "id": "w-pyf",
+   "name": "French Polynesia",
+   "kind": "country",
+   "bbox": [
+    -154.537,
+    -27.641,
+    -134.943,
+    -7.95
+   ],
+   "packs": [],
+   "region": "regions/w-pyf.geojson",
+   "country": "pf"
+  },
+  {
+   "id": "w-qat",
+   "name": "Qatar",
+   "kind": "country",
+   "bbox": [
+    50.758,
+    24.568,
+    51.615,
+    26.16
+   ],
+   "packs": [],
+   "region": "regions/w-qat.geojson",
+   "country": "qa"
+  },
+  {
+   "id": "w-rwa",
+   "name": "Rwanda",
+   "kind": "country",
+   "bbox": [
+    28.857,
+    -2.827,
+    30.888,
+    -1.061
+   ],
+   "packs": [],
+   "region": "regions/w-rwa.geojson",
+   "country": "rw"
+  },
+  {
+   "id": "w-sau",
+   "name": "Saudi Arabia",
+   "kind": "country",
+   "bbox": [
+    34.579,
+    16.387,
+    55.638,
+    32.12
+   ],
+   "packs": [],
+   "region": "regions/w-sau.geojson",
+   "country": "sa"
+  },
+  {
+   "id": "w-sdn",
+   "name": "Sudan",
+   "kind": "country",
+   "bbox": [
+    21.812,
+    8.696,
+    38.593,
+    22.224
+   ],
+   "packs": [],
+   "region": "regions/w-sdn.geojson",
+   "country": "sd"
+  },
+  {
+   "id": "w-sen",
+   "name": "Senegal",
+   "kind": "country",
+   "bbox": [
+    -17.52,
+    12.314,
+    -11.38,
+    16.691
+   ],
+   "packs": [],
+   "region": "regions/w-sen.geojson",
+   "country": "sn"
+  },
+  {
+   "id": "w-sgs",
+   "name": "South Georgia and the Islands",
+   "kind": "country",
+   "bbox": [
+    -38.087,
+    -59.473,
+    -26.239,
+    -53.973
+   ],
+   "packs": [],
+   "region": "regions/w-sgs.geojson",
+   "country": "gs"
+  },
+  {
+   "id": "w-shn",
+   "name": "Saint Helena",
+   "kind": "country",
+   "bbox": [
+    -14.418,
+    -40.398,
+    -5.65,
+    -7.878
+   ],
+   "packs": [],
+   "region": "regions/w-shn.geojson",
+   "country": "sh"
+  },
+  {
+   "id": "w-slb",
+   "name": "Solomon Islands",
+   "kind": "country",
+   "bbox": [
+    155.508,
+    -12.291,
+    168.826,
+    -6.603
+   ],
+   "packs": [],
+   "region": "regions/w-slb.geojson",
+   "country": "sb"
+  },
+  {
+   "id": "w-sle",
+   "name": "Sierra Leone",
+   "kind": "country",
+   "bbox": [
+    -13.287,
+    6.934,
+    -10.282,
+    9.996
+   ],
+   "packs": [],
+   "region": "regions/w-sle.geojson",
+   "country": "sl"
+  },
+  {
+   "id": "w-slv",
+   "name": "El Salvador",
+   "kind": "country",
+   "bbox": [
+    -90.112,
+    13.163,
+    -87.693,
+    14.445
+   ],
+   "packs": [],
+   "region": "regions/w-slv.geojson",
+   "country": "sv"
+  },
+  {
+   "id": "w-smr",
+   "name": "San Marino",
+   "kind": "country",
+   "bbox": [
+    12.386,
+    43.892,
+    12.492,
+    43.983
+   ],
+   "packs": [],
+   "region": "regions/w-smr.geojson",
+   "country": "sm"
+  },
+  {
+   "id": "w-som",
+   "name": "Somalia",
+   "kind": "country",
+   "bbox": [
+    40.967,
+    -1.67,
+    51.403,
+    11.979
+   ],
+   "packs": [],
+   "region": "regions/w-som.geojson",
+   "country": "so"
+  },
+  {
+   "id": "w-spm",
+   "name": "Saint Pierre and Miquelon",
+   "kind": "country",
+   "bbox": [
+    -56.391,
+    46.753,
+    -56.145,
+    47.141
+   ],
+   "packs": [],
+   "region": "regions/w-spm.geojson",
+   "country": "pm"
+  },
+  {
+   "id": "w-srb",
+   "name": "Republic of Serbia",
+   "kind": "country",
+   "bbox": [
+    18.845,
+    42.235,
+    22.981,
+    46.174
+   ],
+   "packs": [],
+   "region": "regions/w-srb.geojson",
+   "country": "rs"
+  },
+  {
+   "id": "w-ssd",
+   "name": "South Sudan",
+   "kind": "country",
+   "bbox": [
+    24.131,
+    3.506,
+    35.921,
+    12.21
+   ],
+   "packs": [],
+   "region": "regions/w-ssd.geojson",
+   "country": "ss"
+  },
+  {
+   "id": "w-stp",
+   "name": "São Tomé and Principe",
+   "kind": "country",
+   "bbox": [
+    6.462,
+    0.024,
+    7.463,
+    1.7
+   ],
+   "packs": [],
+   "region": "regions/w-stp.geojson",
+   "country": "st"
+  },
+  {
+   "id": "w-sur",
+   "name": "Suriname",
+   "kind": "country",
+   "bbox": [
+    -58.055,
+    1.847,
+    -53.986,
+    6.004
+   ],
+   "packs": [],
+   "region": "regions/w-sur.geojson",
+   "country": "sr"
+  },
+  {
+   "id": "w-svk",
+   "name": "Slovakia",
+   "kind": "country",
+   "bbox": [
+    16.847,
+    47.762,
+    22.54,
+    49.6
+   ],
+   "packs": [],
+   "region": "regions/w-svk.geojson",
+   "country": "sk"
+  },
+  {
+   "id": "w-svn",
+   "name": "Slovenia",
+   "kind": "country",
+   "bbox": [
+    13.365,
+    45.429,
+    16.515,
+    46.86
+   ],
+   "packs": [],
+   "region": "regions/w-svn.geojson",
+   "country": "si"
+  },
+  {
+   "id": "w-swz",
+   "name": "eSwatini",
+   "kind": "country",
+   "bbox": [
+    30.783,
+    -27.314,
+    32.114,
+    -25.736
+   ],
+   "packs": [],
+   "region": "regions/w-swz.geojson",
+   "country": "sz"
+  },
+  {
+   "id": "w-sxm",
+   "name": "Sint Maarten",
+   "kind": "country",
+   "bbox": [
+    -63.119,
+    18.019,
+    -63.018,
+    18.062
+   ],
+   "packs": [],
+   "region": "regions/w-sxm.geojson",
+   "country": "sx"
+  },
+  {
+   "id": "w-syc",
+   "name": "Seychelles",
+   "kind": "country",
+   "bbox": [
+    46.207,
+    -9.756,
+    56.287,
+    -3.791
+   ],
+   "packs": [],
+   "region": "regions/w-syc.geojson",
+   "country": "sc"
+  },
+  {
+   "id": "w-syr",
+   "name": "Syria",
+   "kind": "country",
+   "bbox": [
+    35.723,
+    32.313,
+    42.377,
+    37.314
+   ],
+   "packs": [],
+   "region": "regions/w-syr.geojson",
+   "country": "sy"
+  },
+  {
+   "id": "w-tca",
+   "name": "Turks and Caicos Islands",
+   "kind": "country",
+   "bbox": [
+    -72.481,
+    21.29,
+    -71.129,
+    21.959
+   ],
+   "packs": [],
+   "region": "regions/w-tca.geojson",
+   "country": "tc"
+  },
+  {
+   "id": "w-tcd",
+   "name": "Chad",
+   "kind": "country",
+   "bbox": [
+    13.449,
+    7.458,
+    23.984,
+    23.422
+   ],
+   "packs": [],
+   "region": "regions/w-tcd.geojson",
+   "country": "td"
+  },
+  {
+   "id": "w-tgo",
+   "name": "Togo",
+   "kind": "country",
+   "bbox": [
+    -0.166,
+    6.103,
+    1.764,
+    11.135
+   ],
+   "packs": [],
+   "region": "regions/w-tgo.geojson",
+   "country": "tg"
+  },
+  {
+   "id": "w-tjk",
+   "name": "Tajikistan",
+   "kind": "country",
+   "bbox": [
+    67.344,
+    36.679,
+    75.132,
+    41.032
+   ],
+   "packs": [],
+   "region": "regions/w-tjk.geojson",
+   "country": "tj"
+  },
+  {
+   "id": "w-tkm",
+   "name": "Turkmenistan",
+   "kind": "country",
+   "bbox": [
+    52.45,
+    35.141,
+    66.624,
+    42.781
+   ],
+   "packs": [],
+   "region": "regions/w-tkm.geojson",
+   "country": "tm"
+  },
+  {
+   "id": "w-tls",
+   "name": "East Timor",
+   "kind": "country",
+   "bbox": [
+    124.03,
+    -9.501,
+    127.313,
+    -8.135
+   ],
+   "packs": [],
+   "region": "regions/w-tls.geojson",
+   "country": "tl"
+  },
+  {
+   "id": "w-ton",
+   "name": "Tonga",
+   "kind": "country",
+   "bbox": [
+    -176.219,
+    -22.339,
+    -173.914,
+    -15.56
+   ],
+   "packs": [],
+   "region": "regions/w-ton.geojson",
+   "country": "to"
+  },
+  {
+   "id": "w-tto",
+   "name": "Trinidad and Tobago",
+   "kind": "country",
+   "bbox": [
+    -61.919,
+    10.042,
+    -60.522,
+    11.351
+   ],
+   "packs": [],
+   "region": "regions/w-tto.geojson",
+   "country": "tt"
+  },
+  {
+   "id": "w-tun",
+   "name": "Tunisia",
+   "kind": "country",
+   "bbox": [
+    7.48,
+    30.229,
+    11.564,
+    37.34
+   ],
+   "packs": [],
+   "region": "regions/w-tun.geojson",
+   "country": "tn"
+  },
+  {
+   "id": "w-tuv",
+   "name": "Tuvalu",
+   "kind": "country",
+   "bbox": [
+    176.125,
+    -9.421,
+    179.907,
+    -5.678
+   ],
+   "packs": [],
+   "region": "regions/w-tuv.geojson",
+   "country": "tv"
+  },
+  {
+   "id": "w-twn",
+   "name": "Taiwan",
+   "kind": "country",
+   "bbox": [
+    118.28,
+    21.929,
+    121.998,
+    25.279
+   ],
+   "packs": [],
+   "region": "regions/w-twn.geojson",
+   "country": "cn-tw"
+  },
+  {
+   "id": "w-uga",
+   "name": "Uganda",
+   "kind": "country",
+   "bbox": [
+    29.551,
+    -1.473,
+    35.001,
+    4.188
+   ],
+   "packs": [],
+   "region": "regions/w-uga.geojson",
+   "country": "ug"
+  },
+  {
+   "id": "w-ury",
+   "name": "Uruguay",
+   "kind": "country",
+   "bbox": [
+    -58.438,
+    -34.97,
+    -53.12,
+    -30.097
+   ],
+   "packs": [],
+   "region": "regions/w-ury.geojson",
+   "country": "uy"
+  },
+  {
+   "id": "w-uzb",
+   "name": "Uzbekistan",
+   "kind": "country",
+   "bbox": [
+    55.976,
+    37.185,
+    73.143,
+    45.559
+   ],
+   "packs": [],
+   "region": "regions/w-uzb.geojson",
+   "country": "uz"
+  },
+  {
+   "id": "w-vat",
+   "name": "Vatican",
+   "kind": "country",
+   "bbox": [
+    12.453,
+    41.903,
+    12.454,
+    41.904
+   ],
+   "packs": [],
+   "region": "regions/w-vat.geojson",
+   "country": "va"
+  },
+  {
+   "id": "w-vct",
+   "name": "Saint Vincent and the Grenadines",
+   "kind": "country",
+   "bbox": [
+    -61.46,
+    12.585,
+    -61.124,
+    13.381
+   ],
+   "packs": [],
+   "region": "regions/w-vct.geojson",
+   "country": "vc"
+  },
+  {
+   "id": "w-ven",
+   "name": "Venezuela",
+   "kind": "country",
+   "bbox": [
+    -73.391,
+    0.649,
+    -59.816,
+    15.703
+   ],
+   "packs": [],
+   "region": "regions/w-ven.geojson",
+   "country": "ve"
+  },
+  {
+   "id": "w-vgb",
+   "name": "British Virgin Islands",
+   "kind": "country",
+   "bbox": [
+    -64.774,
+    18.335,
+    -64.271,
+    18.746
+   ],
+   "packs": [],
+   "region": "regions/w-vgb.geojson",
+   "country": "vg"
+  },
+  {
+   "id": "w-vir",
+   "name": "United States Virgin Islands",
+   "kind": "country",
+   "bbox": [
+    -65.041,
+    17.683,
+    -64.559,
+    18.387
+   ],
+   "packs": [],
+   "region": "regions/w-vir.geojson",
+   "country": "vi"
+  },
+  {
+   "id": "w-vut",
+   "name": "Vanuatu",
+   "kind": "country",
+   "bbox": [
+    166.521,
+    -20.253,
+    169.899,
+    -13.065
+   ],
+   "packs": [],
+   "region": "regions/w-vut.geojson",
+   "country": "vu"
+  },
+  {
+   "id": "w-wlf",
+   "name": "Wallis and Futuna",
+   "kind": "country",
+   "bbox": [
+    -178.186,
+    -14.319,
+    -176.126,
+    -13.209
+   ],
+   "packs": [],
+   "region": "regions/w-wlf.geojson",
+   "country": "wf"
+  },
+  {
+   "id": "w-wsm",
+   "name": "Samoa",
+   "kind": "country",
+   "bbox": [
+    -172.767,
+    -14.053,
+    -171.438,
+    -13.463
+   ],
+   "packs": [],
+   "region": "regions/w-wsm.geojson",
+   "country": "ws"
+  },
+  {
+   "id": "w-yem",
+   "name": "Yemen",
+   "kind": "country",
+   "bbox": [
+    42.546,
+    12.111,
+    54.527,
+    18.996
+   ],
+   "packs": [],
+   "region": "regions/w-yem.geojson",
+   "country": "ye"
+  },
+  {
+   "id": "w-zmb",
+   "name": "Zambia",
+   "kind": "country",
+   "bbox": [
+    21.98,
+    -18.067,
+    33.674,
+    -8.22
+   ],
+   "packs": [],
+   "region": "regions/w-zmb.geojson",
+   "country": "zm"
+  },
+  {
+   "id": "w-zwe",
+   "name": "Zimbabwe",
+   "kind": "country",
+   "bbox": [
+    25.226,
+    -22.365,
+    33.035,
+    -15.619
+   ],
+   "packs": [],
+   "region": "regions/w-zwe.geojson",
+   "country": "zw"
   }
  ]
 }
