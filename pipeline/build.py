@@ -43,7 +43,7 @@ CHAINS = ["Burger King", "KFC", "Subway", "Taco Bell", "Chipotle", "Qdoba", "Del
 
 # The OpenStreetMap tags the app uses; everything else is dropped to keep files small.
 KEEP = ["name", "amenity", "shop", "cuisine", "opening_hours", "website", "contact:website", "phone",
-        "contact:phone", "contact:instagram", "contact:facebook", "instagram", "facebook", "website:menu",
+        "contact:phone", "contact:whatsapp", "whatsapp", "contact:instagram", "contact:facebook", "instagram", "facebook", "website:menu",
         "addr:housenumber", "addr:street", "addr:city", "addr:postcode", "addr:housename", "addr:country",
         "brand", "brand:wikidata", "check_date", f"check_date:diet:{K}", f"diet:{K}", "diet:gluten_free",
         "takeaway", "delivery", "outdoor_seating", "wheelchair"]
@@ -176,7 +176,9 @@ def metres(a, b, c, d):
 JUNK_URL = re.compile(
     r"(google\.[a-z.]+/maps|maps\.google|maps\.app\.goo\.gl|goo\.gl/|g\.co/|g\.page|"
     r"doordash\.com|ubereats\.com|grubhub\.com|just-eat|deliveroo|skipthedishes|menulog|"
-    r"foodpanda|wolt\.com|opentable\.|tripadvisor\.)",
+    r"foodpanda|wolt\.com|opentable\.|tripadvisor\.|"
+    # Free site builders whose pages are often abandoned or dead (Google Business sites were shut down in 2024).
+    r"placeweb\.site|business\.site|sites\.google\.com/view)",
     re.I,
 )
 
@@ -453,7 +455,10 @@ def main():
         index["tiles"][f"{lat}_{lon}"] = len(places)
         filled = sum(1 for p in places if "fill" in p)
         print(f"tile {lat}_{lon}: {len(places)} places, {filled} filled from Overture, {time.time()-t0:.0f}s")
+    index["licence"] = LICENCE_TEXT
     json.dump(index, open(index_path, "w"), indent=1)
+    with open(os.path.join(args.out, "LICENCE.txt"), "w") as f:
+        f.write(LICENCE_TEXT + "\n")
 
 
 if __name__ == "__main__":
