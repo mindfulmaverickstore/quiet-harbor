@@ -21929,6 +21929,7048 @@
    ],
    "packs": [],
    "country": "pt"
+  },
+  {
+   "id": "p-arg-1",
+   "name": "Argentina: Santa Fe and 8 more",
+   "kind": "region",
+   "bbox": [
+    -68.583,
+    -34.386,
+    -53.658,
+    -21.783
+   ],
+   "packs": [],
+   "region": "regions/p-arg-1.geojson",
+   "parent": "w-arg"
+  },
+  {
+   "id": "p-arg-2",
+   "name": "Argentina: Córdoba and 7 more",
+   "kind": "region",
+   "bbox": [
+    -70.595,
+    -39.33,
+    -61.705,
+    -25.156
+   ],
+   "packs": [],
+   "region": "regions/p-arg-2.geojson",
+   "parent": "w-arg"
+  },
+  {
+   "id": "p-arg-3",
+   "name": "Argentina: Buenos Aires and Ciudad de Buenos Aires",
+   "kind": "region",
+   "bbox": [
+    -63.393,
+    -41.048,
+    -56.661,
+    -33.253
+   ],
+   "packs": [],
+   "region": "regions/p-arg-3.geojson",
+   "parent": "w-arg"
+  },
+  {
+   "id": "p-arg-4",
+   "name": "Argentina: Santa Cruz and 3 more",
+   "kind": "region",
+   "bbox": [
+    -73.577,
+    -52.395,
+    -62.798,
+    -36.125
+   ],
+   "packs": [],
+   "region": "regions/p-arg-4.geojson",
+   "parent": "w-arg"
+  },
+  {
+   "id": "p-arg-5",
+   "name": "Argentina: Tierra del Fuego",
+   "kind": "region",
+   "bbox": [
+    -68.658,
+    -55.056,
+    -63.808,
+    -52.636
+   ],
+   "packs": [],
+   "region": "regions/p-arg-5.geojson",
+   "parent": "w-arg"
+  },
+  {
+   "id": "p-aus-1",
+   "name": "Australia: Queensland (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    137.996,
+    -19.209,
+    147.052,
+    -9.236
+   ],
+   "packs": [],
+   "region": "regions/p-aus-1.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-2",
+   "name": "Australia: South Australia and Northern Territory",
+   "kind": "region",
+   "bbox": [
+    128.996,
+    -38.075,
+    141.004,
+    -10.964
+   ],
+   "packs": [],
+   "region": "regions/p-aus-2.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-3",
+   "name": "Australia: Queensland (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    137.996,
+    -29.175,
+    153.553,
+    -19.201
+   ],
+   "packs": [],
+   "region": "regions/p-aus-3.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-4",
+   "name": "Australia: Western Australia",
+   "kind": "region",
+   "bbox": [
+    112.915,
+    -35.142,
+    129.004,
+    -13.72
+   ],
+   "packs": [],
+   "region": "regions/p-aus-4.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-5",
+   "name": "Australia: New South Wales (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    140.996,
+    -36.245,
+    147.319,
+    -28.996
+   ],
+   "packs": [],
+   "region": "regions/p-aus-5.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-6",
+   "name": "Australia: New South Wales (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    147.311,
+    -37.514,
+    153.635,
+    -28.145
+   ],
+   "packs": [],
+   "region": "regions/p-aus-6.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-7",
+   "name": "Australia: Lord Howe Island",
+   "kind": "region",
+   "bbox": [
+    159.04,
+    -31.597,
+    159.111,
+    -31.515
+   ],
+   "packs": [],
+   "region": "regions/p-aus-7.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-8",
+   "name": "Australia: Victoria",
+   "kind": "region",
+   "bbox": [
+    140.963,
+    -39.149,
+    149.976,
+    -33.983
+   ],
+   "packs": [],
+   "region": "regions/p-aus-8.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-9",
+   "name": "Australia: Australian Capital Territory",
+   "kind": "region",
+   "bbox": [
+    148.767,
+    -35.923,
+    149.408,
+    -35.136
+   ],
+   "packs": [],
+   "region": "regions/p-aus-9.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-10",
+   "name": "Australia: Jervis Bay Territory",
+   "kind": "region",
+   "bbox": [
+    150.609,
+    -35.203,
+    150.774,
+    -35.116
+   ],
+   "packs": [],
+   "region": "regions/p-aus-10.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-11",
+   "name": "Australia: Tasmania",
+   "kind": "region",
+   "bbox": [
+    143.833,
+    -43.645,
+    148.488,
+    -39.568
+   ],
+   "packs": [],
+   "region": "regions/p-aus-11.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aus-12",
+   "name": "Australia: Macquarie Island",
+   "kind": "region",
+   "bbox": [
+    158.828,
+    -54.754,
+    158.966,
+    -54.465
+   ],
+   "packs": [],
+   "region": "regions/p-aus-12.geojson",
+   "parent": "w-aus"
+  },
+  {
+   "id": "p-aut-1",
+   "name": "Austria: Tirol and 3 more",
+   "kind": "region",
+   "bbox": [
+    9.517,
+    46.375,
+    15.11,
+    48.036
+   ],
+   "packs": [],
+   "region": "regions/p-aut-1.geojson",
+   "parent": "w-aut"
+  },
+  {
+   "id": "p-aut-2",
+   "name": "Austria: Oberösterreich",
+   "kind": "region",
+   "bbox": [
+    12.733,
+    47.47,
+    14.979,
+    48.77
+   ],
+   "packs": [],
+   "region": "regions/p-aut-2.geojson",
+   "parent": "w-aut"
+  },
+  {
+   "id": "p-aut-3",
+   "name": "Austria: Steiermark and Burgenland",
+   "kind": "region",
+   "bbox": [
+    13.563,
+    46.611,
+    17.152,
+    48.117
+   ],
+   "packs": [],
+   "region": "regions/p-aut-3.geojson",
+   "parent": "w-aut"
+  },
+  {
+   "id": "p-aut-4",
+   "name": "Austria: Niederösterreich and Wien",
+   "kind": "region",
+   "bbox": [
+    14.423,
+    47.439,
+    17.067,
+    49.014
+   ],
+   "packs": [],
+   "region": "regions/p-aut-4.geojson",
+   "parent": "w-aut"
+  },
+  {
+   "id": "p-bel-1",
+   "name": "Belgium: Hainaut and West Flanders",
+   "kind": "region",
+   "bbox": [
+    2.518,
+    49.93,
+    4.62,
+    51.379
+   ],
+   "packs": [],
+   "region": "regions/p-bel-1.geojson",
+   "parent": "w-bel"
+  },
+  {
+   "id": "p-bel-2",
+   "name": "Belgium: East Flanders and 3 more",
+   "kind": "region",
+   "bbox": [
+    3.327,
+    50.117,
+    6.378,
+    51.5
+   ],
+   "packs": [],
+   "region": "regions/p-bel-2.geojson",
+   "parent": "w-bel"
+  },
+  {
+   "id": "p-bel-3",
+   "name": "Belgium: Flemish Brabant and 4 more",
+   "kind": "region",
+   "bbox": [
+    3.884,
+    49.491,
+    6.038,
+    51.056
+   ],
+   "packs": [],
+   "region": "regions/p-bel-3.geojson",
+   "parent": "w-bel"
+  },
+  {
+   "id": "p-blr-1",
+   "name": "Belarus: Brest and Grodno",
+   "kind": "region",
+   "bbox": [
+    23.162,
+    51.509,
+    27.604,
+    54.997
+   ],
+   "packs": [],
+   "region": "regions/p-blr-1.geojson",
+   "parent": "w-blr"
+  },
+  {
+   "id": "p-blr-2",
+   "name": "Belarus: Minsk and City of Minsk",
+   "kind": "region",
+   "bbox": [
+    26.072,
+    52.357,
+    29.496,
+    55.006
+   ],
+   "packs": [],
+   "region": "regions/p-blr-2.geojson",
+   "parent": "w-blr"
+  },
+  {
+   "id": "p-blr-3",
+   "name": "Belarus: Vitebsk and 2 more",
+   "kind": "region",
+   "bbox": [
+    26.166,
+    51.231,
+    32.724,
+    56.161
+   ],
+   "packs": [],
+   "region": "regions/p-blr-3.geojson",
+   "parent": "w-blr"
+  },
+  {
+   "id": "p-bra-1",
+   "name": "Brazil: Amazonas and 3 more",
+   "kind": "region",
+   "bbox": [
+    -74.022,
+    -13.667,
+    -56.308,
+    5.271
+   ],
+   "packs": [],
+   "region": "regions/p-bra-1.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-2",
+   "name": "Brazil: Pará and 3 more",
+   "kind": "region",
+   "bbox": [
+    -58.976,
+    -13.389,
+    -41.809,
+    4.445
+   ],
+   "packs": [],
+   "region": "regions/p-bra-2.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-3",
+   "name": "Brazil: Piauí and 3 more",
+   "kind": "region",
+   "bbox": [
+    -45.985,
+    -11.573,
+    -34.801,
+    -2.741
+   ],
+   "packs": [],
+   "region": "regions/p-bra-3.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-4",
+   "name": "Brazil: Ceará and 2 more",
+   "kind": "region",
+   "bbox": [
+    -41.453,
+    -8.287,
+    -29.341,
+    0.895
+   ],
+   "packs": [],
+   "region": "regions/p-bra-4.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-5",
+   "name": "Brazil: Bahia",
+   "kind": "region",
+   "bbox": [
+    -46.576,
+    -18.327,
+    -37.357,
+    -8.525
+   ],
+   "packs": [],
+   "region": "regions/p-bra-5.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-6",
+   "name": "Brazil: Mato Grosso and Mato Grosso do Sul",
+   "kind": "region",
+   "bbox": [
+    -61.615,
+    -24.054,
+    -50.232,
+    -7.335
+   ],
+   "packs": [],
+   "region": "regions/p-bra-6.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-7",
+   "name": "Brazil: Goiás and Distrito Federal",
+   "kind": "region",
+   "bbox": [
+    -53.249,
+    -19.49,
+    -45.908,
+    -12.396
+   ],
+   "packs": [],
+   "region": "regions/p-bra-7.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-8",
+   "name": "Brazil: Minas Gerais (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -51.032,
+    -22.897,
+    -45.44,
+    -14.708
+   ],
+   "packs": [],
+   "region": "regions/p-bra-8.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-9",
+   "name": "Brazil: Minas Gerais (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -45.448,
+    -22.655,
+    -39.857,
+    -14.235
+   ],
+   "packs": [],
+   "region": "regions/p-bra-9.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-10",
+   "name": "Brazil: Espírito Santo",
+   "kind": "region",
+   "bbox": [
+    -41.886,
+    -21.278,
+    -28.873,
+    -17.872
+   ],
+   "packs": [],
+   "region": "regions/p-bra-10.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-11",
+   "name": "Brazil: Paraná",
+   "kind": "region",
+   "bbox": [
+    -54.616,
+    -26.709,
+    -48.029,
+    -22.518
+   ],
+   "packs": [],
+   "region": "regions/p-bra-11.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-12",
+   "name": "Brazil: São Paulo (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -53.172,
+    -24.707,
+    -48.661,
+    -19.777
+   ],
+   "packs": [],
+   "region": "regions/p-bra-12.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-13",
+   "name": "Brazil: São Paulo (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -48.669,
+    -25.311,
+    -44.159,
+    -19.955
+   ],
+   "packs": [],
+   "region": "regions/p-bra-13.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-14",
+   "name": "Brazil: Rio de Janeiro",
+   "kind": "region",
+   "bbox": [
+    -44.869,
+    -23.357,
+    -40.955,
+    -20.773
+   ],
+   "packs": [],
+   "region": "regions/p-bra-14.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-15",
+   "name": "Brazil: Rio Grande do Sul",
+   "kind": "region",
+   "bbox": [
+    -57.616,
+    -33.746,
+    -49.696,
+    -27.068
+   ],
+   "packs": [],
+   "region": "regions/p-bra-15.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-bra-16",
+   "name": "Brazil: Santa Catarina",
+   "kind": "region",
+   "bbox": [
+    -53.846,
+    -29.359,
+    -48.373,
+    -25.968
+   ],
+   "packs": [],
+   "region": "regions/p-bra-16.geojson",
+   "parent": "w-bra"
+  },
+  {
+   "id": "p-can-1",
+   "name": "Canada: Nunavut (part 12 of 12, south to north)",
+   "kind": "region",
+   "bbox": [
+    -96.154,
+    80.516,
+    -61.081,
+    83.121
+   ],
+   "packs": [],
+   "region": "regions/p-can-1.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-2",
+   "name": "Canada: Northwest Territories (part 4 of 4, south to north)",
+   "kind": "region",
+   "bbox": [
+    -124.791,
+    74.073,
+    -110.0,
+    78.77
+   ],
+   "packs": [],
+   "region": "regions/p-can-2.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-3",
+   "name": "Canada: Nunavut (part 10 of 12, south to north)",
+   "kind": "region",
+   "bbox": [
+    -110.008,
+    75.315,
+    -76.776,
+    77.924
+   ],
+   "packs": [],
+   "region": "regions/p-can-3.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-4",
+   "name": "Canada: Nunavut (part 11 of 12, south to north)",
+   "kind": "region",
+   "bbox": [
+    -110.008,
+    77.916,
+    -69.153,
+    80.524
+   ],
+   "packs": [],
+   "region": "regions/p-can-4.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-5",
+   "name": "Canada: Northwest Territories (part 3 of 4, south to north)",
+   "kind": "region",
+   "bbox": [
+    -135.845,
+    69.379,
+    -109.996,
+    74.081
+   ],
+   "packs": [],
+   "region": "regions/p-can-5.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-6",
+   "name": "Canada: Nunavut (part 9 of 12, south to north)",
+   "kind": "region",
+   "bbox": [
+    -110.008,
+    72.715,
+    -76.054,
+    75.323
+   ],
+   "packs": [],
+   "region": "regions/p-can-6.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-7a",
+   "name": "Canada: Nunavut (part 8 of 12, south to north) (1 of 3)",
+   "kind": "region",
+   "bbox": [
+    -110.008,
+    70.114,
+    -95.829,
+    72.722
+   ],
+   "packs": [],
+   "region": "regions/p-can-7a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-7b",
+   "name": "Canada: Nunavut (part 8 of 12, south to north) (2 of 3)",
+   "kind": "region",
+   "bbox": [
+    -95.837,
+    70.114,
+    -81.654,
+    72.722
+   ],
+   "packs": [],
+   "region": "regions/p-can-7b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-7c",
+   "name": "Canada: Nunavut (part 8 of 12, south to north) (3 of 3)",
+   "kind": "region",
+   "bbox": [
+    -81.662,
+    70.114,
+    -67.484,
+    72.722
+   ],
+   "packs": [],
+   "region": "regions/p-can-7c.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-8a",
+   "name": "Canada: Northwest Territories (part 2 of 4, south to north) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -136.449,
+    64.686,
+    -122.064,
+    69.387
+   ],
+   "packs": [],
+   "region": "regions/p-can-8a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-8b",
+   "name": "Canada: Northwest Territories (part 2 of 4, south to north) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -122.072,
+    64.686,
+    -107.687,
+    69.387
+   ],
+   "packs": [],
+   "region": "regions/p-can-8b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-9a",
+   "name": "Canada: Nunavut (part 7 of 12, south to north) (1 of 3)",
+   "kind": "region",
+   "bbox": [
+    -120.685,
+    67.513,
+    -101.704,
+    70.122
+   ],
+   "packs": [],
+   "region": "regions/p-can-9a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-9b",
+   "name": "Canada: Nunavut (part 7 of 12, south to north) (2 of 3)",
+   "kind": "region",
+   "bbox": [
+    -101.712,
+    67.513,
+    -82.727,
+    70.122
+   ],
+   "packs": [],
+   "region": "regions/p-can-9b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-9c",
+   "name": "Canada: Nunavut (part 7 of 12, south to north) (3 of 3)",
+   "kind": "region",
+   "bbox": [
+    -82.735,
+    67.513,
+    -63.754,
+    70.122
+   ],
+   "packs": [],
+   "region": "regions/p-can-9c.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-10a",
+   "name": "Canada: Nunavut (part 6 of 12, south to north) (1 of 4)",
+   "kind": "region",
+   "bbox": [
+    -119.115,
+    64.913,
+    -104.648,
+    67.522
+   ],
+   "packs": [],
+   "region": "regions/p-can-10a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-10b",
+   "name": "Canada: Nunavut (part 6 of 12, south to north) (2 of 4)",
+   "kind": "region",
+   "bbox": [
+    -104.656,
+    64.913,
+    -90.185,
+    67.522
+   ],
+   "packs": [],
+   "region": "regions/p-can-10b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-10c",
+   "name": "Canada: Nunavut (part 6 of 12, south to north) (3 of 4)",
+   "kind": "region",
+   "bbox": [
+    -90.193,
+    64.913,
+    -75.722,
+    67.522
+   ],
+   "packs": [],
+   "region": "regions/p-can-10c.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-10d",
+   "name": "Canada: Nunavut (part 6 of 12, south to north) (4 of 4)",
+   "kind": "region",
+   "bbox": [
+    -75.73,
+    64.913,
+    -61.264,
+    67.522
+   ],
+   "packs": [],
+   "region": "regions/p-can-10d.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-11",
+   "name": "Canada: Yukon",
+   "kind": "region",
+   "bbox": [
+    -141.01,
+    59.996,
+    -123.815,
+    69.658
+   ],
+   "packs": [],
+   "region": "regions/p-can-11.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-12a",
+   "name": "Canada: Northwest Territories (part 1 of 4, south to north) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -132.068,
+    59.996,
+    -117.021,
+    64.694
+   ],
+   "packs": [],
+   "region": "regions/p-can-12a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-12b",
+   "name": "Canada: Northwest Territories (part 1 of 4, south to north) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -117.029,
+    59.996,
+    -101.983,
+    64.694
+   ],
+   "packs": [],
+   "region": "regions/p-can-12b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-13",
+   "name": "Canada: Nunavut (part 4 of 12, south to north)",
+   "kind": "region",
+   "bbox": [
+    -102.008,
+    59.712,
+    -64.418,
+    62.321
+   ],
+   "packs": [],
+   "region": "regions/p-can-13.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-14a",
+   "name": "Canada: Nunavut (part 5 of 12, south to north) (1 of 3)",
+   "kind": "region",
+   "bbox": [
+    -109.562,
+    62.313,
+    -94.211,
+    64.921
+   ],
+   "packs": [],
+   "region": "regions/p-can-14a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-14b",
+   "name": "Canada: Nunavut (part 5 of 12, south to north) (2 of 3)",
+   "kind": "region",
+   "bbox": [
+    -94.219,
+    62.313,
+    -79.356,
+    64.921
+   ],
+   "packs": [],
+   "region": "regions/p-can-14b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-14c",
+   "name": "Canada: Nunavut (part 5 of 12, south to north) (3 of 3)",
+   "kind": "region",
+   "bbox": [
+    -78.548,
+    62.313,
+    -63.52,
+    64.921
+   ],
+   "packs": [],
+   "region": "regions/p-can-14c.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-15",
+   "name": "Canada: Québec (part 7 of 7, south to north)",
+   "kind": "region",
+   "bbox": [
+    -78.201,
+    60.079,
+    -64.527,
+    62.598
+   ],
+   "packs": [],
+   "region": "regions/p-can-15.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-16",
+   "name": "Canada: British Columbia (part 1 of 5, west to east)",
+   "kind": "region",
+   "bbox": [
+    -139.064,
+    58.787,
+    -134.054,
+    60.004
+   ],
+   "packs": [],
+   "region": "regions/p-can-16.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-17",
+   "name": "Canada: British Columbia (part 2 of 5, west to east)",
+   "kind": "region",
+   "bbox": [
+    -134.062,
+    51.943,
+    -129.048,
+    60.004
+   ],
+   "packs": [],
+   "region": "regions/p-can-17.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-18",
+   "name": "Canada: Alberta (part 3 of 3, south to north)",
+   "kind": "region",
+   "bbox": [
+    -120.005,
+    56.328,
+    -109.996,
+    60.004
+   ],
+   "packs": [],
+   "region": "regions/p-can-18.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-19",
+   "name": "Canada: Manitoba (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -102.006,
+    54.492,
+    -88.943,
+    60.004
+   ],
+   "packs": [],
+   "region": "regions/p-can-19.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-20",
+   "name": "Canada: Nunavut (part 2 of 12, south to north)",
+   "kind": "region",
+   "bbox": [
+    -80.109,
+    54.776,
+    -76.612,
+    57.12
+   ],
+   "packs": [],
+   "region": "regions/p-can-20.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-21",
+   "name": "Canada: Nunavut (part 3 of 12, south to north)",
+   "kind": "region",
+   "bbox": [
+    -80.592,
+    57.112,
+    -76.65,
+    59.72
+   ],
+   "packs": [],
+   "region": "regions/p-can-21.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-22",
+   "name": "Canada: Québec (part 6 of 7, south to north)",
+   "kind": "region",
+   "bbox": [
+    -78.577,
+    57.565,
+    -63.48,
+    60.087
+   ],
+   "packs": [],
+   "region": "regions/p-can-22.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-23",
+   "name": "Canada: Québec (part 5 of 7, south to north)",
+   "kind": "region",
+   "bbox": [
+    -78.349,
+    55.05,
+    -63.326,
+    57.573
+   ],
+   "packs": [],
+   "region": "regions/p-can-23.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-24",
+   "name": "Canada: Newfoundland and Labrador (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -67.812,
+    53.492,
+    -55.814,
+    60.377
+   ],
+   "packs": [],
+   "region": "regions/p-can-24.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-25a",
+   "name": "Canada: British Columbia (part 3 of 5, west to east) (1 of 3)",
+   "kind": "region",
+   "bbox": [
+    -128.72,
+    48.404,
+    -124.042,
+    52.275
+   ],
+   "packs": [],
+   "region": "regions/p-can-25a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-25b",
+   "name": "Canada: British Columbia (part 3 of 5, west to east) (2 of 3)",
+   "kind": "region",
+   "bbox": [
+    -129.056,
+    52.267,
+    -124.042,
+    56.142
+   ],
+   "packs": [],
+   "region": "regions/p-can-25b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-25c",
+   "name": "Canada: British Columbia (part 3 of 5, west to east) (3 of 3)",
+   "kind": "region",
+   "bbox": [
+    -129.056,
+    56.134,
+    -124.042,
+    60.004
+   ],
+   "packs": [],
+   "region": "regions/p-can-25c.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-26a",
+   "name": "Canada: British Columbia (part 4 of 5, west to east) (1 of 3)",
+   "kind": "region",
+   "bbox": [
+    -124.05,
+    48.302,
+    -119.036,
+    52.207
+   ],
+   "packs": [],
+   "region": "regions/p-can-26a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-26b",
+   "name": "Canada: British Columbia (part 4 of 5, west to east) (2 of 3)",
+   "kind": "region",
+   "bbox": [
+    -124.05,
+    52.199,
+    -119.036,
+    56.107
+   ],
+   "packs": [],
+   "region": "regions/p-can-26b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-26c",
+   "name": "Canada: British Columbia (part 4 of 5, west to east) (3 of 3)",
+   "kind": "region",
+   "bbox": [
+    -124.05,
+    56.099,
+    -119.996,
+    60.004
+   ],
+   "packs": [],
+   "region": "regions/p-can-26c.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-27",
+   "name": "Canada: British Columbia (part 5 of 5, west to east)",
+   "kind": "region",
+   "bbox": [
+    -119.044,
+    48.989,
+    -114.034,
+    53.242
+   ],
+   "packs": [],
+   "region": "regions/p-can-27.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-28",
+   "name": "Canada: Alberta (part 2 of 3, south to north)",
+   "kind": "region",
+   "bbox": [
+    -120.005,
+    52.656,
+    -109.996,
+    56.336
+   ],
+   "packs": [],
+   "region": "regions/p-can-28.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-29",
+   "name": "Canada: Alberta (part 1 of 3, south to north)",
+   "kind": "region",
+   "bbox": [
+    -118.356,
+    48.989,
+    -109.995,
+    52.664
+   ],
+   "packs": [],
+   "region": "regions/p-can-29.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-30",
+   "name": "Canada: Saskatchewan",
+   "kind": "region",
+   "bbox": [
+    -110.004,
+    48.989,
+    -101.36,
+    60.004
+   ],
+   "packs": [],
+   "region": "regions/p-can-30.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-31",
+   "name": "Canada: Manitoba (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -101.882,
+    48.989,
+    -92.563,
+    54.5
+   ],
+   "packs": [],
+   "region": "regions/p-can-31.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-32a",
+   "name": "Canada: Ontario (part 4 of 5, south to north) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -95.158,
+    50.781,
+    -87.333,
+    53.829
+   ],
+   "packs": [],
+   "region": "regions/p-can-32a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-32b",
+   "name": "Canada: Ontario (part 4 of 5, south to north) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -87.341,
+    50.781,
+    -79.517,
+    53.829
+   ],
+   "packs": [],
+   "region": "regions/p-can-32b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-33",
+   "name": "Canada: Ontario (part 5 of 5, south to north)",
+   "kind": "region",
+   "bbox": [
+    -93.525,
+    53.821,
+    -82.127,
+    56.865
+   ],
+   "packs": [],
+   "region": "regions/p-can-33.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-34",
+   "name": "Canada: Nunavut (part 1 of 12, south to north)",
+   "kind": "region",
+   "bbox": [
+    -82.067,
+    51.915,
+    -78.703,
+    54.378
+   ],
+   "packs": [],
+   "region": "regions/p-can-34.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-35",
+   "name": "Canada: Québec (part 4 of 7, south to north)",
+   "kind": "region",
+   "bbox": [
+    -79.77,
+    52.535,
+    -63.375,
+    55.058
+   ],
+   "packs": [],
+   "region": "regions/p-can-35.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-36",
+   "name": "Canada: Québec (part 3 of 7, south to north)",
+   "kind": "region",
+   "bbox": [
+    -79.564,
+    50.021,
+    -57.096,
+    52.543
+   ],
+   "packs": [],
+   "region": "regions/p-can-36.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-37",
+   "name": "Canada: Newfoundland and Labrador (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -67.389,
+    46.614,
+    -52.613,
+    53.5
+   ],
+   "packs": [],
+   "region": "regions/p-can-37.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-38a",
+   "name": "Canada: Ontario (part 3 of 5, south to north) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -95.165,
+    47.895,
+    -87.336,
+    50.789
+   ],
+   "packs": [],
+   "region": "regions/p-can-38a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-38b",
+   "name": "Canada: Ontario (part 3 of 5, south to north) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -87.344,
+    47.741,
+    -79.514,
+    50.789
+   ],
+   "packs": [],
+   "region": "regions/p-can-38b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-39",
+   "name": "Canada: Ontario (part 2 of 5, south to north)",
+   "kind": "region",
+   "bbox": [
+    -86.967,
+    44.701,
+    -74.342,
+    47.749
+   ],
+   "packs": [],
+   "region": "regions/p-can-39.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-40a",
+   "name": "Canada: Québec (part 1 of 7, south to north) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -79.584,
+    44.995,
+    -70.623,
+    47.514
+   ],
+   "packs": [],
+   "region": "regions/p-can-40a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-40b",
+   "name": "Canada: Québec (part 1 of 7, south to north) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -70.631,
+    45.611,
+    -61.67,
+    47.514
+   ],
+   "packs": [],
+   "region": "regions/p-can-40b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-41a",
+   "name": "Canada: Québec (part 2 of 7, south to north) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -79.563,
+    47.506,
+    -70.466,
+    50.029
+   ],
+   "packs": [],
+   "region": "regions/p-can-41a.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-41b",
+   "name": "Canada: Québec (part 2 of 7, south to north) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -70.474,
+    47.506,
+    -61.378,
+    50.029
+   ],
+   "packs": [],
+   "region": "regions/p-can-41b.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-42",
+   "name": "Canada: Nova Scotia and New Brunswick",
+   "kind": "region",
+   "bbox": [
+    -69.068,
+    43.418,
+    -59.685,
+    48.079
+   ],
+   "packs": [],
+   "region": "regions/p-can-42.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-43",
+   "name": "Canada: Prince Edward Island",
+   "kind": "region",
+   "bbox": [
+    -64.421,
+    45.947,
+    -61.973,
+    47.071
+   ],
+   "packs": [],
+   "region": "regions/p-can-43.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-can-44",
+   "name": "Canada: Ontario (part 1 of 5, south to north)",
+   "kind": "region",
+   "bbox": [
+    -83.163,
+    41.665,
+    -75.498,
+    44.709
+   ],
+   "packs": [],
+   "region": "regions/p-can-44.geojson",
+   "parent": "w-can"
+  },
+  {
+   "id": "p-che-1",
+   "name": "Switzerland: Bern and 11 more",
+   "kind": "region",
+   "bbox": [
+    6.424,
+    46.327,
+    9.654,
+    47.539
+   ],
+   "packs": [],
+   "region": "regions/p-che-1.geojson",
+   "parent": "w-che"
+  },
+  {
+   "id": "p-che-2",
+   "name": "Switzerland: Zürich and 6 more",
+   "kind": "region",
+   "bbox": [
+    7.333,
+    47.071,
+    9.557,
+    47.805
+   ],
+   "packs": [],
+   "region": "regions/p-che-2.geojson",
+   "parent": "w-che"
+  },
+  {
+   "id": "p-che-3",
+   "name": "Switzerland: Vaud and 6 more",
+   "kind": "region",
+   "bbox": [
+    5.951,
+    45.817,
+    10.471,
+    47.179
+   ],
+   "packs": [],
+   "region": "regions/p-che-3.geojson",
+   "parent": "w-che"
+  },
+  {
+   "id": "p-chl-1",
+   "name": "Chile: Región Metropolitana de Santiago and 7 more",
+   "kind": "region",
+   "bbox": [
+    -109.458,
+    -35.031,
+    -67.01,
+    -17.503
+   ],
+   "packs": [],
+   "region": "regions/p-chl-1.geojson",
+   "parent": "w-chl"
+  },
+  {
+   "id": "p-chl-2",
+   "name": "Chile: Bío-Bío and 4 more",
+   "kind": "region",
+   "bbox": [
+    -73.957,
+    -40.68,
+    -70.353,
+    -34.757
+   ],
+   "packs": [],
+   "region": "regions/p-chl-2.geojson",
+   "parent": "w-chl"
+  },
+  {
+   "id": "p-chl-3",
+   "name": "Chile: Magallanes y Antártica Chilena and 2 more",
+   "kind": "region",
+   "bbox": [
+    -75.715,
+    -55.922,
+    -66.417,
+    -40.269
+   ],
+   "packs": [],
+   "region": "regions/p-chl-3.geojson",
+   "parent": "w-chl"
+  },
+  {
+   "id": "p-chn-1",
+   "name": "China: Heilongjiang",
+   "kind": "region",
+   "bbox": [
+    121.163,
+    43.429,
+    134.777,
+    53.573
+   ],
+   "packs": [],
+   "region": "regions/p-chn-1.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-2",
+   "name": "China: Xinjiang",
+   "kind": "region",
+   "bbox": [
+    73.598,
+    34.336,
+    96.37,
+    49.17
+   ],
+   "packs": [],
+   "region": "regions/p-chn-2.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-3",
+   "name": "China: Inner Mongol",
+   "kind": "region",
+   "bbox": [
+    97.187,
+    37.386,
+    126.06,
+    53.328
+   ],
+   "packs": [],
+   "region": "regions/p-chn-3.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-4",
+   "name": "China: Jilin and Liaoning",
+   "kind": "region",
+   "bbox": [
+    118.844,
+    38.717,
+    131.285,
+    46.296
+   ],
+   "packs": [],
+   "region": "regions/p-chn-4.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-5",
+   "name": "China: Gansu and Ningxia",
+   "kind": "region",
+   "bbox": [
+    92.76,
+    32.59,
+    108.709,
+    42.791
+   ],
+   "packs": [],
+   "region": "regions/p-chn-5.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-6",
+   "name": "China: Shaanxi",
+   "kind": "region",
+   "bbox": [
+    105.495,
+    31.701,
+    111.231,
+    39.585
+   ],
+   "packs": [],
+   "region": "regions/p-chn-6.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-7",
+   "name": "China: Henan and Shanxi",
+   "kind": "region",
+   "bbox": [
+    110.233,
+    31.391,
+    116.645,
+    40.747
+   ],
+   "packs": [],
+   "region": "regions/p-chn-7.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-8",
+   "name": "China: Hebei and 2 more",
+   "kind": "region",
+   "bbox": [
+    113.436,
+    36.053,
+    119.854,
+    42.624
+   ],
+   "packs": [],
+   "region": "regions/p-chn-8.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-9",
+   "name": "China: Shandong",
+   "kind": "region",
+   "bbox": [
+    114.83,
+    34.395,
+    122.693,
+    38.4
+   ],
+   "packs": [],
+   "region": "regions/p-chn-9.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-10",
+   "name": "China: Xizang and Qinghai",
+   "kind": "region",
+   "bbox": [
+    78.377,
+    27.308,
+    103.044,
+    39.328
+   ],
+   "packs": [],
+   "region": "regions/p-chn-10.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-11",
+   "name": "China: Sichuan",
+   "kind": "region",
+   "bbox": [
+    97.357,
+    26.031,
+    108.528,
+    34.304
+   ],
+   "packs": [],
+   "region": "regions/p-chn-11.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-12",
+   "name": "China: Hubei and Anhui",
+   "kind": "region",
+   "bbox": [
+    108.376,
+    29.062,
+    119.634,
+    34.647
+   ],
+   "packs": [],
+   "region": "regions/p-chn-12.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-13",
+   "name": "China: Jiangsu and Shanghai",
+   "kind": "region",
+   "bbox": [
+    116.373,
+    30.687,
+    121.991,
+    35.117
+   ],
+   "packs": [],
+   "region": "regions/p-chn-13.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-14",
+   "name": "China: Guizhou and Chongqing",
+   "kind": "region",
+   "bbox": [
+    103.593,
+    24.627,
+    110.179,
+    32.202
+   ],
+   "packs": [],
+   "region": "regions/p-chn-14.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-15",
+   "name": "China: Guangxi and Hunan",
+   "kind": "region",
+   "bbox": [
+    104.479,
+    21.017,
+    114.238,
+    30.102
+   ],
+   "packs": [],
+   "region": "regions/p-chn-15.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-16",
+   "name": "China: Jiangxi and Fujian",
+   "kind": "region",
+   "bbox": [
+    113.555,
+    23.569,
+    120.433,
+    30.061
+   ],
+   "packs": [],
+   "region": "regions/p-chn-16.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-17",
+   "name": "China: Zhejiang",
+   "kind": "region",
+   "bbox": [
+    117.996,
+    27.178,
+    122.535,
+    31.182
+   ],
+   "packs": [],
+   "region": "regions/p-chn-17.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-18",
+   "name": "China: Yunnan",
+   "kind": "region",
+   "bbox": [
+    97.509,
+    21.131,
+    106.204,
+    29.228
+   ],
+   "packs": [],
+   "region": "regions/p-chn-18.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-19",
+   "name": "China: Guangdong",
+   "kind": "region",
+   "bbox": [
+    109.657,
+    20.234,
+    117.179,
+    25.521
+   ],
+   "packs": [],
+   "region": "regions/p-chn-19.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-20",
+   "name": "China: Hainan",
+   "kind": "region",
+   "bbox": [
+    108.611,
+    18.165,
+    111.039,
+    20.168
+   ],
+   "packs": [],
+   "region": "regions/p-chn-20.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-chn-21",
+   "name": "China: Paracel Islands",
+   "kind": "region",
+   "bbox": [
+    111.189,
+    15.771,
+    112.739,
+    16.937
+   ],
+   "packs": [],
+   "region": "regions/p-chn-21.geojson",
+   "parent": "w-chn"
+  },
+  {
+   "id": "p-cmr-1",
+   "name": "Cameroon: Adamaoua and 4 more",
+   "kind": "region",
+   "bbox": [
+    8.501,
+    3.918,
+    15.685,
+    13.085
+   ],
+   "packs": [],
+   "region": "regions/p-cmr-1.geojson",
+   "parent": "w-cmr"
+  },
+  {
+   "id": "p-cmr-2",
+   "name": "Cameroon: Centre and 4 more",
+   "kind": "region",
+   "bbox": [
+    9.328,
+    1.651,
+    16.212,
+    6.295
+   ],
+   "packs": [],
+   "region": "regions/p-cmr-2.geojson",
+   "parent": "w-cmr"
+  },
+  {
+   "id": "p-cod-1",
+   "name": "Democratic Republic of the Congo: Orientale and Nord-Kivu",
+   "kind": "region",
+   "bbox": [
+    22.286,
+    -2.113,
+    31.284,
+    5.379
+   ],
+   "packs": [],
+   "region": "regions/p-cod-1.geojson",
+   "parent": "w-cod"
+  },
+  {
+   "id": "p-cod-2",
+   "name": "Democratic Republic of the Congo: Équateur and 6 more",
+   "kind": "region",
+   "bbox": [
+    12.207,
+    -8.115,
+    28.828,
+    5.159
+   ],
+   "packs": [],
+   "region": "regions/p-cod-2.geojson",
+   "parent": "w-cod"
+  },
+  {
+   "id": "p-cod-3",
+   "name": "Democratic Republic of the Congo: Sud-Kivu and Katanga",
+   "kind": "region",
+   "bbox": [
+    21.747,
+    -13.462,
+    30.756,
+    -1.663
+   ],
+   "packs": [],
+   "region": "regions/p-cod-3.geojson",
+   "parent": "w-cod"
+  },
+  {
+   "id": "p-col-1",
+   "name": "Colombia: San Andrés y Providencia",
+   "kind": "region",
+   "bbox": [
+    -81.728,
+    12.498,
+    -80.085,
+    13.582
+   ],
+   "packs": [],
+   "region": "regions/p-col-1.geojson",
+   "parent": "w-col"
+  },
+  {
+   "id": "p-col-2",
+   "name": "Colombia: Antioquia and 16 more",
+   "kind": "region",
+   "bbox": [
+    -77.9,
+    2.887,
+    -71.103,
+    12.472
+   ],
+   "packs": [],
+   "region": "regions/p-col-2.geojson",
+   "parent": "w-col"
+  },
+  {
+   "id": "p-col-3",
+   "name": "Colombia: COL+99?",
+   "kind": "region",
+   "bbox": [
+    -81.62,
+    3.955,
+    -81.576,
+    3.995
+   ],
+   "packs": [],
+   "region": "regions/p-col-3.geojson",
+   "parent": "w-col"
+  },
+  {
+   "id": "p-col-4",
+   "name": "Colombia: Cundinamarca and 14 more",
+   "kind": "region",
+   "bbox": [
+    -79.025,
+    -4.24,
+    -66.871,
+    7.104
+   ],
+   "packs": [],
+   "region": "regions/p-col-4.geojson",
+   "parent": "w-col"
+  },
+  {
+   "id": "p-cze-1",
+   "name": "Czechia: Plzeňský and 2 more",
+   "kind": "region",
+   "bbox": [
+    12.072,
+    48.934,
+    14.639,
+    51.044
+   ],
+   "packs": [],
+   "region": "regions/p-cze-1.geojson",
+   "parent": "w-cze"
+  },
+  {
+   "id": "p-cze-2",
+   "name": "Czechia: Středočeský and Prague",
+   "kind": "region",
+   "bbox": [
+    13.402,
+    49.486,
+    15.509,
+    50.607
+   ],
+   "packs": [],
+   "region": "regions/p-cze-2.geojson",
+   "parent": "w-cze"
+  },
+  {
+   "id": "p-cze-3",
+   "name": "Czechia: Jihočeský and Vysočina",
+   "kind": "region",
+   "bbox": [
+    13.517,
+    48.555,
+    16.413,
+    49.88
+   ],
+   "packs": [],
+   "region": "regions/p-cze-3.geojson",
+   "parent": "w-cze"
+  },
+  {
+   "id": "p-cze-4",
+   "name": "Czechia: Jihomoravský and 3 more",
+   "kind": "region",
+   "bbox": [
+    14.336,
+    48.6,
+    17.65,
+    51.025
+   ],
+   "packs": [],
+   "region": "regions/p-cze-4.geojson",
+   "parent": "w-cze"
+  },
+  {
+   "id": "p-cze-5",
+   "name": "Czechia: Moravskoslezský and 2 more",
+   "kind": "region",
+   "bbox": [
+    16.72,
+    48.838,
+    18.841,
+    50.437
+   ],
+   "packs": [],
+   "region": "regions/p-cze-5.geojson",
+   "parent": "w-cze"
+  },
+  {
+   "id": "p-deu-1",
+   "name": "Germany: Nordrhein-Westfalen (part 1 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    5.848,
+    50.319,
+    7.058,
+    52.243
+   ],
+   "packs": [],
+   "region": "regions/p-deu-1.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-2",
+   "name": "Germany: Nordrhein-Westfalen (part 2 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    7.05,
+    50.582,
+    8.264,
+    52.48
+   ],
+   "packs": [],
+   "region": "regions/p-deu-2.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-3",
+   "name": "Germany: Niedersachsen (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    6.655,
+    52.035,
+    9.124,
+    53.897
+   ],
+   "packs": [],
+   "region": "regions/p-deu-3.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-4",
+   "name": "Germany: Nordrhein-Westfalen (part 3 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    8.256,
+    50.858,
+    9.466,
+    52.528
+   ],
+   "packs": [],
+   "region": "regions/p-deu-4.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-5",
+   "name": "Germany: Bremen",
+   "kind": "region",
+   "bbox": [
+    8.492,
+    53.021,
+    8.994,
+    53.621
+   ],
+   "packs": [],
+   "region": "regions/p-deu-5.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-6",
+   "name": "Germany: Hessen",
+   "kind": "region",
+   "bbox": [
+    7.767,
+    49.394,
+    10.237,
+    51.659
+   ],
+   "packs": [],
+   "region": "regions/p-deu-6.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-7",
+   "name": "Germany: Schleswig-Holstein and Hamburg",
+   "kind": "region",
+   "bbox": [
+    7.876,
+    53.36,
+    11.318,
+    55.069
+   ],
+   "packs": [],
+   "region": "regions/p-deu-7.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-8",
+   "name": "Germany: Niedersachsen (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    9.116,
+    51.286,
+    11.585,
+    53.876
+   ],
+   "packs": [],
+   "region": "regions/p-deu-8.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-9",
+   "name": "Germany: Thüringen",
+   "kind": "region",
+   "bbox": [
+    9.876,
+    50.203,
+    12.651,
+    51.641
+   ],
+   "packs": [],
+   "region": "regions/p-deu-9.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-10",
+   "name": "Germany: Sachsen-Anhalt",
+   "kind": "region",
+   "bbox": [
+    10.566,
+    50.924,
+    13.241,
+    53.054
+   ],
+   "packs": [],
+   "region": "regions/p-deu-10.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-11",
+   "name": "Germany: Mecklenburg-Vorpommern",
+   "kind": "region",
+   "bbox": [
+    10.597,
+    53.104,
+    14.395,
+    54.692
+   ],
+   "packs": [],
+   "region": "regions/p-deu-11.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-12",
+   "name": "Germany: Sachsen",
+   "kind": "region",
+   "bbox": [
+    11.893,
+    50.157,
+    15.026,
+    51.674
+   ],
+   "packs": [],
+   "region": "regions/p-deu-12.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-13",
+   "name": "Germany: Brandenburg and Berlin",
+   "kind": "region",
+   "bbox": [
+    11.27,
+    51.344,
+    14.765,
+    53.548
+   ],
+   "packs": [],
+   "region": "regions/p-deu-13.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-14",
+   "name": "Germany: Saarland",
+   "kind": "region",
+   "bbox": [
+    6.338,
+    49.101,
+    7.395,
+    49.633
+   ],
+   "packs": [],
+   "region": "regions/p-deu-14.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-15",
+   "name": "Germany: Rheinland-Pfalz",
+   "kind": "region",
+   "bbox": [
+    6.092,
+    48.954,
+    8.509,
+    50.937
+   ],
+   "packs": [],
+   "region": "regions/p-deu-15.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-16",
+   "name": "Germany: Baden-Württemberg (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    7.508,
+    47.529,
+    10.448,
+    48.668
+   ],
+   "packs": [],
+   "region": "regions/p-deu-16.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-17",
+   "name": "Germany: Baden-Württemberg (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    7.848,
+    48.66,
+    10.499,
+    49.8
+   ],
+   "packs": [],
+   "region": "regions/p-deu-17.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-18",
+   "name": "Germany: Bayern (part 3 of 3, south to north)",
+   "kind": "region",
+   "bbox": [
+    8.973,
+    49.463,
+    12.631,
+    50.567
+   ],
+   "packs": [],
+   "region": "regions/p-deu-18.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-19",
+   "name": "Germany: Bayern (part 1 of 3, south to north)",
+   "kind": "region",
+   "bbox": [
+    9.55,
+    47.267,
+    13.404,
+    48.371
+   ],
+   "packs": [],
+   "region": "regions/p-deu-19.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-deu-20",
+   "name": "Germany: Bayern (part 2 of 3, south to north)",
+   "kind": "region",
+   "bbox": [
+    9.977,
+    48.363,
+    13.821,
+    49.471
+   ],
+   "packs": [],
+   "region": "regions/p-deu-20.geojson",
+   "parent": "w-deu"
+  },
+  {
+   "id": "p-dza-1",
+   "name": "Algeria: Tizi Ouzou and 16 more",
+   "kind": "region",
+   "bbox": [
+    -2.227,
+    34.065,
+    4.651,
+    36.921
+   ],
+   "packs": [],
+   "region": "regions/p-dza-1.geojson",
+   "parent": "w-dza"
+  },
+  {
+   "id": "p-dza-2",
+   "name": "Algeria: Illizi and 30 more",
+   "kind": "region",
+   "bbox": [
+    -8.686,
+    18.972,
+    11.973,
+    37.098
+   ],
+   "packs": [],
+   "region": "regions/p-dza-2.geojson",
+   "parent": "w-dza"
+  },
+  {
+   "id": "p-esp-1",
+   "name": "Spain: La Coruña and 4 more",
+   "kind": "region",
+   "bbox": [
+    -9.296,
+    41.802,
+    -4.509,
+    43.797
+   ],
+   "packs": [],
+   "region": "regions/p-esp-1.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-2",
+   "name": "Spain: León and 7 more",
+   "kind": "region",
+   "bbox": [
+    -7.075,
+    40.24,
+    -1.746,
+    43.522
+   ],
+   "packs": [],
+   "region": "regions/p-esp-2.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-3",
+   "name": "Spain: Burgos and 3 more",
+   "kind": "region",
+   "bbox": [
+    -4.335,
+    41.061,
+    -1.682,
+    43.209
+   ],
+   "packs": [],
+   "region": "regions/p-esp-3.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-4",
+   "name": "Spain: Lérida and 4 more",
+   "kind": "region",
+   "bbox": [
+    -2.497,
+    40.94,
+    3.322,
+    43.309
+   ],
+   "packs": [],
+   "region": "regions/p-esp-4.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-5",
+   "name": "Spain: Barcelona and 2 more",
+   "kind": "region",
+   "bbox": [
+    -0.843,
+    39.711,
+    2.783,
+    42.322
+   ],
+   "packs": [],
+   "region": "regions/p-esp-5.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-6",
+   "name": "Spain: Madrid and 8 more",
+   "kind": "region",
+   "bbox": [
+    -7.561,
+    36.002,
+    -2.904,
+    41.587
+   ],
+   "packs": [],
+   "region": "regions/p-esp-6.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-7",
+   "name": "Spain: Ceuta",
+   "kind": "region",
+   "bbox": [
+    -5.403,
+    35.843,
+    -5.279,
+    35.929
+   ],
+   "packs": [],
+   "region": "regions/p-esp-7.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-8",
+   "name": "Spain: Granada and 6 more",
+   "kind": "region",
+   "bbox": [
+    -6.535,
+    36.691,
+    -1.141,
+    41.326
+   ],
+   "packs": [],
+   "region": "regions/p-esp-8.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-9",
+   "name": "Spain: Melilla",
+   "kind": "region",
+   "bbox": [
+    -2.971,
+    35.264,
+    -2.909,
+    35.334
+   ],
+   "packs": [],
+   "region": "regions/p-esp-9.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-10",
+   "name": "Spain: Valencia and 5 more",
+   "kind": "region",
+   "bbox": [
+    -3.144,
+    36.676,
+    0.294,
+    41.357
+   ],
+   "packs": [],
+   "region": "regions/p-esp-10.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-11",
+   "name": "Spain: Baleares",
+   "kind": "region",
+   "bbox": [
+    1.208,
+    38.635,
+    4.341,
+    40.083
+   ],
+   "packs": [],
+   "region": "regions/p-esp-11.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-12",
+   "name": "Spain: Santa Cruz de Tenerife",
+   "kind": "region",
+   "bbox": [
+    -18.171,
+    27.638,
+    -16.114,
+    28.86
+   ],
+   "packs": [],
+   "region": "regions/p-esp-12.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-esp-13",
+   "name": "Spain: Las Palmas",
+   "kind": "region",
+   "bbox": [
+    -15.826,
+    27.73,
+    -13.414,
+    29.294
+   ],
+   "packs": [],
+   "region": "regions/p-esp-13.geojson",
+   "parent": "w-esp"
+  },
+  {
+   "id": "p-fin-1",
+   "name": "Finland: Lapland",
+   "kind": "region",
+   "bbox": [
+    20.619,
+    65.588,
+    30.013,
+    70.079
+   ],
+   "packs": [],
+   "region": "regions/p-fin-1.geojson",
+   "parent": "w-fin"
+  },
+  {
+   "id": "p-fin-2",
+   "name": "Finland: Finland Proper and 2 more",
+   "kind": "region",
+   "bbox": [
+    21.182,
+    59.847,
+    24.587,
+    63.494
+   ],
+   "packs": [],
+   "region": "regions/p-fin-2.geojson",
+   "parent": "w-fin"
+  },
+  {
+   "id": "p-fin-3",
+   "name": "Finland: Pirkanmaa and Tavastia Proper",
+   "kind": "region",
+   "bbox": [
+    22.545,
+    60.549,
+    25.292,
+    62.492
+   ],
+   "packs": [],
+   "region": "regions/p-fin-3.geojson",
+   "parent": "w-fin"
+  },
+  {
+   "id": "p-fin-4",
+   "name": "Finland: Uusimaa and 2 more",
+   "kind": "region",
+   "bbox": [
+    22.884,
+    59.807,
+    28.008,
+    61.802
+   ],
+   "packs": [],
+   "region": "regions/p-fin-4.geojson",
+   "parent": "w-fin"
+  },
+  {
+   "id": "p-fin-5",
+   "name": "Finland: Northern Ostrobothnia and 3 more",
+   "kind": "region",
+   "bbox": [
+    21.061,
+    61.447,
+    30.12,
+    66.488
+   ],
+   "packs": [],
+   "region": "regions/p-fin-5.geojson",
+   "parent": "w-fin"
+  },
+  {
+   "id": "p-fin-6",
+   "name": "Finland: Kainuu and Northern Savonia",
+   "kind": "region",
+   "bbox": [
+    26.048,
+    62.256,
+    30.59,
+    65.528
+   ],
+   "packs": [],
+   "region": "regions/p-fin-6.geojson",
+   "parent": "w-fin"
+  },
+  {
+   "id": "p-fin-7",
+   "name": "Finland: North Karelia and 2 more",
+   "kind": "region",
+   "bbox": [
+    26.241,
+    60.66,
+    31.573,
+    63.887
+   ],
+   "packs": [],
+   "region": "regions/p-fin-7.geojson",
+   "parent": "w-fin"
+  },
+  {
+   "id": "p-gbr-1",
+   "name": "United Kingdom: Shetland Islands",
+   "kind": "region",
+   "bbox": [
+    -2.116,
+    59.51,
+    -0.751,
+    60.852
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-1.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-2",
+   "name": "United Kingdom: Eilean Siar",
+   "kind": "region",
+   "bbox": [
+    -13.694,
+    56.938,
+    -6.147,
+    58.516
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-2.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-3",
+   "name": "United Kingdom: Highland and 8 more",
+   "kind": "region",
+   "bbox": [
+    -6.994,
+    55.293,
+    -3.015,
+    58.681
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-3.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-4",
+   "name": "United Kingdom: Aberdeenshire and 13 more",
+   "kind": "region",
+   "bbox": [
+    -4.841,
+    55.708,
+    -1.755,
+    57.727
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-4.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-5",
+   "name": "United Kingdom: Orkney",
+   "kind": "region",
+   "bbox": [
+    -3.437,
+    58.727,
+    -2.389,
+    59.365
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-5.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-6",
+   "name": "United Kingdom: Cumbria and 18 more",
+   "kind": "region",
+   "bbox": [
+    -5.185,
+    54.06,
+    -0.775,
+    55.957
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-6.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-7",
+   "name": "United Kingdom: Newry and Mourne and 25 more",
+   "kind": "region",
+   "bbox": [
+    -8.178,
+    54.032,
+    -5.427,
+    55.315
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-7.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-8",
+   "name": "United Kingdom: Devon and 8 more",
+   "kind": "region",
+   "bbox": [
+    -5.72,
+    49.955,
+    -2.232,
+    51.677
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-8.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-9",
+   "name": "United Kingdom: Powys and 21 more",
+   "kind": "region",
+   "bbox": [
+    -5.315,
+    51.38,
+    -2.346,
+    53.431
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-9.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-10",
+   "name": "United Kingdom: Shropshire and 20 more",
+   "kind": "region",
+   "bbox": [
+    -3.386,
+    52.3,
+    -1.283,
+    53.967
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-10.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-11",
+   "name": "United Kingdom: Hampshire and 11 more",
+   "kind": "region",
+   "bbox": [
+    -2.953,
+    50.524,
+    -0.647,
+    52.965
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-11.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-12",
+   "name": "United Kingdom: North Yorkshire and 11 more",
+   "kind": "region",
+   "bbox": [
+    -3.061,
+    53.356,
+    0.153,
+    54.561
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-12.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-13",
+   "name": "United Kingdom: Isle of Wight",
+   "kind": "region",
+   "bbox": [
+    -1.573,
+    50.578,
+    -1.058,
+    50.777
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-13.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-14",
+   "name": "United Kingdom: Derbyshire and 20 more",
+   "kind": "region",
+   "bbox": [
+    -2.667,
+    52.333,
+    0.361,
+    53.742
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-14.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-15",
+   "name": "United Kingdom: Hertfordshire and 18 more",
+   "kind": "region",
+   "bbox": [
+    -1.146,
+    51.38,
+    0.203,
+    52.078
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-15.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-16",
+   "name": "United Kingdom: Norfolk and 17 more",
+   "kind": "region",
+   "bbox": [
+    -1.844,
+    51.327,
+    1.775,
+    52.99
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-16.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-17",
+   "name": "United Kingdom: Kent and 24 more",
+   "kind": "region",
+   "bbox": [
+    -0.957,
+    50.726,
+    1.452,
+    52.089
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-17.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-gbr-18",
+   "name": "United Kingdom: Isles of Scilly",
+   "kind": "region",
+   "bbox": [
+    -6.353,
+    49.906,
+    -6.28,
+    49.968
+   ],
+   "packs": [],
+   "region": "regions/p-gbr-18.geojson",
+   "parent": "w-gbr"
+  },
+  {
+   "id": "p-grc-1",
+   "name": "Greece: Kentriki Makedonia and 5 more",
+   "kind": "region",
+   "bbox": [
+    19.996,
+    37.959,
+    26.641,
+    41.755
+   ],
+   "packs": [],
+   "region": "regions/p-grc-1.geojson",
+   "parent": "w-grc"
+  },
+  {
+   "id": "p-grc-2",
+   "name": "Greece: Ionioi Nisoi",
+   "kind": "region",
+   "bbox": [
+    19.622,
+    37.648,
+    21.0,
+    39.828
+   ],
+   "packs": [],
+   "region": "regions/p-grc-2.geojson",
+   "parent": "w-grc"
+  },
+  {
+   "id": "p-grc-3",
+   "name": "Greece: Peloponnisos and 3 more",
+   "kind": "region",
+   "bbox": [
+    20.725,
+    35.825,
+    24.099,
+    40.178
+   ],
+   "packs": [],
+   "region": "regions/p-grc-3.geojson",
+   "parent": "w-grc"
+  },
+  {
+   "id": "p-grc-4",
+   "name": "Greece: Kriti",
+   "kind": "region",
+   "bbox": [
+    23.514,
+    34.811,
+    26.325,
+    35.691
+   ],
+   "packs": [],
+   "region": "regions/p-grc-4.geojson",
+   "parent": "w-grc"
+  },
+  {
+   "id": "p-grc-5",
+   "name": "Greece: Voreio Aigaio",
+   "kind": "region",
+   "bbox": [
+    24.97,
+    37.509,
+    27.072,
+    40.04
+   ],
+   "packs": [],
+   "region": "regions/p-grc-5.geojson",
+   "parent": "w-grc"
+  },
+  {
+   "id": "p-grc-6",
+   "name": "Greece: Notio Aigaio",
+   "kind": "region",
+   "bbox": [
+    24.271,
+    35.345,
+    28.244,
+    38.004
+   ],
+   "packs": [],
+   "region": "regions/p-grc-6.geojson",
+   "parent": "w-grc"
+  },
+  {
+   "id": "p-hun-1",
+   "name": "Hungary: Veszprém and 9 more",
+   "kind": "region",
+   "bbox": [
+    16.09,
+    46.298,
+    18.234,
+    48.024
+   ],
+   "packs": [],
+   "region": "regions/p-hun-1.geojson",
+   "parent": "w-hun"
+  },
+  {
+   "id": "p-hun-2",
+   "name": "Hungary: Pest and 18 more",
+   "kind": "region",
+   "bbox": [
+    16.875,
+    45.739,
+    20.907,
+    48.231
+   ],
+   "packs": [],
+   "region": "regions/p-hun-2.geojson",
+   "parent": "w-hun"
+  },
+  {
+   "id": "p-hun-3",
+   "name": "Hungary: Borsod-Abaúj-Zemplén and 13 more",
+   "kind": "region",
+   "bbox": [
+    18.782,
+    45.902,
+    22.882,
+    48.573
+   ],
+   "packs": [],
+   "region": "regions/p-hun-3.geojson",
+   "parent": "w-hun"
+  },
+  {
+   "id": "p-idn-1",
+   "name": "Indonesia: Kepulauan Riau",
+   "kind": "region",
+   "bbox": [
+    103.311,
+    -0.666,
+    109.118,
+    4.776
+   ],
+   "packs": [],
+   "region": "regions/p-idn-1.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-2",
+   "name": "Indonesia: Maluku Utara",
+   "kind": "region",
+   "bbox": [
+    124.297,
+    -2.478,
+    129.576,
+    2.638
+   ],
+   "packs": [],
+   "region": "regions/p-idn-2.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-3",
+   "name": "Indonesia: Sumatera Utara and 7 more",
+   "kind": "region",
+   "bbox": [
+    95.009,
+    -5.934,
+    106.084,
+    5.914
+   ],
+   "packs": [],
+   "region": "regions/p-idn-3.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-4",
+   "name": "Indonesia: Bangka-Belitung",
+   "kind": "region",
+   "bbox": [
+    105.121,
+    -3.246,
+    108.298,
+    -1.485
+   ],
+   "packs": [],
+   "region": "regions/p-idn-4.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-5",
+   "name": "Indonesia: Kalimantan Timur and 3 more",
+   "kind": "region",
+   "bbox": [
+    108.673,
+    -4.832,
+    119.016,
+    4.401
+   ],
+   "packs": [],
+   "region": "regions/p-idn-5.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-6",
+   "name": "Indonesia: Sulawesi Selatan and 5 more",
+   "kind": "region",
+   "bbox": [
+    118.753,
+    -7.421,
+    127.15,
+    5.569
+   ],
+   "packs": [],
+   "region": "regions/p-idn-6.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-7",
+   "name": "Indonesia: Maluku",
+   "kind": "region",
+   "bbox": [
+    125.77,
+    -8.355,
+    134.892,
+    -2.776
+   ],
+   "packs": [],
+   "region": "regions/p-idn-7.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-8",
+   "name": "Indonesia: Papua and Papua Barat",
+   "kind": "region",
+   "bbox": [
+    129.711,
+    -9.11,
+    140.981,
+    1.08
+   ],
+   "packs": [],
+   "region": "regions/p-idn-8.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-9",
+   "name": "Indonesia: Jawa Barat and 2 more",
+   "kind": "region",
+   "bbox": [
+    105.114,
+    -7.822,
+    108.899,
+    -5.877
+   ],
+   "packs": [],
+   "region": "regions/p-idn-9.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-10",
+   "name": "Indonesia: Jawa Tengah and Yogyakarta",
+   "kind": "region",
+   "bbox": [
+    108.543,
+    -8.23,
+    111.677,
+    -5.828
+   ],
+   "packs": [],
+   "region": "regions/p-idn-10.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-11",
+   "name": "Indonesia: Jawa Timur",
+   "kind": "region",
+   "bbox": [
+    110.94,
+    -8.782,
+    115.9,
+    -5.722
+   ],
+   "packs": [],
+   "region": "regions/p-idn-11.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-12",
+   "name": "Indonesia: Bali",
+   "kind": "region",
+   "bbox": [
+    114.444,
+    -8.855,
+    115.718,
+    -8.051
+   ],
+   "packs": [],
+   "region": "regions/p-idn-12.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-13",
+   "name": "Indonesia: Nusa Tenggara Barat",
+   "kind": "region",
+   "bbox": [
+    115.825,
+    -9.111,
+    119.208,
+    -8.079
+   ],
+   "packs": [],
+   "region": "regions/p-idn-13.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-idn-14",
+   "name": "Indonesia: Nusa Tenggara Timur",
+   "kind": "region",
+   "bbox": [
+    118.931,
+    -10.927,
+    125.166,
+    -8.066
+   ],
+   "packs": [],
+   "region": "regions/p-idn-14.geojson",
+   "parent": "w-idn"
+  },
+  {
+   "id": "p-ind-1",
+   "name": "India: Punjab and 7 more",
+   "kind": "region",
+   "bbox": [
+    73.771,
+    27.666,
+    81.007,
+    35.499
+   ],
+   "packs": [],
+   "region": "regions/p-ind-1.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-2",
+   "name": "India: Rajasthan and 2 more",
+   "kind": "region",
+   "bbox": [
+    68.139,
+    20.023,
+    78.251,
+    30.208
+   ],
+   "packs": [],
+   "region": "regions/p-ind-2.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-3",
+   "name": "India: Uttar Pradesh",
+   "kind": "region",
+   "bbox": [
+    77.054,
+    23.908,
+    84.616,
+    30.406
+   ],
+   "packs": [],
+   "region": "regions/p-ind-3.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-4",
+   "name": "India: West Bengal and 8 more",
+   "kind": "region",
+   "bbox": [
+    85.818,
+    21.52,
+    97.366,
+    29.373
+   ],
+   "packs": [],
+   "region": "regions/p-ind-4.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-5",
+   "name": "India: Madhya Pradesh",
+   "kind": "region",
+   "bbox": [
+    74.021,
+    21.071,
+    82.822,
+    26.864
+   ],
+   "packs": [],
+   "region": "regions/p-ind-5.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-6",
+   "name": "India: Bihar and 2 more",
+   "kind": "region",
+   "bbox": [
+    80.257,
+    17.772,
+    88.308,
+    27.521
+   ],
+   "packs": [],
+   "region": "regions/p-ind-6.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-7",
+   "name": "India: Maharashtra",
+   "kind": "region",
+   "bbox": [
+    72.645,
+    15.61,
+    80.899,
+    22.027
+   ],
+   "packs": [],
+   "region": "regions/p-ind-7.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-8",
+   "name": "India: Telangana and Odisha",
+   "kind": "region",
+   "bbox": [
+    77.253,
+    15.826,
+    87.481,
+    22.561
+   ],
+   "packs": [],
+   "region": "regions/p-ind-8.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-9",
+   "name": "India: Lakshadweep",
+   "kind": "region",
+   "bbox": [
+    72.169,
+    8.245,
+    73.688,
+    11.698
+   ],
+   "packs": [],
+   "region": "regions/p-ind-9.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-10",
+   "name": "India: Karnataka and Goa",
+   "kind": "region",
+   "bbox": [
+    73.683,
+    11.622,
+    78.573,
+    18.465
+   ],
+   "packs": [],
+   "region": "regions/p-ind-10.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-11",
+   "name": "India: Tamil Nadu",
+   "kind": "region",
+   "bbox": [
+    76.227,
+    8.072,
+    80.352,
+    13.538
+   ],
+   "packs": [],
+   "region": "regions/p-ind-11.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-12",
+   "name": "India: Andhra Pradesh and 2 more",
+   "kind": "region",
+   "bbox": [
+    74.85,
+    8.281,
+    84.784,
+    19.165
+   ],
+   "packs": [],
+   "region": "regions/p-ind-12.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-ind-13",
+   "name": "India: Andaman and Nicobar",
+   "kind": "region",
+   "bbox": [
+    92.213,
+    6.742,
+    94.295,
+    13.684
+   ],
+   "packs": [],
+   "region": "regions/p-ind-13.geojson",
+   "parent": "w-ind"
+  },
+  {
+   "id": "p-irn-1",
+   "name": "Iran: Tehran and 10 more",
+   "kind": "region",
+   "bbox": [
+    44.011,
+    33.985,
+    54.124,
+    39.776
+   ],
+   "packs": [],
+   "region": "regions/p-irn-1.geojson",
+   "parent": "w-irn"
+  },
+  {
+   "id": "p-irn-2",
+   "name": "Iran: Razavi Khorasan and 10 more",
+   "kind": "region",
+   "bbox": [
+    45.376,
+    29.953,
+    61.294,
+    38.282
+   ],
+   "packs": [],
+   "region": "regions/p-irn-2.geojson",
+   "parent": "w-irn"
+  },
+  {
+   "id": "p-irn-3",
+   "name": "Iran: Fars and 8 more",
+   "kind": "region",
+   "bbox": [
+    49.732,
+    25.055,
+    63.324,
+    35.205
+   ],
+   "packs": [],
+   "region": "regions/p-irn-3.geojson",
+   "parent": "w-irn"
+  },
+  {
+   "id": "p-ita-1",
+   "name": "Italy: Milano and 4 more",
+   "kind": "region",
+   "bbox": [
+    8.561,
+    45.261,
+    10.265,
+    46.164
+   ],
+   "packs": [],
+   "region": "regions/p-ita-1.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-2",
+   "name": "Italy: Brescia and 9 more",
+   "kind": "region",
+   "bbox": [
+    8.896,
+    45.049,
+    13.897,
+    46.645
+   ],
+   "packs": [],
+   "region": "regions/p-ita-2.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-3",
+   "name": "Italy: Bozen and 4 more",
+   "kind": "region",
+   "bbox": [
+    10.365,
+    45.529,
+    12.982,
+    47.089
+   ],
+   "packs": [],
+   "region": "regions/p-ita-3.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-4",
+   "name": "Italy: Turin and 8 more",
+   "kind": "region",
+   "bbox": [
+    6.599,
+    43.781,
+    9.21,
+    45.988
+   ],
+   "packs": [],
+   "region": "regions/p-ita-4.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-5",
+   "name": "Italy: Cagliari and 7 more",
+   "kind": "region",
+   "bbox": [
+    8.13,
+    38.86,
+    9.831,
+    41.267
+   ],
+   "packs": [],
+   "region": "regions/p-ita-5.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-6",
+   "name": "Italy: Pavia and 7 more",
+   "kind": "region",
+   "bbox": [
+    7.846,
+    43.971,
+    10.892,
+    46.456
+   ],
+   "packs": [],
+   "region": "regions/p-ita-6.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-7",
+   "name": "Italy: Bologna and 9 more",
+   "kind": "region",
+   "bbox": [
+    9.308,
+    43.752,
+    12.538,
+    45.516
+   ],
+   "packs": [],
+   "region": "regions/p-ita-7.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-8",
+   "name": "Italy: Firenze and 5 more",
+   "kind": "region",
+   "bbox": [
+    9.781,
+    42.315,
+    12.397,
+    44.989
+   ],
+   "packs": [],
+   "region": "regions/p-ita-8.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-9",
+   "name": "Italy: Perugia and 7 more",
+   "kind": "region",
+   "bbox": [
+    10.908,
+    42.143,
+    13.651,
+    44.334
+   ],
+   "packs": [],
+   "region": "regions/p-ita-9.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-10",
+   "name": "Italy: L'Aquila and 8 more",
+   "kind": "region",
+   "bbox": [
+    11.885,
+    41.683,
+    14.767,
+    43.479
+   ],
+   "packs": [],
+   "region": "regions/p-ita-10.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-11",
+   "name": "Italy: Roma and 5 more",
+   "kind": "region",
+   "bbox": [
+    11.736,
+    40.782,
+    15.161,
+    42.3
+   ],
+   "packs": [],
+   "region": "regions/p-ita-11.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-12",
+   "name": "Italy: Potenza and 16 more",
+   "kind": "region",
+   "bbox": [
+    13.845,
+    37.915,
+    18.521,
+    41.948
+   ],
+   "packs": [],
+   "region": "regions/p-ita-12.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-ita-13",
+   "name": "Italy: Catania and 8 more",
+   "kind": "region",
+   "bbox": [
+    11.918,
+    35.485,
+    15.656,
+    38.815
+   ],
+   "packs": [],
+   "region": "regions/p-ita-13.geojson",
+   "parent": "w-ita"
+  },
+  {
+   "id": "p-jpn-1",
+   "name": "Japan: Hokkaidō",
+   "kind": "region",
+   "bbox": [
+    139.332,
+    41.397,
+    145.829,
+    45.524
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-1.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-2",
+   "name": "Japan: Aichi and 2 more",
+   "kind": "region",
+   "bbox": [
+    136.669,
+    34.575,
+    139.126,
+    37.019
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-2.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-3",
+   "name": "Japan: Niigata and 5 more",
+   "kind": "region",
+   "bbox": [
+    136.223,
+    35.135,
+    140.271,
+    38.549
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-3.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-4",
+   "name": "Japan: Shizuoka and Kanagawa",
+   "kind": "region",
+   "bbox": [
+    137.459,
+    34.591,
+    139.791,
+    35.658
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-4.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-5",
+   "name": "Japan: Tokyo and 2 more",
+   "kind": "region",
+   "bbox": [
+    138.696,
+    24.208,
+    153.99,
+    36.275
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-5.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-6",
+   "name": "Japan: Fukushima and Ibaraki",
+   "kind": "region",
+   "bbox": [
+    139.152,
+    35.728,
+    141.046,
+    37.968
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-6.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-7",
+   "name": "Japan: Miyagi and 4 more",
+   "kind": "region",
+   "bbox": [
+    139.545,
+    37.719,
+    142.074,
+    41.551
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-7.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-8",
+   "name": "Japan: Fukuoka and 6 more",
+   "kind": "region",
+   "bbox": [
+    128.596,
+    29.439,
+    132.088,
+    34.705
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-8.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-9",
+   "name": "Japan: Hyōgo and 5 more",
+   "kind": "region",
+   "bbox": [
+    130.858,
+    33.764,
+    135.452,
+    36.346
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-9.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-10",
+   "name": "Japan: Ehime and 3 more",
+   "kind": "region",
+   "bbox": [
+    132.006,
+    32.7,
+    134.755,
+    34.558
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-10.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-11",
+   "name": "Japan: Ōsaka and 6 more",
+   "kind": "region",
+   "bbox": [
+    134.859,
+    33.429,
+    136.93,
+    36.29
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-11.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-jpn-12",
+   "name": "Japan: Okinawa",
+   "kind": "region",
+   "bbox": [
+    122.934,
+    24.253,
+    131.332,
+    28.514
+   ],
+   "packs": [],
+   "region": "regions/p-jpn-12.geojson",
+   "parent": "w-jpn"
+  },
+  {
+   "id": "p-kaz-1",
+   "name": "Kazakhstan: East Kazakhstan and 2 more",
+   "kind": "region",
+   "bbox": [
+    66.016,
+    45.544,
+    87.328,
+    55.438
+   ],
+   "packs": [],
+   "region": "regions/p-kaz-1.geojson",
+   "parent": "w-kaz"
+  },
+  {
+   "id": "p-kaz-2",
+   "name": "Kazakhstan: Aqmola and 7 more",
+   "kind": "region",
+   "bbox": [
+    46.474,
+    41.255,
+    74.278,
+    54.707
+   ],
+   "packs": [],
+   "region": "regions/p-kaz-2.geojson",
+   "parent": "w-kaz"
+  },
+  {
+   "id": "p-kaz-3",
+   "name": "Kazakhstan: Almaty and 4 more",
+   "kind": "region",
+   "bbox": [
+    62.648,
+    40.581,
+    82.64,
+    51.277
+   ],
+   "packs": [],
+   "region": "regions/p-kaz-3.geojson",
+   "parent": "w-kaz"
+  },
+  {
+   "id": "p-kor-1",
+   "name": "South Korea: North Gyeongsang and 8 more",
+   "kind": "region",
+   "bbox": [
+    125.086,
+    34.002,
+    130.925,
+    37.55
+   ],
+   "packs": [],
+   "region": "regions/p-kor-1.geojson",
+   "parent": "w-kor"
+  },
+  {
+   "id": "p-kor-2",
+   "name": "South Korea: Gyeonggi and 6 more",
+   "kind": "region",
+   "bbox": [
+    124.61,
+    35.971,
+    129.478,
+    38.628
+   ],
+   "packs": [],
+   "region": "regions/p-kor-2.geojson",
+   "parent": "w-kor"
+  },
+  {
+   "id": "p-kor-3",
+   "name": "South Korea: Jeju",
+   "kind": "region",
+   "bbox": [
+    126.157,
+    33.194,
+    126.958,
+    33.568
+   ],
+   "packs": [],
+   "region": "regions/p-kor-3.geojson",
+   "parent": "w-kor"
+  },
+  {
+   "id": "p-mdg-1",
+   "name": "Madagascar: Analamanga and 15 more",
+   "kind": "region",
+   "bbox": [
+    43.538,
+    -22.279,
+    50.508,
+    -11.94
+   ],
+   "packs": [],
+   "region": "regions/p-mdg-1.geojson",
+   "parent": "w-mdg"
+  },
+  {
+   "id": "p-mdg-2",
+   "name": "Madagascar: Vatovavy-Fitovinany and 5 more",
+   "kind": "region",
+   "bbox": [
+    43.219,
+    -25.603,
+    48.62,
+    -20.218
+   ],
+   "packs": [],
+   "region": "regions/p-mdg-2.geojson",
+   "parent": "w-mdg"
+  },
+  {
+   "id": "p-mex-1",
+   "name": "Mexico: Chihuahua and 7 more",
+   "kind": "region",
+   "bbox": [
+    -118.373,
+    20.681,
+    -100.824,
+    32.717
+   ],
+   "packs": [],
+   "region": "regions/p-mex-1.geojson",
+   "parent": "w-mex"
+  },
+  {
+   "id": "p-mex-2",
+   "name": "Mexico: Jalisco and 8 more",
+   "kind": "region",
+   "bbox": [
+    -114.803,
+    17.888,
+    -96.724,
+    24.569
+   ],
+   "packs": [],
+   "region": "regions/p-mex-2.geojson",
+   "parent": "w-mex"
+  },
+  {
+   "id": "p-mex-3",
+   "name": "Mexico: Veracruz and 8 more",
+   "kind": "region",
+   "bbox": [
+    -107.13,
+    17.146,
+    -86.697,
+    29.898
+   ],
+   "packs": [],
+   "region": "regions/p-mex-3.geojson",
+   "parent": "w-mex"
+  },
+  {
+   "id": "p-mex-4",
+   "name": "Mexico: MEX+99?",
+   "kind": "region",
+   "bbox": [
+    -89.775,
+    22.364,
+    -89.606,
+    22.587
+   ],
+   "packs": [],
+   "region": "regions/p-mex-4.geojson",
+   "parent": "w-mex"
+  },
+  {
+   "id": "p-mex-5",
+   "name": "Mexico: México and 5 more",
+   "kind": "region",
+   "bbox": [
+    -102.183,
+    14.542,
+    -90.376,
+    20.313
+   ],
+   "packs": [],
+   "region": "regions/p-mex-5.geojson",
+   "parent": "w-mex"
+  },
+  {
+   "id": "p-mmr-1",
+   "name": "Myanmar: Shan and 9 more",
+   "kind": "region",
+   "bbox": [
+    92.171,
+    9.787,
+    101.178,
+    28.543
+   ],
+   "packs": [],
+   "region": "regions/p-mmr-1.geojson",
+   "parent": "w-mmr"
+  },
+  {
+   "id": "p-mmr-2",
+   "name": "Myanmar: Ayeyarwady and 3 more",
+   "kind": "region",
+   "bbox": [
+    93.371,
+    14.061,
+    97.238,
+    23.636
+   ],
+   "packs": [],
+   "region": "regions/p-mmr-2.geojson",
+   "parent": "w-mmr"
+  },
+  {
+   "id": "p-nga-1",
+   "name": "Nigeria: Borno and 14 more",
+   "kind": "region",
+   "bbox": [
+    6.089,
+    5.686,
+    14.674,
+    13.718
+   ],
+   "packs": [],
+   "region": "regions/p-nga-1.geojson",
+   "parent": "w-nga"
+  },
+  {
+   "id": "p-nga-2",
+   "name": "Nigeria: Niger and 10 more",
+   "kind": "region",
+   "bbox": [
+    2.668,
+    6.313,
+    7.883,
+    13.884
+   ],
+   "packs": [],
+   "region": "regions/p-nga-2.geojson",
+   "parent": "w-nga"
+  },
+  {
+   "id": "p-nga-3",
+   "name": "Nigeria: Delta and 10 more",
+   "kind": "region",
+   "bbox": [
+    4.351,
+    4.268,
+    9.493,
+    8.074
+   ],
+   "packs": [],
+   "region": "regions/p-nga-3.geojson",
+   "parent": "w-nga"
+  },
+  {
+   "id": "p-nld-1",
+   "name": "Netherlands: Noord-Brabant and 2 more",
+   "kind": "region",
+   "bbox": [
+    3.345,
+    51.201,
+    6.053,
+    52.34
+   ],
+   "packs": [],
+   "region": "regions/p-nld-1.geojson",
+   "parent": "w-nld"
+  },
+  {
+   "id": "p-nld-2",
+   "name": "Netherlands: Noord-Holland and 2 more",
+   "kind": "region",
+   "bbox": [
+    4.495,
+    51.937,
+    6.024,
+    53.192
+   ],
+   "packs": [],
+   "region": "regions/p-nld-2.geojson",
+   "parent": "w-nld"
+  },
+  {
+   "id": "p-nld-3",
+   "name": "Netherlands: Gelderland and Limburg",
+   "kind": "region",
+   "bbox": [
+    5.0,
+    50.746,
+    6.815,
+    52.526
+   ],
+   "packs": [],
+   "region": "regions/p-nld-3.geojson",
+   "parent": "w-nld"
+  },
+  {
+   "id": "p-nld-4",
+   "name": "Netherlands: Overijssel and 3 more",
+   "kind": "region",
+   "bbox": [
+    4.875,
+    52.105,
+    7.202,
+    53.562
+   ],
+   "packs": [],
+   "region": "regions/p-nld-4.geojson",
+   "parent": "w-nld"
+  },
+  {
+   "id": "p-nld-5",
+   "name": "Netherlands: Saba",
+   "kind": "region",
+   "bbox": [
+    -63.255,
+    17.611,
+    -63.22,
+    17.651
+   ],
+   "packs": [],
+   "region": "regions/p-nld-5.geojson",
+   "parent": "w-nld"
+  },
+  {
+   "id": "p-nld-6",
+   "name": "Netherlands: St. Eustatius",
+   "kind": "region",
+   "bbox": [
+    -63.001,
+    17.461,
+    -62.941,
+    17.53
+   ],
+   "packs": [],
+   "region": "regions/p-nld-6.geojson",
+   "parent": "w-nld"
+  },
+  {
+   "id": "p-nld-7",
+   "name": "Netherlands: Bonaire",
+   "kind": "region",
+   "bbox": [
+    -68.421,
+    12.018,
+    -68.186,
+    12.314
+   ],
+   "packs": [],
+   "region": "regions/p-nld-7.geojson",
+   "parent": "w-nld"
+  },
+  {
+   "id": "p-npl-1",
+   "name": "Nepal: Gandaki and 7 more",
+   "kind": "region",
+   "bbox": [
+    80.026,
+    27.327,
+    85.172,
+    30.421
+   ],
+   "packs": [],
+   "region": "regions/p-npl-1.geojson",
+   "parent": "w-npl"
+  },
+  {
+   "id": "p-npl-2",
+   "name": "Nepal: Bagmati and 5 more",
+   "kind": "region",
+   "bbox": [
+    83.918,
+    26.34,
+    88.172,
+    28.339
+   ],
+   "packs": [],
+   "region": "regions/p-npl-2.geojson",
+   "parent": "w-npl"
+  },
+  {
+   "id": "p-nzl-1",
+   "name": "New Zealand: Tokelau",
+   "kind": "region",
+   "bbox": [
+    -172.507,
+    -9.365,
+    -171.182,
+    -8.539
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-1.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-2",
+   "name": "New Zealand: Kermadec Islands",
+   "kind": "region",
+   "bbox": [
+    -177.962,
+    -29.296,
+    -177.844,
+    -29.219
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-2.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-3",
+   "name": "New Zealand: Three Kings Islands",
+   "kind": "region",
+   "bbox": [
+    172.111,
+    -34.173,
+    172.162,
+    -34.141
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-3.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-4",
+   "name": "New Zealand: Auckland and 8 more",
+   "kind": "region",
+   "bbox": [
+    172.67,
+    -41.624,
+    178.57,
+    -34.394
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-4.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-5",
+   "name": "New Zealand: Chatham Islands Territory",
+   "kind": "region",
+   "bbox": [
+    -176.859,
+    -44.345,
+    -176.11,
+    -43.699
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-5.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-6",
+   "name": "New Zealand: Canterbury and 6 more",
+   "kind": "region",
+   "bbox": [
+    166.463,
+    -47.282,
+    174.405,
+    -40.498
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-6.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-7",
+   "name": "New Zealand: The Snares",
+   "kind": "region",
+   "bbox": [
+    166.564,
+    -48.066,
+    166.641,
+    -47.99
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-7.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-8",
+   "name": "New Zealand: Antipodes Islands",
+   "kind": "region",
+   "bbox": [
+    178.714,
+    -49.724,
+    178.848,
+    -49.611
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-8.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-9",
+   "name": "New Zealand: Auckland Islands",
+   "kind": "region",
+   "bbox": [
+    165.882,
+    -50.916,
+    166.306,
+    -50.518
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-9.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-nzl-10",
+   "name": "New Zealand: Campbell Islands",
+   "kind": "region",
+   "bbox": [
+    169.011,
+    -52.604,
+    169.298,
+    -52.465
+   ],
+   "packs": [],
+   "region": "regions/p-nzl-10.geojson",
+   "parent": "w-nzl"
+  },
+  {
+   "id": "p-per-1",
+   "name": "Peru: Cajamarca and 15 more",
+   "kind": "region",
+   "bbox": [
+    -81.342,
+    -15.442,
+    -73.431,
+    -2.963
+   ],
+   "packs": [],
+   "region": "regions/p-per-1.geojson",
+   "parent": "w-per"
+  },
+  {
+   "id": "p-per-2",
+   "name": "Peru: Cusco and 9 more",
+   "kind": "region",
+   "bbox": [
+    -77.814,
+    -18.342,
+    -68.68,
+    -0.025
+   ],
+   "packs": [],
+   "region": "regions/p-per-2.geojson",
+   "parent": "w-per"
+  },
+  {
+   "id": "p-phl-1",
+   "name": "Philippines: Batanes",
+   "kind": "region",
+   "bbox": [
+    121.782,
+    20.269,
+    122.036,
+    21.126
+   ],
+   "packs": [],
+   "region": "regions/p-phl-1.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-2",
+   "name": "Philippines: Pampanga and 24 more",
+   "kind": "region",
+   "bbox": [
+    119.752,
+    14.417,
+    122.533,
+    19.581
+   ],
+   "packs": [],
+   "region": "regions/p-phl-2.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-3",
+   "name": "Philippines: Mindoro Occidental and Mindoro Oriental",
+   "kind": "region",
+   "bbox": [
+    120.076,
+    12.154,
+    121.557,
+    13.87
+   ],
+   "packs": [],
+   "region": "regions/p-phl-3.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-4",
+   "name": "Philippines: Marinduque",
+   "kind": "region",
+   "bbox": [
+    121.81,
+    13.198,
+    122.133,
+    13.572
+   ],
+   "packs": [],
+   "region": "regions/p-phl-4.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-5",
+   "name": "Philippines: Cavite and 28 more",
+   "kind": "region",
+   "bbox": [
+    120.57,
+    12.533,
+    124.214,
+    15.264
+   ],
+   "packs": [],
+   "region": "regions/p-phl-5.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-6",
+   "name": "Philippines: Romblon",
+   "kind": "region",
+   "bbox": [
+    121.678,
+    12.101,
+    122.692,
+    12.951
+   ],
+   "packs": [],
+   "region": "regions/p-phl-6.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-7",
+   "name": "Philippines: Iloilo and 4 more",
+   "kind": "region",
+   "bbox": [
+    121.352,
+    10.426,
+    123.179,
+    12.119
+   ],
+   "packs": [],
+   "region": "regions/p-phl-7.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-8",
+   "name": "Philippines: Guimaras",
+   "kind": "region",
+   "bbox": [
+    122.478,
+    10.415,
+    122.742,
+    10.766
+   ],
+   "packs": [],
+   "region": "regions/p-phl-8.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-9",
+   "name": "Philippines: Negros Occidental and 2 more",
+   "kind": "region",
+   "bbox": [
+    122.391,
+    9.031,
+    123.579,
+    11.0
+   ],
+   "packs": [],
+   "region": "regions/p-phl-9.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-10",
+   "name": "Philippines: Masbate",
+   "kind": "region",
+   "bbox": [
+    122.941,
+    11.722,
+    124.076,
+    13.158
+   ],
+   "packs": [],
+   "region": "regions/p-phl-10.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-11",
+   "name": "Philippines: Cebu and 2 more",
+   "kind": "region",
+   "bbox": [
+    123.31,
+    9.403,
+    124.079,
+    11.296
+   ],
+   "packs": [],
+   "region": "regions/p-phl-11.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-12",
+   "name": "Philippines: Lapu-Lapu",
+   "kind": "region",
+   "bbox": [
+    123.929,
+    10.242,
+    124.048,
+    10.334
+   ],
+   "packs": [],
+   "region": "regions/p-phl-12.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-13",
+   "name": "Philippines: Catanduanes",
+   "kind": "region",
+   "bbox": [
+    124.022,
+    13.519,
+    124.422,
+    14.095
+   ],
+   "packs": [],
+   "region": "regions/p-phl-13.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-14",
+   "name": "Philippines: Biliran",
+   "kind": "region",
+   "bbox": [
+    124.345,
+    11.47,
+    124.629,
+    11.699
+   ],
+   "packs": [],
+   "region": "regions/p-phl-14.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-15",
+   "name": "Philippines: Leyte and 3 more",
+   "kind": "region",
+   "bbox": [
+    124.28,
+    9.913,
+    125.309,
+    11.561
+   ],
+   "packs": [],
+   "region": "regions/p-phl-15.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-16",
+   "name": "Philippines: Eastern Samar and 2 more",
+   "kind": "region",
+   "bbox": [
+    124.13,
+    10.695,
+    125.836,
+    12.595
+   ],
+   "packs": [],
+   "region": "regions/p-phl-16.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-17",
+   "name": "Philippines: Palawan and Puerto Princesa",
+   "kind": "region",
+   "bbox": [
+    116.952,
+    6.967,
+    121.263,
+    12.328
+   ],
+   "packs": [],
+   "region": "regions/p-phl-17.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-18",
+   "name": "Philippines: Tawi-Tawi",
+   "kind": "region",
+   "bbox": [
+    119.431,
+    4.652,
+    120.257,
+    5.352
+   ],
+   "packs": [],
+   "region": "regions/p-phl-18.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-19",
+   "name": "Philippines: Sulu",
+   "kind": "region",
+   "bbox": [
+    120.485,
+    5.492,
+    121.947,
+    6.385
+   ],
+   "packs": [],
+   "region": "regions/p-phl-19.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-20",
+   "name": "Philippines: Basilan",
+   "kind": "region",
+   "bbox": [
+    121.579,
+    6.401,
+    122.339,
+    6.744
+   ],
+   "packs": [],
+   "region": "regions/p-phl-20.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-21",
+   "name": "Philippines: Siquijor",
+   "kind": "region",
+   "bbox": [
+    123.467,
+    9.094,
+    123.726,
+    9.298
+   ],
+   "packs": [],
+   "region": "regions/p-phl-21.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-22",
+   "name": "Philippines: Bohol",
+   "kind": "region",
+   "bbox": [
+    123.722,
+    9.546,
+    124.628,
+    10.165
+   ],
+   "packs": [],
+   "region": "regions/p-phl-22.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-23",
+   "name": "Philippines: Camiguin",
+   "kind": "region",
+   "bbox": [
+    124.632,
+    9.073,
+    124.812,
+    9.254
+   ],
+   "packs": [],
+   "region": "regions/p-phl-23.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-phl-24",
+   "name": "Philippines: Bukidnon and 27 more",
+   "kind": "region",
+   "bbox": [
+    121.894,
+    5.363,
+    126.622,
+    10.466
+   ],
+   "packs": [],
+   "region": "regions/p-phl-24.geojson",
+   "parent": "w-phl"
+  },
+  {
+   "id": "p-pol-1",
+   "name": "Poland: West Pomeranian and Lubusz",
+   "kind": "region",
+   "bbox": [
+    14.12,
+    51.392,
+    17.062,
+    54.581
+   ],
+   "packs": [],
+   "region": "regions/p-pol-1.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-2",
+   "name": "Poland: Lower Silesian",
+   "kind": "region",
+   "bbox": [
+    14.806,
+    50.089,
+    17.722,
+    51.774
+   ],
+   "packs": [],
+   "region": "regions/p-pol-2.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-3",
+   "name": "Poland: Greater Poland",
+   "kind": "region",
+   "bbox": [
+    15.822,
+    51.062,
+    19.083,
+    53.599
+   ],
+   "packs": [],
+   "region": "regions/p-pol-3.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-4",
+   "name": "Poland: Pomeranian and Kuyavian-Pomeranian",
+   "kind": "region",
+   "bbox": [
+    16.781,
+    52.274,
+    19.762,
+    54.842
+   ],
+   "packs": [],
+   "region": "regions/p-pol-4.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-5",
+   "name": "Poland: Łódź and Opole",
+   "kind": "region",
+   "bbox": [
+    16.94,
+    49.965,
+    20.678,
+    52.338
+   ],
+   "packs": [],
+   "region": "regions/p-pol-5.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-6",
+   "name": "Poland: Silesian",
+   "kind": "region",
+   "bbox": [
+    18.015,
+    49.384,
+    19.97,
+    51.041
+   ],
+   "packs": [],
+   "region": "regions/p-pol-6.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-7",
+   "name": "Poland: Masovian",
+   "kind": "region",
+   "bbox": [
+    19.292,
+    51.009,
+    23.091,
+    53.447
+   ],
+   "packs": [],
+   "region": "regions/p-pol-7.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-8",
+   "name": "Poland: Warmian-Masurian and Podlachian",
+   "kind": "region",
+   "bbox": [
+    19.124,
+    52.278,
+    23.927,
+    54.438
+   ],
+   "packs": [],
+   "region": "regions/p-pol-8.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-9",
+   "name": "Poland: Lublin and Świętokrzyskie",
+   "kind": "region",
+   "bbox": [
+    19.738,
+    50.17,
+    24.147,
+    52.3
+   ],
+   "packs": [],
+   "region": "regions/p-pol-9.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-10",
+   "name": "Poland: Lesser Poland",
+   "kind": "region",
+   "bbox": [
+    19.108,
+    49.169,
+    21.518,
+    50.489
+   ],
+   "packs": [],
+   "region": "regions/p-pol-10.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-pol-11",
+   "name": "Poland: Subcarpathian",
+   "kind": "region",
+   "bbox": [
+    21.206,
+    48.99,
+    23.663,
+    50.834
+   ],
+   "packs": [],
+   "region": "regions/p-pol-11.geojson",
+   "parent": "w-pol"
+  },
+  {
+   "id": "p-rou-1",
+   "name": "Romania: Bihor and 15 more",
+   "kind": "region",
+   "bbox": [
+    20.239,
+    44.754,
+    28.251,
+    48.279
+   ],
+   "packs": [],
+   "region": "regions/p-rou-1.geojson",
+   "parent": "w-rou"
+  },
+  {
+   "id": "p-rou-2",
+   "name": "Romania: Cluj and 6 more",
+   "kind": "region",
+   "bbox": [
+    22.662,
+    46.005,
+    27.524,
+    48.01
+   ],
+   "packs": [],
+   "region": "regions/p-rou-2.geojson",
+   "parent": "w-rou"
+  },
+  {
+   "id": "p-rou-3",
+   "name": "Romania: Vâlcea and 18 more",
+   "kind": "region",
+   "bbox": [
+    21.339,
+    43.646,
+    29.704,
+    46.338
+   ],
+   "packs": [],
+   "region": "regions/p-rou-3.geojson",
+   "parent": "w-rou"
+  },
+  {
+   "id": "p-rus-1",
+   "name": "Russia: Krasnoyarsk (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    76.047,
+    66.531,
+    113.894,
+    81.293
+   ],
+   "packs": [],
+   "region": "regions/p-rus-1.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-2",
+   "name": "Russia: Karelia (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    29.358,
+    63.661,
+    36.561,
+    66.688
+   ],
+   "packs": [],
+   "region": "regions/p-rus-2.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-3",
+   "name": "Russia: Murmansk",
+   "kind": "region",
+   "bbox": [
+    28.406,
+    66.051,
+    41.394,
+    80.179
+   ],
+   "packs": [],
+   "region": "regions/p-rus-3.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-4",
+   "name": "Russia: Arkhangel'sk",
+   "kind": "region",
+   "bbox": [
+    35.853,
+    60.642,
+    69.038,
+    81.863
+   ],
+   "packs": [],
+   "region": "regions/p-rus-4.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-5",
+   "name": "Russia: RUS+99?",
+   "kind": "region",
+   "bbox": [
+    67.112,
+    68.753,
+    67.411,
+    68.824
+   ],
+   "packs": [],
+   "region": "regions/p-rus-5.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-6",
+   "name": "Russia: Yamal-Nenets and Nenets",
+   "kind": "region",
+   "bbox": [
+    43.27,
+    62.174,
+    86.034,
+    73.583
+   ],
+   "packs": [],
+   "region": "regions/p-rus-6.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-7",
+   "name": "Russia: Chukchi Autonomous Okrug",
+   "kind": "region",
+   "bbox": [
+    -180.004,
+    61.811,
+    180.004,
+    71.604
+   ],
+   "packs": [],
+   "region": "regions/p-rus-7.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-8",
+   "name": "Russia: Sakha (Yakutia) (part 1 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    105.536,
+    55.868,
+    124.645,
+    74.555
+   ],
+   "packs": [],
+   "region": "regions/p-rus-8.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-9",
+   "name": "Russia: Sakha (Yakutia) (part 2 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    124.637,
+    55.461,
+    143.75,
+    76.243
+   ],
+   "packs": [],
+   "region": "regions/p-rus-9.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-10",
+   "name": "Russia: Sakha (Yakutia) (part 3 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    143.742,
+    61.722,
+    162.851,
+    77.13
+   ],
+   "packs": [],
+   "region": "regions/p-rus-10.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-11",
+   "name": "Russia: Leningrad and City of St. Petersburg",
+   "kind": "region",
+   "bbox": [
+    26.941,
+    58.436,
+    35.696,
+    61.325
+   ],
+   "packs": [],
+   "region": "regions/p-rus-11.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-12",
+   "name": "Russia: Karelia (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    29.273,
+    60.642,
+    37.946,
+    63.669
+   ],
+   "packs": [],
+   "region": "regions/p-rus-12.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-13",
+   "name": "Russia: Komi",
+   "kind": "region",
+   "bbox": [
+    45.423,
+    59.204,
+    66.213,
+    68.435
+   ],
+   "packs": [],
+   "region": "regions/p-rus-13.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-14",
+   "name": "Russia: Khanty-Mansiy",
+   "kind": "region",
+   "bbox": [
+    59.219,
+    58.585,
+    85.978,
+    65.721
+   ],
+   "packs": [],
+   "region": "regions/p-rus-14.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-15",
+   "name": "Russia: Krasnoyarsk (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    83.076,
+    51.777,
+    108.324,
+    66.539
+   ],
+   "packs": [],
+   "region": "regions/p-rus-15.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-16",
+   "name": "Russia: Kamchatka and Maga Buryatdan",
+   "kind": "region",
+   "bbox": [
+    144.715,
+    50.86,
+    174.516,
+    66.363
+   ],
+   "packs": [],
+   "region": "regions/p-rus-16.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-17",
+   "name": "Russia: Pskov and Novgorod",
+   "kind": "region",
+   "bbox": [
+    27.324,
+    55.574,
+    36.241,
+    59.436
+   ],
+   "packs": [],
+   "region": "regions/p-rus-17.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-18",
+   "name": "Russia: Tver'",
+   "kind": "region",
+   "bbox": [
+    30.777,
+    55.628,
+    38.311,
+    58.873
+   ],
+   "packs": [],
+   "region": "regions/p-rus-18.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-19",
+   "name": "Russia: Moskovskaya",
+   "kind": "region",
+   "bbox": [
+    35.167,
+    54.241,
+    40.211,
+    56.958
+   ],
+   "packs": [],
+   "region": "regions/p-rus-19.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-20",
+   "name": "Russia: Vladimir and Yaroslavl'",
+   "kind": "region",
+   "bbox": [
+    37.342,
+    55.105,
+    42.952,
+    58.958
+   ],
+   "packs": [],
+   "region": "regions/p-rus-20.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-21",
+   "name": "Russia: Vologda",
+   "kind": "region",
+   "bbox": [
+    34.726,
+    58.486,
+    47.141,
+    61.598
+   ],
+   "packs": [],
+   "region": "regions/p-rus-21.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-22",
+   "name": "Russia: Nizhegorod and 2 more",
+   "kind": "region",
+   "bbox": [
+    39.382,
+    54.467,
+    47.773,
+    59.636
+   ],
+   "packs": [],
+   "region": "regions/p-rus-22.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-23",
+   "name": "Russia: Mariy-El and 2 more",
+   "kind": "region",
+   "bbox": [
+    42.18,
+    53.657,
+    50.202,
+    57.334
+   ],
+   "packs": [],
+   "region": "regions/p-rus-23.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-24",
+   "name": "Russia: Kirov",
+   "kind": "region",
+   "bbox": [
+    46.298,
+    56.069,
+    53.926,
+    61.063
+   ],
+   "packs": [],
+   "region": "regions/p-rus-24.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-25",
+   "name": "Russia: Tatarstan and Udmurt",
+   "kind": "region",
+   "bbox": [
+    47.238,
+    53.965,
+    54.404,
+    58.548
+   ],
+   "packs": [],
+   "region": "regions/p-rus-25.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-26",
+   "name": "Russia: Perm'",
+   "kind": "region",
+   "bbox": [
+    51.77,
+    56.096,
+    59.476,
+    61.686
+   ],
+   "packs": [],
+   "region": "regions/p-rus-26.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-27",
+   "name": "Russia: Sverdlovsk",
+   "kind": "region",
+   "bbox": [
+    57.215,
+    56.05,
+    66.201,
+    61.997
+   ],
+   "packs": [],
+   "region": "regions/p-rus-27.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-28",
+   "name": "Russia: Tyumen' and Kurgan",
+   "kind": "region",
+   "bbox": [
+    61.963,
+    54.159,
+    75.163,
+    59.993
+   ],
+   "packs": [],
+   "region": "regions/p-rus-28.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-29",
+   "name": "Russia: Omsk and Tomsk",
+   "kind": "region",
+   "bbox": [
+    70.38,
+    53.426,
+    89.395,
+    61.051
+   ],
+   "packs": [],
+   "region": "regions/p-rus-29.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-30",
+   "name": "Russia: Novosibirsk",
+   "kind": "region",
+   "bbox": [
+    75.083,
+    53.323,
+    85.083,
+    57.254
+   ],
+   "packs": [],
+   "region": "regions/p-rus-30.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-31",
+   "name": "Russia: Irkutsk",
+   "kind": "region",
+   "bbox": [
+    95.649,
+    51.128,
+    119.137,
+    64.304
+   ],
+   "packs": [],
+   "region": "regions/p-rus-31.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-32",
+   "name": "Russia: Kaliningrad",
+   "kind": "region",
+   "bbox": [
+    19.606,
+    54.339,
+    22.852,
+    55.294
+   ],
+   "packs": [],
+   "region": "regions/p-rus-32.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-33",
+   "name": "Russia: Smolensk and 2 more",
+   "kind": "region",
+   "bbox": [
+    30.759,
+    51.823,
+    38.042,
+    56.078
+   ],
+   "packs": [],
+   "region": "regions/p-rus-33.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-34",
+   "name": "Russia: Kursk and Belgorod",
+   "kind": "region",
+   "bbox": [
+    34.075,
+    49.8,
+    39.276,
+    52.437
+   ],
+   "packs": [],
+   "region": "regions/p-rus-34.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-35",
+   "name": "Russia: Kaluga and 3 more",
+   "kind": "region",
+   "bbox": [
+    33.42,
+    51.875,
+    40.706,
+    56.064
+   ],
+   "packs": [],
+   "region": "regions/p-rus-35.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-36",
+   "name": "Russia: Volgograd and Voronezh",
+   "kind": "region",
+   "bbox": [
+    38.136,
+    47.441,
+    47.438,
+    52.109
+   ],
+   "packs": [],
+   "region": "regions/p-rus-36.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-37",
+   "name": "Russia: Ryazan' and 3 more",
+   "kind": "region",
+   "bbox": [
+    38.668,
+    51.59,
+    50.261,
+    55.343
+   ],
+   "packs": [],
+   "region": "regions/p-rus-37.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-38",
+   "name": "Russia: Saratov and Samara",
+   "kind": "region",
+   "bbox": [
+    42.476,
+    49.806,
+    52.542,
+    54.68
+   ],
+   "packs": [],
+   "region": "regions/p-rus-38.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-39",
+   "name": "Russia: Bashkortostan",
+   "kind": "region",
+   "bbox": [
+    53.137,
+    51.568,
+    59.978,
+    56.542
+   ],
+   "packs": [],
+   "region": "regions/p-rus-39.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-40",
+   "name": "Russia: Chelyabinsk and Orenburg",
+   "kind": "region",
+   "bbox": [
+    50.763,
+    50.471,
+    63.344,
+    56.38
+   ],
+   "packs": [],
+   "region": "regions/p-rus-40.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-41",
+   "name": "Russia: Altay",
+   "kind": "region",
+   "bbox": [
+    77.781,
+    50.631,
+    87.192,
+    54.491
+   ],
+   "packs": [],
+   "region": "regions/p-rus-41.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-42",
+   "name": "Russia: Gorno-Altay and 3 more",
+   "kind": "region",
+   "bbox": [
+    84.001,
+    49.067,
+    99.254,
+    56.837
+   ],
+   "packs": [],
+   "region": "regions/p-rus-42.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-43",
+   "name": "Russia: Chita and 3 more",
+   "kind": "region",
+   "bbox": [
+    98.625,
+    47.658,
+    134.991,
+    58.412
+   ],
+   "packs": [],
+   "region": "regions/p-rus-43.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-44",
+   "name": "Russia: Khabarovsk",
+   "kind": "region",
+   "bbox": [
+    130.389,
+    46.623,
+    147.163,
+    62.577
+   ],
+   "packs": [],
+   "region": "regions/p-rus-44.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-45",
+   "name": "Russia: Crimea and Sevastopol",
+   "kind": "region",
+   "bbox": [
+    32.478,
+    44.377,
+    36.642,
+    46.222
+   ],
+   "packs": [],
+   "region": "regions/p-rus-45.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-46",
+   "name": "Russia: Krasnodar and Adygey",
+   "kind": "region",
+   "bbox": [
+    36.573,
+    43.385,
+    41.733,
+    46.867
+   ],
+   "packs": [],
+   "region": "regions/p-rus-46.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-47",
+   "name": "Russia: Rostov and 3 more",
+   "kind": "region",
+   "bbox": [
+    38.185,
+    42.883,
+    45.721,
+    50.23
+   ],
+   "packs": [],
+   "region": "regions/p-rus-47.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-48",
+   "name": "Russia: Dagestan and 5 more",
+   "kind": "region",
+   "bbox": [
+    41.643,
+    41.189,
+    49.31,
+    48.873
+   ],
+   "packs": [],
+   "region": "regions/p-rus-48.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-49",
+   "name": "Russia: Primor'ye",
+   "kind": "region",
+   "bbox": [
+    130.376,
+    42.291,
+    139.03,
+    48.449
+   ],
+   "packs": [],
+   "region": "regions/p-rus-49.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-rus-50",
+   "name": "Russia: Sakhalin",
+   "kind": "region",
+   "bbox": [
+    141.635,
+    43.398,
+    156.515,
+    54.43
+   ],
+   "packs": [],
+   "region": "regions/p-rus-50.geojson",
+   "parent": "w-rus"
+  },
+  {
+   "id": "p-swe-1",
+   "name": "Sweden: Norrbotten (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    15.422,
+    65.064,
+    24.167,
+    67.056
+   ],
+   "packs": [],
+   "region": "regions/p-swe-1.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-2",
+   "name": "Sweden: Norrbotten (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    16.123,
+    67.048,
+    23.79,
+    69.04
+   ],
+   "packs": [],
+   "region": "regions/p-swe-2.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-3",
+   "name": "Sweden: Dalarna and Värmland",
+   "kind": "region",
+   "bbox": [
+    11.667,
+    58.738,
+    16.723,
+    62.278
+   ],
+   "packs": [],
+   "region": "regions/p-swe-3.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-4",
+   "name": "Sweden: Jämtland",
+   "kind": "region",
+   "bbox": [
+    11.988,
+    61.578,
+    16.973,
+    65.118
+   ],
+   "packs": [],
+   "region": "regions/p-swe-4.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-5",
+   "name": "Sweden: Västerbotten and 2 more",
+   "kind": "region",
+   "bbox": [
+    14.329,
+    60.202,
+    21.61,
+    66.359
+   ],
+   "packs": [],
+   "region": "regions/p-swe-5.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-6",
+   "name": "Sweden: Västra Götaland",
+   "kind": "region",
+   "bbox": [
+    11.104,
+    57.153,
+    14.816,
+    59.259
+   ],
+   "packs": [],
+   "region": "regions/p-swe-6.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-7",
+   "name": "Sweden: Skåne and 5 more",
+   "kind": "region",
+   "bbox": [
+    11.899,
+    55.341,
+    17.128,
+    58.228
+   ],
+   "packs": [],
+   "region": "regions/p-swe-7.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-8",
+   "name": "Sweden: Östergötland and 2 more",
+   "kind": "region",
+   "bbox": [
+    14.306,
+    57.708,
+    17.631,
+    60.124
+   ],
+   "packs": [],
+   "region": "regions/p-swe-8.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-9",
+   "name": "Sweden: Stockholm and 2 more",
+   "kind": "region",
+   "bbox": [
+    15.451,
+    58.857,
+    19.089,
+    60.652
+   ],
+   "packs": [],
+   "region": "regions/p-swe-9.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-swe-10",
+   "name": "Sweden: Gotland",
+   "kind": "region",
+   "bbox": [
+    18.095,
+    56.908,
+    19.343,
+    58.399
+   ],
+   "packs": [],
+   "region": "regions/p-swe-10.geojson",
+   "parent": "w-swe"
+  },
+  {
+   "id": "p-tha-1",
+   "name": "Thailand: Nakhon Ratchasima and 19 more",
+   "kind": "region",
+   "bbox": [
+    98.984,
+    14.083,
+    105.655,
+    18.445
+   ],
+   "packs": [],
+   "region": "regions/p-tha-1.geojson",
+   "parent": "w-tha"
+  },
+  {
+   "id": "p-tha-2",
+   "name": "Thailand: Chiang Mai and 32 more",
+   "kind": "region",
+   "bbox": [
+    97.347,
+    5.626,
+    102.077,
+    20.449
+   ],
+   "packs": [],
+   "region": "regions/p-tha-2.geojson",
+   "parent": "w-tha"
+  },
+  {
+   "id": "p-tha-3",
+   "name": "Thailand: Bangkok Metropolis and 22 more",
+   "kind": "region",
+   "bbox": [
+    99.804,
+    11.559,
+    104.36,
+    17.078
+   ],
+   "packs": [],
+   "region": "regions/p-tha-3.geojson",
+   "parent": "w-tha"
+  },
+  {
+   "id": "p-tha-4",
+   "name": "Thailand: Phuket",
+   "kind": "region",
+   "bbox": [
+    98.25,
+    7.764,
+    98.444,
+    8.196
+   ],
+   "packs": [],
+   "region": "regions/p-tha-4.geojson",
+   "parent": "w-tha"
+  },
+  {
+   "id": "p-tur-1",
+   "name": "Turkey: Istanbul and 10 more",
+   "kind": "region",
+   "bbox": [
+    25.659,
+    38.703,
+    32.047,
+    42.102
+   ],
+   "packs": [],
+   "region": "regions/p-tur-1.geojson",
+   "parent": "w-tur"
+  },
+  {
+   "id": "p-tur-2",
+   "name": "Turkey: Izmir and 8 more",
+   "kind": "region",
+   "bbox": [
+    26.229,
+    36.29,
+    31.728,
+    39.468
+   ],
+   "packs": [],
+   "region": "regions/p-tur-2.geojson",
+   "parent": "w-tur"
+  },
+  {
+   "id": "p-tur-3",
+   "name": "Turkey: Ankara and 20 more",
+   "kind": "region",
+   "bbox": [
+    29.257,
+    36.023,
+    35.509,
+    42.103
+   ],
+   "packs": [],
+   "region": "regions/p-tur-3.geojson",
+   "parent": "w-tur"
+  },
+  {
+   "id": "p-tur-4",
+   "name": "Turkey: Kayseri and 14 more",
+   "kind": "region",
+   "bbox": [
+    34.048,
+    35.816,
+    40.265,
+    41.74
+   ],
+   "packs": [],
+   "region": "regions/p-tur-4.geojson",
+   "parent": "w-tur"
+  },
+  {
+   "id": "p-tur-5",
+   "name": "Turkey: Diyarbakir and 24 more",
+   "kind": "region",
+   "bbox": [
+    36.684,
+    36.919,
+    44.811,
+    41.592
+   ],
+   "packs": [],
+   "region": "regions/p-tur-5.geojson",
+   "parent": "w-tur"
+  },
+  {
+   "id": "p-tza-1",
+   "name": "United Republic of Tanzania: Mwanza and 4 more",
+   "kind": "region",
+   "bbox": [
+    30.408,
+    -4.434,
+    35.345,
+    -0.982
+   ],
+   "packs": [],
+   "region": "regions/p-tza-1.geojson",
+   "parent": "w-tza"
+  },
+  {
+   "id": "p-tza-2",
+   "name": "United Republic of Tanzania: Mbeya and 10 more",
+   "kind": "region",
+   "bbox": [
+    29.317,
+    -11.735,
+    40.453,
+    -2.835
+   ],
+   "packs": [],
+   "region": "regions/p-tza-2.geojson",
+   "parent": "w-tza"
+  },
+  {
+   "id": "p-tza-3",
+   "name": "United Republic of Tanzania: Dar-Es-Salaam and 8 more",
+   "kind": "region",
+   "bbox": [
+    33.354,
+    -9.965,
+    39.915,
+    -1.703
+   ],
+   "packs": [],
+   "region": "regions/p-tza-3.geojson",
+   "parent": "w-tza"
+  },
+  {
+   "id": "p-tza-4",
+   "name": "United Republic of Tanzania: Zanzibar West and 2 more",
+   "kind": "region",
+   "bbox": [
+    39.173,
+    -6.467,
+    39.578,
+    -5.714
+   ],
+   "packs": [],
+   "region": "regions/p-tza-4.geojson",
+   "parent": "w-tza"
+  },
+  {
+   "id": "p-tza-5",
+   "name": "United Republic of Tanzania: Kaskazini-Pemba and Kusini-Pemba",
+   "kind": "region",
+   "bbox": [
+    39.565,
+    -5.482,
+    39.882,
+    -4.886
+   ],
+   "packs": [],
+   "region": "regions/p-tza-5.geojson",
+   "parent": "w-tza"
+  },
+  {
+   "id": "p-ukr-1",
+   "name": "Ukraine: Zhytomyr and 3 more",
+   "kind": "region",
+   "bbox": [
+    23.589,
+    48.448,
+    29.738,
+    51.954
+   ],
+   "packs": [],
+   "region": "regions/p-ukr-1.geojson",
+   "parent": "w-ukr"
+  },
+  {
+   "id": "p-ukr-2",
+   "name": "Ukraine: Kharkiv and 2 more",
+   "kind": "region",
+   "bbox": [
+    30.504,
+    48.523,
+    38.085,
+    52.371
+   ],
+   "packs": [],
+   "region": "regions/p-ukr-2.geojson",
+   "parent": "w-ukr"
+  },
+  {
+   "id": "p-ukr-3",
+   "name": "Ukraine: L'viv and 4 more",
+   "kind": "region",
+   "bbox": [
+    22.129,
+    47.706,
+    27.508,
+    50.648
+   ],
+   "packs": [],
+   "region": "regions/p-ukr-3.geojson",
+   "parent": "w-ukr"
+  },
+  {
+   "id": "p-ukr-4",
+   "name": "Ukraine: Kiev and 3 more",
+   "kind": "region",
+   "bbox": [
+    27.366,
+    45.21,
+    32.143,
+    51.497
+   ],
+   "packs": [],
+   "region": "regions/p-ukr-4.geojson",
+   "parent": "w-ukr"
+  },
+  {
+   "id": "p-ukr-5",
+   "name": "Ukraine: Cherkasy and 3 more",
+   "kind": "region",
+   "bbox": [
+    29.589,
+    46.426,
+    35.479,
+    50.55
+   ],
+   "packs": [],
+   "region": "regions/p-ukr-5.geojson",
+   "parent": "w-ukr"
+  },
+  {
+   "id": "p-ukr-6",
+   "name": "Ukraine: Dnipropetrovs'k and 2 more",
+   "kind": "region",
+   "bbox": [
+    31.5,
+    45.713,
+    37.224,
+    49.187
+   ],
+   "packs": [],
+   "region": "regions/p-ukr-6.geojson",
+   "parent": "w-ukr"
+  },
+  {
+   "id": "p-ukr-7",
+   "name": "Ukraine: Donets'k and Luhans'k",
+   "kind": "region",
+   "bbox": [
+    36.527,
+    46.872,
+    40.163,
+    50.067
+   ],
+   "packs": [],
+   "region": "regions/p-ukr-7.geojson",
+   "parent": "w-ukr"
+  },
+  {
+   "id": "p-usa-1a",
+   "name": "United States of America: Alaska (part 1 of 2, west to east) (1 of 3)",
+   "kind": "region",
+   "bbox": [
+    -179.148,
+    51.211,
+    -162.756,
+    69.985
+   ],
+   "packs": [],
+   "region": "regions/p-usa-1a.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-1b",
+   "name": "United States of America: Alaska (part 1 of 2, west to east) (2 of 3)",
+   "kind": "region",
+   "bbox": [
+    -162.764,
+    54.368,
+    -146.369,
+    71.416
+   ],
+   "packs": [],
+   "region": "regions/p-usa-1b.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-1c",
+   "name": "United States of America: Alaska (part 1 of 2, west to east) (3 of 3)",
+   "kind": "region",
+   "bbox": [
+    -146.377,
+    54.67,
+    -129.985,
+    70.19
+   ],
+   "packs": [],
+   "region": "regions/p-usa-1c.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-2",
+   "name": "United States of America: Alaska (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    172.472,
+    51.346,
+    179.785,
+    53.02
+   ],
+   "packs": [],
+   "region": "regions/p-usa-2.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-3",
+   "name": "United States of America: Washington (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -124.739,
+    45.562,
+    -120.803,
+    48.996
+   ],
+   "packs": [],
+   "region": "regions/p-usa-3.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-4",
+   "name": "United States of America: Washington (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -120.811,
+    45.663,
+    -116.875,
+    48.996
+   ],
+   "packs": [],
+   "region": "regions/p-usa-4.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-5",
+   "name": "United States of America: Montana",
+   "kind": "region",
+   "bbox": [
+    -116.053,
+    44.373,
+    -104.035,
+    48.997
+   ],
+   "packs": [],
+   "region": "regions/p-usa-5.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-6",
+   "name": "United States of America: North Dakota",
+   "kind": "region",
+   "bbox": [
+    -104.052,
+    45.938,
+    -96.552,
+    48.997
+   ],
+   "packs": [],
+   "region": "regions/p-usa-6.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-7",
+   "name": "United States of America: Minnesota (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -97.233,
+    46.431,
+    -89.495,
+    49.373
+   ],
+   "packs": [],
+   "region": "regions/p-usa-7.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-8",
+   "name": "United States of America: Wisconsin (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -92.906,
+    44.896,
+    -86.247,
+    47.312
+   ],
+   "packs": [],
+   "region": "regions/p-usa-8.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-9",
+   "name": "United States of America: Michigan (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -90.416,
+    44.997,
+    -82.46,
+    48.309
+   ],
+   "packs": [],
+   "region": "regions/p-usa-9.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-10",
+   "name": "United States of America: California (part 3 of 3, south to north)",
+   "kind": "region",
+   "bbox": [
+    -124.413,
+    38.841,
+    -119.766,
+    42.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-10.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-11",
+   "name": "United States of America: Oregon",
+   "kind": "region",
+   "bbox": [
+    -124.571,
+    41.995,
+    -116.451,
+    46.26
+   ],
+   "packs": [],
+   "region": "regions/p-usa-11.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-12",
+   "name": "United States of America: Idaho",
+   "kind": "region",
+   "bbox": [
+    -117.219,
+    41.995,
+    -111.046,
+    48.996
+   ],
+   "packs": [],
+   "region": "regions/p-usa-12.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-13",
+   "name": "United States of America: Wyoming",
+   "kind": "region",
+   "bbox": [
+    -111.055,
+    40.996,
+    -104.05,
+    45.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-13.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-14",
+   "name": "United States of America: Nebraska and South Dakota",
+   "kind": "region",
+   "bbox": [
+    -104.061,
+    39.996,
+    -95.313,
+    45.946
+   ],
+   "packs": [],
+   "region": "regions/p-usa-14.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-15",
+   "name": "United States of America: Minnesota (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -96.867,
+    43.496,
+    -91.239,
+    46.439
+   ],
+   "packs": [],
+   "region": "regions/p-usa-15.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-16",
+   "name": "United States of America: Iowa",
+   "kind": "region",
+   "bbox": [
+    -96.642,
+    40.376,
+    -90.136,
+    43.505
+   ],
+   "packs": [],
+   "region": "regions/p-usa-16.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-17",
+   "name": "United States of America: Wisconsin (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -92.824,
+    42.488,
+    -86.659,
+    44.904
+   ],
+   "packs": [],
+   "region": "regions/p-usa-17.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-18",
+   "name": "United States of America: Illinois (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -91.523,
+    39.741,
+    -87.015,
+    42.516
+   ],
+   "packs": [],
+   "region": "regions/p-usa-18.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-19",
+   "name": "United States of America: Michigan (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -87.212,
+    41.693,
+    -82.141,
+    45.005
+   ],
+   "packs": [],
+   "region": "regions/p-usa-19.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-20",
+   "name": "United States of America: Ohio (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -84.814,
+    40.361,
+    -80.516,
+    42.328
+   ],
+   "packs": [],
+   "region": "regions/p-usa-20.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-21",
+   "name": "United States of America: Pennsylvania (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -80.524,
+    39.717,
+    -77.605,
+    42.542
+   ],
+   "packs": [],
+   "region": "regions/p-usa-21.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-22",
+   "name": "United States of America: New York (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -79.767,
+    41.994,
+    -75.806,
+    44.49
+   ],
+   "packs": [],
+   "region": "regions/p-usa-22.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-23",
+   "name": "United States of America: Pennsylvania (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -77.613,
+    39.717,
+    -74.695,
+    42.003
+   ],
+   "packs": [],
+   "region": "regions/p-usa-23.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-24",
+   "name": "United States of America: New Jersey",
+   "kind": "region",
+   "bbox": [
+    -75.562,
+    38.922,
+    -73.903,
+    41.36
+   ],
+   "packs": [],
+   "region": "regions/p-usa-24.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-25",
+   "name": "United States of America: New York (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -75.814,
+    40.495,
+    -71.853,
+    45.013
+   ],
+   "packs": [],
+   "region": "regions/p-usa-25.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-26",
+   "name": "United States of America: Connecticut and Rhode Island",
+   "kind": "region",
+   "bbox": [
+    -73.727,
+    40.998,
+    -71.118,
+    42.059
+   ],
+   "packs": [],
+   "region": "regions/p-usa-26.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-27",
+   "name": "United States of America: Massachusetts",
+   "kind": "region",
+   "bbox": [
+    -73.511,
+    41.235,
+    -69.921,
+    42.891
+   ],
+   "packs": [],
+   "region": "regions/p-usa-27.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-28",
+   "name": "United States of America: Maine and 2 more",
+   "kind": "region",
+   "bbox": [
+    -73.442,
+    42.698,
+    -66.973,
+    47.464
+   ],
+   "packs": [],
+   "region": "regions/p-usa-28.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-29a",
+   "name": "United States of America: California (part 2 of 3, south to north) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -123.653,
+    35.682,
+    -119.572,
+    38.849
+   ],
+   "packs": [],
+   "region": "regions/p-usa-29a.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-29b",
+   "name": "United States of America: California (part 2 of 3, south to north) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -119.58,
+    35.682,
+    -115.499,
+    38.711
+   ],
+   "packs": [],
+   "region": "regions/p-usa-29b.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-30",
+   "name": "United States of America: Nevada",
+   "kind": "region",
+   "bbox": [
+    -120.005,
+    35.0,
+    -114.038,
+    42.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-30.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-31",
+   "name": "United States of America: Arizona (part 2 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -114.745,
+    34.161,
+    -109.043,
+    37.007
+   ],
+   "packs": [],
+   "region": "regions/p-usa-31.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-32",
+   "name": "United States of America: Utah",
+   "kind": "region",
+   "bbox": [
+    -114.046,
+    36.996,
+    -109.042,
+    42.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-32.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-33",
+   "name": "United States of America: Colorado (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -109.051,
+    36.996,
+    -105.539,
+    41.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-33.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-34",
+   "name": "United States of America: Colorado (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -105.547,
+    36.996,
+    -102.036,
+    41.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-34.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-35",
+   "name": "United States of America: Kansas",
+   "kind": "region",
+   "bbox": [
+    -102.055,
+    36.996,
+    -94.606,
+    40.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-35.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-36",
+   "name": "United States of America: Oklahoma",
+   "kind": "region",
+   "bbox": [
+    -103.005,
+    33.643,
+    -94.435,
+    37.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-36.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-37",
+   "name": "United States of America: Missouri",
+   "kind": "region",
+   "bbox": [
+    -95.777,
+    35.982,
+    -89.115,
+    40.623
+   ],
+   "packs": [],
+   "region": "regions/p-usa-37.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-38",
+   "name": "United States of America: Illinois (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -91.384,
+    36.974,
+    -87.507,
+    39.749
+   ],
+   "packs": [],
+   "region": "regions/p-usa-38.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-39",
+   "name": "United States of America: Tennessee",
+   "kind": "region",
+   "bbox": [
+    -90.317,
+    34.98,
+    -81.655,
+    36.693
+   ],
+   "packs": [],
+   "region": "regions/p-usa-39.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-40",
+   "name": "United States of America: Indiana",
+   "kind": "region",
+   "bbox": [
+    -88.116,
+    37.778,
+    -84.78,
+    41.764
+   ],
+   "packs": [],
+   "region": "regions/p-usa-40.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-41",
+   "name": "United States of America: Kentucky",
+   "kind": "region",
+   "bbox": [
+    -89.582,
+    36.495,
+    -81.961,
+    39.15
+   ],
+   "packs": [],
+   "region": "regions/p-usa-41.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-42",
+   "name": "United States of America: Ohio (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -84.828,
+    38.401,
+    -80.597,
+    40.369
+   ],
+   "packs": [],
+   "region": "regions/p-usa-42.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-43",
+   "name": "United States of America: North Carolina (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -84.329,
+    34.805,
+    -79.884,
+    36.614
+   ],
+   "packs": [],
+   "region": "regions/p-usa-43.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-44",
+   "name": "United States of America: Virginia (part 1 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -83.671,
+    36.536,
+    -79.451,
+    38.596
+   ],
+   "packs": [],
+   "region": "regions/p-usa-44.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-45",
+   "name": "United States of America: West Virginia",
+   "kind": "region",
+   "bbox": [
+    -82.641,
+    37.201,
+    -77.731,
+    40.651
+   ],
+   "packs": [],
+   "region": "regions/p-usa-45.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-46",
+   "name": "United States of America: North Carolina (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -79.892,
+    33.844,
+    -75.448,
+    36.557
+   ],
+   "packs": [],
+   "region": "regions/p-usa-46.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-47",
+   "name": "United States of America: Virginia (part 2 of 2, west to east)",
+   "kind": "region",
+   "bbox": [
+    -79.459,
+    36.537,
+    -75.239,
+    39.455
+   ],
+   "packs": [],
+   "region": "regions/p-usa-47.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-48",
+   "name": "United States of America: Maryland and 2 more",
+   "kind": "region",
+   "bbox": [
+    -79.49,
+    37.927,
+    -75.04,
+    39.842
+   ],
+   "packs": [],
+   "region": "regions/p-usa-48.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-49a",
+   "name": "United States of America: California (part 1 of 3, south to north) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -121.301,
+    32.799,
+    -117.704,
+    35.69
+   ],
+   "packs": [],
+   "region": "regions/p-usa-49a.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-49b",
+   "name": "United States of America: California (part 1 of 3, south to north) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -117.712,
+    32.528,
+    -114.115,
+    35.69
+   ],
+   "packs": [],
+   "region": "regions/p-usa-49b.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-50",
+   "name": "United States of America: Arizona (part 1 of 2, south to north)",
+   "kind": "region",
+   "bbox": [
+    -114.826,
+    31.323,
+    -109.043,
+    34.169
+   ],
+   "packs": [],
+   "region": "regions/p-usa-50.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-51",
+   "name": "United States of America: New Mexico",
+   "kind": "region",
+   "bbox": [
+    -109.051,
+    31.323,
+    -102.996,
+    37.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-51.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-52",
+   "name": "United States of America: Texas (part 1 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    -106.666,
+    28.981,
+    -102.277,
+    36.504
+   ],
+   "packs": [],
+   "region": "regions/p-usa-52.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-53",
+   "name": "United States of America: Texas (part 2 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    -102.285,
+    26.038,
+    -97.892,
+    36.504
+   ],
+   "packs": [],
+   "region": "regions/p-usa-53.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-54a",
+   "name": "United States of America: Texas (part 3 of 3, west to east) (1 of 2)",
+   "kind": "region",
+   "bbox": [
+    -97.9,
+    25.84,
+    -93.856,
+    29.923
+   ],
+   "packs": [],
+   "region": "regions/p-usa-54a.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-54b",
+   "name": "United States of America: Texas (part 3 of 3, west to east) (2 of 2)",
+   "kind": "region",
+   "bbox": [
+    -97.9,
+    29.915,
+    -93.511,
+    33.998
+   ],
+   "packs": [],
+   "region": "regions/p-usa-54b.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-55",
+   "name": "United States of America: Louisiana",
+   "kind": "region",
+   "bbox": [
+    -94.047,
+    28.924,
+    -88.807,
+    33.018
+   ],
+   "packs": [],
+   "region": "regions/p-usa-55.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-56",
+   "name": "United States of America: Arkansas and Mississippi",
+   "kind": "region",
+   "bbox": [
+    -94.622,
+    30.177,
+    -88.084,
+    36.504
+   ],
+   "packs": [],
+   "region": "regions/p-usa-56.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-57",
+   "name": "United States of America: Alabama",
+   "kind": "region",
+   "bbox": [
+    -88.49,
+    30.22,
+    -84.894,
+    35.014
+   ],
+   "packs": [],
+   "region": "regions/p-usa-57.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-58",
+   "name": "United States of America: Florida (part 1 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    -87.629,
+    29.619,
+    -85.092,
+    31.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-58.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-59",
+   "name": "United States of America: Georgia",
+   "kind": "region",
+   "bbox": [
+    -85.61,
+    30.359,
+    -80.832,
+    35.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-59.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-60",
+   "name": "United States of America: South Carolina",
+   "kind": "region",
+   "bbox": [
+    -83.359,
+    32.029,
+    -78.569,
+    35.222
+   ],
+   "packs": [],
+   "region": "regions/p-usa-60.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-61",
+   "name": "United States of America: Florida (part 2 of 3, west to east)",
+   "kind": "region",
+   "bbox": [
+    -85.1,
+    27.263,
+    -82.558,
+    31.004
+   ],
+   "packs": [],
+   "region": "regions/p-usa-61.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-62a",
+   "name": "United States of America: Florida (part 3 of 3, west to east) (1 of 3)",
+   "kind": "region",
+   "bbox": [
+    -82.243,
+    24.539,
+    -80.028,
+    26.637
+   ],
+   "packs": [],
+   "region": "regions/p-usa-62a.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-62b",
+   "name": "United States of America: Florida (part 3 of 3, west to east) (2 of 3)",
+   "kind": "region",
+   "bbox": [
+    -82.566,
+    26.629,
+    -80.029,
+    28.732
+   ],
+   "packs": [],
+   "region": "regions/p-usa-62b.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-62c",
+   "name": "United States of America: Florida (part 3 of 3, west to east) (3 of 3)",
+   "kind": "region",
+   "bbox": [
+    -82.566,
+    28.724,
+    -80.676,
+    30.823
+   ],
+   "packs": [],
+   "region": "regions/p-usa-62c.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-usa-63",
+   "name": "United States of America: Hawaii",
+   "kind": "region",
+   "bbox": [
+    -178.308,
+    18.902,
+    -154.81,
+    28.406
+   ],
+   "packs": [],
+   "region": "regions/p-usa-63.geojson",
+   "parent": "w-usa"
+  },
+  {
+   "id": "p-vnm-1",
+   "name": "Vietnam: Ha Noi and 26 more",
+   "kind": "region",
+   "bbox": [
+    102.115,
+    18.566,
+    108.002,
+    23.37
+   ],
+   "packs": [],
+   "region": "regions/p-vnm-1.geojson",
+   "parent": "w-vnm"
+  },
+  {
+   "id": "p-vnm-2",
+   "name": "Vietnam: Quàng Nam and 35 more",
+   "kind": "region",
+   "bbox": [
+    103.842,
+    8.562,
+    109.476,
+    18.763
+   ],
+   "packs": [],
+   "region": "regions/p-vnm-2.geojson",
+   "parent": "w-vnm"
+  },
+  {
+   "id": "p-zaf-1",
+   "name": "South Africa: KwaZulu-Natal and 3 more",
+   "kind": "region",
+   "bbox": [
+    24.337,
+    -31.082,
+    32.897,
+    -22.122
+   ],
+   "packs": [],
+   "region": "regions/p-zaf-1.geojson",
+   "parent": "w-zaf"
+  },
+  {
+   "id": "p-zaf-2",
+   "name": "South Africa: Eastern Cape and 4 more",
+   "kind": "region",
+   "bbox": [
+    16.466,
+    -46.97,
+    37.982,
+    -24.618
+   ],
+   "packs": [],
+   "region": "regions/p-zaf-2.geojson",
+   "parent": "w-zaf"
   }
  ]
 }
