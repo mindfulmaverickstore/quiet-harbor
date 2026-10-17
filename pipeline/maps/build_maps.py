@@ -75,6 +75,18 @@ def upload(local, remote, ctype):
     return r.returncode == 0
 
 
+def upload_encoded(local, remote):
+    """Uploads a small JSON file that is already gzip-compressed, marked so the phone unpacks it by itself."""
+    ctype = 'application/json'
+    if local.endswith('food.json'):  # the manifest is plain text
+        return upload(local, remote, ctype)
+    if use_aws():
+        r = run(['aws', 's3', 'cp', local, f's3://{BUCKET}/{remote}', '--endpoint-url', ENDPOINT, '--content-type', ctype, '--content-encoding', 'gzip'])
+    else:
+        r = run(['npx', 'wrangler', 'r2', 'object', 'put', f'{BUCKET}/{remote}', '--file', local, '--content-type', ctype, '--content-encoding', 'gzip', '--remote'], cwd=REPO)
+    return r.returncode == 0
+
+
 def published_info(pid):
     """(size in bytes, version) of the published map for this id, or None if it isn't there.
     The version is the day it was uploaded (YYYYMMDD). The app puts it on the map's web address, so a rebuilt map is a
