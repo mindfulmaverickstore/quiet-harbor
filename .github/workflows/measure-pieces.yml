@@ -21,7 +21,7 @@ jobs:
       - id: list
         run: |
           ids="$(python3 -c "import json;print(' '.join(p['id'] for p in json.load(open('pipeline/maps/${{ github.event.inputs.places }}'))['places']))")"
-          groups="$(echo "$ids" | tr -s ' ' '\n' | grep . | paste -d' ' - - - - - - | jq -R . | jq -sc .)"
+          groups="$(echo "$ids" | tr -s ' ' '\n' | grep . | paste -d' ' - - - - - - - - - - | jq -R . | jq -sc .)"
           echo "groups=$groups" >> "$GITHUB_OUTPUT"
 
   measure:
