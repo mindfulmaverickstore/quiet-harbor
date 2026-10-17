@@ -64,7 +64,7 @@ def overpass(query, tries=4):
 
 def tile_osm(w, s, e, n):
     bbox = f"{s},{w},{n},{e}"
-    listed = overpass(f'[out:json][timeout:240];(nwr["diet:{K}"~"^(only|yes)$"]["name"]({bbox}););out center tags;')
+    listed = overpass(f'[out:json][timeout:240];(nwr["diet:{K}"~"^(only|yes|limited)$"]["name"]({bbox}););out center tags;')
     if listed is None:
         raise RuntimeError("could not read places")
     chains = overpass("[out:json][timeout:240];(" + "".join(
@@ -118,7 +118,7 @@ def read_pbf(path):
             name = t.get("name")
             if not name:
                 return
-            listed = t.get(f"diet:{K}") in ("only", "yes")
+            listed = t.get(f"diet:{K}") in ("only", "yes", "limited")
             chain = t.get("brand") in wanted_chains
             if listed or chain:
                 found.append({"type": kind, "id": obj.id, "center": {"lat": lat, "lon": lon},
@@ -333,6 +333,18 @@ def closed_ids():
     except Exception as ex:
         print(f"WARNING: couldn't read the exclusion list ({ex})")
         return set()
+
+
+# The holding bin lives in the private code repository (holding/), so it is versioned and private.
+LICENCE_TEXT = (
+    "The place names, locations and tags in these files are derived from OpenStreetMap, "
+    "(c) OpenStreetMap contributors, and are made available under the Open Database Licence (ODbL) 1.0: "
+    "https://opendatacommons.org/licenses/odbl/1-0/ . You may copy, share and adapt them if you credit "
+    "OpenStreetMap and share any adapted version under the same licence. Websites, phone numbers and social links "
+    "marked as filled come from Overture Maps and keep their own licences (https://docs.overturemaps.org/attribution/). "
+    "Our own evidence levels, confirmations and owner edits are not part of this file."
+)
+HOLDING = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "holding")
 
 
 def apply_closed(out):
