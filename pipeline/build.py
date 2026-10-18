@@ -65,7 +65,7 @@ def overpass(query, tries=4):
 
 def tile_osm(w, s, e, n):
     bbox = f"{s},{w},{n},{e}"
-    listed = overpass(f'[out:json][timeout:240];(nwr["diet:{K}"~"^(only|yes|limited)$"]["name"]({bbox});nwr["diet:{KB}"~"^(only|yes|limited)$"]["diet:{K}"!="no"]["name"]({bbox}););out center tags;')
+    listed = overpass(f'[out:json][timeout:240];(nwr["diet:{K}"~"^(only|yes|limited)$"]["name"]({bbox});nwr["diet:{KB}"~"^(only|yes|limited)$"]["diet:{K}"!="no"]["name"]({bbox});nwr["diet:{K}"="no"]["name"]({bbox});nwr["diet:{KB}"="no"]["name"]({bbox}););out center tags;')
     if listed is None:
         raise RuntimeError("could not read places")
     chains = overpass("[out:json][timeout:240];(" + "".join(
@@ -122,8 +122,10 @@ def read_pbf(path):
             listed = t.get(f"diet:{K}") in ("only", "yes", "limited")
             # The second diet (only, yes or limited) counts too, unless the first is explicitly "no".
             second = t.get(f"diet:{KB}") in ("only", "yes", "limited") and t.get(f"diet:{K}") != "no"
+            # Places that say "no" are kept too: a cross on the map tells a patron not to bother.
+            said_no = t.get(f"diet:{K}") == "no" or t.get(f"diet:{KB}") == "no"
             chain = t.get("brand") in wanted_chains
-            if listed or second or chain:
+            if listed or second or said_no or chain:
                 found.append({"type": kind, "id": obj.id, "center": {"lat": lat, "lon": lon},
                               "tags": {tag.k: tag.v for tag in t}})
 
