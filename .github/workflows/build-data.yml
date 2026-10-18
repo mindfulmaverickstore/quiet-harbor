@@ -48,8 +48,35 @@ jobs:
           AWS_DEFAULT_REGION: auto
           R2: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
         run: |
-          mkdir -p dist
-          aws s3 sync "s3://$BUCKET" dist --endpoint-url "$R2" --exclude "*" --include "index.json" --include "tiles/*"
+          mkdir -p dist/tiles
+          aws s3 cp "s3://$BUCKET/index.json" dist/index.json --endpoint-url "$R2" || true
+          # Only the already-published tiles inside this region's box (plus a one-degree margin): that is all a border merge needs.
+          curl -sfL -o region.poly "https://download.geofabrik.de/${{ matrix.region }}.poly" || true
+          python3 - <<'PY'
+          import gzip, json, math, os
+          idx = {}
+          if os.path.exists('dist/index.json'):
+              raw = open('dist/index.json', 'rb').read()
+              if raw[:2] == b'\x1f\x8b': raw = gzip.decompress(raw)
+              idx = json.loads(raw).get('tiles', {})
+          xs, ys = [], []
+          if os.path.exists('region.poly'):
+              for line in open('region.poly'):
+                  parts = line.split()
+                  if len(parts) == 2:
+                      try:
+                          xs.append(float(parts[0])); ys.append(float(parts[1]))
+                      except ValueError:
+                          pass
+          if xs:
+              w, e, s, n = math.floor(min(xs)) - 1, math.ceil(max(xs)) + 1, math.floor(min(ys)) - 1, math.ceil(max(ys)) + 1
+              want = [k for k in idx if s <= int(k.split('_')[0]) <= n and w <= int(k.split('_')[1]) <= e]
+          else:
+              want = list(idx)
+          open('want.txt', 'w').write('\n'.join(want) + '\n')
+          print(len(want), 'published tiles to fetch for the borders')
+          PY
+          xargs -a want.txt -P 16 -I{} aws s3 cp "s3://$BUCKET/tiles/{}.json" "dist/tiles/{}.json" --endpoint-url "$R2" --only-show-errors || true
           python3 - <<'PY'
           import glob, gzip
           for f in glob.glob('dist/tiles/*.json') + glob.glob('dist/index.json'):
