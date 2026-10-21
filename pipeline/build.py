@@ -46,7 +46,7 @@ CHAINS = ["Burger King", "KFC", "Subway", "Taco Bell", "Chipotle", "Qdoba", "Del
 KEEP = ["name", "amenity", "shop", "cuisine", "opening_hours", "website", "contact:website", "phone",
         "contact:phone", "contact:whatsapp", "whatsapp", "contact:instagram", "contact:facebook", "instagram", "facebook", "website:menu",
         "addr:housenumber", "addr:street", "addr:city", "addr:postcode", "addr:housename", "addr:country",
-        "brand", "brand:wikidata", "check_date", f"check_date:diet:{K}", f"diet:{K}", f"diet:{KB}", "diet:gluten_free",
+        "name:en", "brand", "brand:wikidata", "check_date", f"check_date:diet:{K}", f"diet:{K}", f"diet:{KB}", "diet:gluten_free",
         "takeaway", "delivery", "outdoor_seating", "wheelchair"]
 
 
