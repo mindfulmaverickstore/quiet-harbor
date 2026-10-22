@@ -4,7 +4,9 @@
 For one Geofabrik region it reads OpenStreetMap's administrative boundaries, measures each one with the density lists
 that make_light.py writes (bytes of light map per zoom-13 square), and keeps the largest boundaries that are no bigger
 than MAX_MB (40). Anything bigger is replaced by the boundaries inside it; land inside it that none of them cover becomes
-"Rest of ...". A boundary with nothing smaller inside it that is still too big is cut into quarters.
+"Rest of ...". A boundary with nothing smaller inside it that is still too big is cut into quarters, named after
+the biggest town in each. Inside every area offered, its towns and districts are listed too (with "parent" set), so the
+app can offer Metro Vancouver as a whole or just Surrey.
 
   python3 pipeline/maps/build_areas.py --region luxembourg.osm.pbf     # writes areas/<region>.geojson
   python3 pipeline/maps/build_areas.py --index                         # writes areas/index.json
@@ -20,7 +22,8 @@ from shapely.ops import unary_union
 
 PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
 GEOFABRIK = 'https://download.geofabrik.de/index-v1-nogeom.json'
-MAX_MB = 40        # largest area we offer as one download (small enough that a city splits into its towns)
+MAX_MB = 40        # largest area offered as one download (the towns inside it are offered too)
+SUB_MIN_MB = 0.5  # towns inside an offered area are listed too, down to this size
 REST_MIN_MB = 2    # leftover land smaller than this is left out (it is still inside a neighbouring area's map squares)
 SIMPLIFY = 0.0008  # about 80 m: plenty for outlines drawn on a phone
 ENDPOINT, BUCKET = os.environ.get('S3_ENDPOINT', ''), os.environ.get('S3_BUCKET', '')
@@ -110,6 +113,40 @@ def boundaries(pbf, work):
     return units
 
 
+RANK = {'city': 3, 'town': 2, 'village': 1}
+
+
+def towns(pbf, work):
+    """Cities, towns and villages, to name the pieces of an area that had to be cut up."""
+    pl, out = os.path.join(work, 'places.pbf'), os.path.join(work, 'places.geojsonseq')
+    run('osmium', 'tags-filter', pbf, 'n/place=city,town,village', '-o', pl, '--overwrite')
+    run('osmium', 'export', pl, '-f', 'geojsonseq', '--geometry-types=point', '-o', out, '--overwrite')
+    found = []
+    for line in open(out):
+        f = json.loads(line.lstrip('\x1e'))
+        p = f['properties']
+        name = p.get('name:en') or p.get('name')
+        if not name:
+            continue
+        try:
+            pop = int(str(p.get('population', '0')).replace(',', '').replace(' ', '').split('.')[0] or 0)
+        except ValueError:
+            pop = 0
+        x, y = f['geometry']['coordinates']
+        found.append((RANK.get(p.get('place'), 0), pop, x, y, name))
+    found.sort(reverse=True)
+    print(f'{len(found)} towns and villages', flush=True)
+    return found
+
+
+def biggest_town(geom, places):
+    w, s, e, n = geom.bounds
+    for rank, pop, x, y, name in places:  # largest first
+        if w <= x <= e and s <= y <= n and geom.contains(shapely.Point(x, y)):
+            return name
+    return None
+
+
 def tree(units):
     """Each boundary's parent is the smallest boundary of a higher rank (lower level number) around it."""
     units.sort(key=lambda u: u['geom'].area)
@@ -143,33 +180,45 @@ def compass(geom, bounds):
     return '-'.join(x for x in (ns, ew) if x) or 'centre'
 
 
-def choose(node, path, dens, out, top=False):
+def inner(node, path, dens, out):
+    """The towns and districts inside an area we offer, so someone zoomed in can pick just Surrey instead of all of Metro Vancouver."""
+    for k in node.get('children') or []:
+        size = dens.mb(k['geom'])
+        if size >= SUB_MIN_MB:
+            out.append({**k, 'mb': size, 'path': path + [node['name']], 'parent': node['id']})
+            inner(k, path + [node['name']], dens, out)
+
+
+def choose(node, path, dens, out, top=False, places=()):
     size = dens.mb(node['geom'])
     if size <= MAX_MB:
         out.append({**node, 'mb': size, 'path': path})
+        inner(node, path, dens, out)
         return
     kids = node.get('children') or []
     if kids:
         for k in kids:
-            choose(k, path + [node['name']], dens, out)
+            choose(k, path + [node['name']], dens, out, places=places)
         rest = node['geom'].difference(unary_union([k['geom'] for k in kids]))
         rest_mb = dens.mb(rest)
         # Around a whole region, the leftover is mostly the strip of neighbouring countries in Geofabrik's outline; those
         # are done by their own region. Keep it only when the boundaries here cover less than half of the map.
         if rest_mb >= REST_MIN_MB and not (top and rest_mb < size / 2):
             choose({'id': node['id'] + '-rest', 'name': f'Rest of {node["name"]}', 'name_en': None,
-                    'level': node['level'], 'geom': rest}, path + [node['name']], dens, out)
+                    'level': node['level'], 'geom': rest}, path + [node['name']], dens, out, places=places)
         return
-    split(node, node['name'], node['geom'].bounds, path, dens, out)
+    split(node, node['name'], node['geom'].bounds, path, dens, out, places)
 
 
-def split(node, base, base_bounds, path, dens, out):
+def split(node, base, base_bounds, path, dens, out, places=()):
     """Too big, with nothing smaller inside: cut into quarters until each piece fits. Named after where it sits."""
     w, s, e, n = node['geom'].bounds
     size = dens.mb(node['geom'])
     if size <= MAX_MB or (e - w < 0.02 and n - s < 0.02):  # fits, or a dense city block not worth cutting further
         if node['name'] != base:
-            node = {**node, 'name': f'{base} ({compass(node["geom"], base_bounds)})'}
+            town = biggest_town(node['geom'], places)
+            label = f'around {town}' if town else compass(node['geom'], base_bounds)
+            node = {**node, 'name': f'{base} ({label})'}
         out.append({**node, 'mb': size, 'path': path})
         return
     mx, my = (w + e) / 2, (s + n) / 2
@@ -177,7 +226,7 @@ def split(node, base, base_bounds, path, dens, out):
         part = node['geom'].intersection(box(x0, y0, x1, y1))
         if not part.is_empty and dens.mb(part) > 0.2:
             split({'id': f'{node["id"]}-{i}', 'name': '', 'name_en': None, 'level': node['level'], 'geom': part},
-                  base, base_bounds, path, dens, out)
+                  base, base_bounds, path, dens, out, places)
 
 
 def region(file_id):
@@ -191,6 +240,7 @@ def region(file_id):
         pbf = os.path.join(work, 'region.osm.pbf')
         run('curl', '-sSfL', '--retry', '5', '-A', UA['User-Agent'], '-o', pbf, props['urls']['pbf'])
         units = boundaries(pbf, work)
+        places = towns(pbf, work)
     # Only boundaries that sit mostly in this region; their neighbours are done by the neighbouring region.
     units = [u for u in units if outline.contains(u['geom'].representative_point())]
     roots = tree(units)
@@ -200,7 +250,7 @@ def region(file_id):
         title = title.split('/')[-1].replace('-', ' ').title()
     top = {'id': f'g-{name}', 'name': title, 'name_en': None, 'level': 2, 'geom': outline, 'children': roots}
     out = []
-    choose(top, [], dens, out, top=True)
+    choose(top, [], dens, out, top=True, places=places)
     # Two pieces of one area can land on the same compass point; number them.
     seen = {}
     for a in out:
@@ -215,7 +265,7 @@ def region(file_id):
         g = shapely.set_precision(g, 0.0001)
         feats.append({'type': 'Feature', 'geometry': mapping(g), 'properties': {
             'id': a['id'], 'name': a['name'], **({'name_en': a['name_en']} if a.get('name_en') and a['name_en'] != a['name'] else {}),
-            'level': a['level'], 'mb': round(a['mb'], 1), 'in': a['path'][1:]}})
+            'level': a['level'], 'mb': round(a['mb'], 1), 'in': a['path'][1:], **({'parent': a['parent']} if a.get('parent') else {})}})
     feats.sort(key=lambda f: -f['properties']['mb'])
     body = gzip.compress(json.dumps({'type': 'FeatureCollection', 'region': name, 'bbox': [round(v, 3) for v in outline.bounds],
                                      'features': feats}, ensure_ascii=False, separators=(',', ':')).encode(), 9)
