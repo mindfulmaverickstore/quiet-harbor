@@ -190,6 +190,9 @@ def inner(node, path, dens, out):
             continue
         size = dens.mb(k['geom'])
         if size >= SUB_MIN_MB:
+            # Milan the city inside Milan the metropolitan area: tell them apart.
+            if k['name'] == node['name'] or (k.get('name_en') and k['name_en'] == node.get('name_en')):
+                k = {**k, 'name': f'{k["name"]} (city)', 'name_en': f'{k["name_en"]} (city)' if k.get('name_en') else None}
             out.append({**k, 'mb': size, 'path': path + [node['name']], 'parent': node['id']})
             inner(k, path + [node['name']], dens, out)
 
