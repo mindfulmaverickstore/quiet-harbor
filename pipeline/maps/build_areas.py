@@ -23,7 +23,7 @@ from shapely.ops import unary_union
 PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
 GEOFABRIK = 'https://download.geofabrik.de/index-v1-nogeom.json'
 MAX_MB = 40        # largest area offered as one download (the towns inside it are offered too)
-SUB_MIN_MB = 0.5  # towns inside an offered area are listed too, down to this size
+SUB_MIN_MB = 0.2  # towns inside an offered area are listed too, down to this size
 REST_MIN_MB = 2    # leftover land smaller than this is left out (it is still inside a neighbouring area's map squares)
 SIMPLIFY = 0.0008  # about 80 m: plenty for outlines drawn on a phone
 ENDPOINT, BUCKET = os.environ.get('S3_ENDPOINT', ''), os.environ.get('S3_BUCKET', '')
