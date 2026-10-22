@@ -63,8 +63,9 @@ class Density:
                 continue
             try:
                 d = fetch_json(f'{PUBLIC}/maps/{m["id"]}/{DENSITY_FILE}')
-            except Exception:
-                continue
+            except Exception as e:
+                # Sizes would come out too small without it; better to fail and run this region again later.
+                raise RuntimeError(f'no {DENSITY_FILE} for map {m["id"]}') from e
             for k, v in d['bytes'].items():
                 if v > cells.get(k, 0):
                     cells[k] = v
