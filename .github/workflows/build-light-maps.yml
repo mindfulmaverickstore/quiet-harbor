@@ -63,6 +63,8 @@ jobs:
     needs: [plan, light]
     if: always()
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
     steps:
       - uses: actions/checkout@v7
       - name: Write maps/light.json
@@ -75,3 +77,8 @@ jobs:
           S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
           S3_BUCKET: ${{ secrets.R2_BUCKET }}
         run: python3 pipeline/maps/light_maps.py --summary
+      - name: Then cut the world into download areas (only after a run over every map)
+        if: github.event.inputs.places == 'all'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build-areas.yml -f regions=part1

@@ -1,0 +1,89 @@
+# Cuts each region into download areas that follow real boundaries (towns, districts, counties) and measures each one
+# with the light maps' density lists. Writes areas/<region>.geojson and areas/index.json.
+# Run it from GitHub: Actions > "Build areas" > Run workflow. Needs the light maps (Build light maps) first.
+#   regions: "part1" or "part2" (the two halves of the world; part1 starts part2 when it ends), or region files
+#            separated by spaces, e.g. "luxembourg.osm.pbf"
+name: Build areas
+
+on:
+  workflow_dispatch:
+    inputs:
+      regions:
+        description: 'part1, part2, or region files separated by spaces'
+        required: true
+        default: 'part1'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.list.outputs.list }}
+    steps:
+      - id: list
+        run: |
+          want="${{ github.event.inputs.regions }}"
+          all="$(curl -s -A map-build/1.0 --compressed "https://pub-e5b664167e394466a0e48820dffb17df.r2.dev/index.json" | jq -r '.covered[].id' | sort)"
+          case "$want" in
+            part1) want="$(echo "$all" | head -n 240)";;
+            part2) want="$(echo "$all" | tail -n +241)";;
+          esac
+          list="$(echo "$want" | tr -s ' ' '\n' | grep . | jq -R . | jq -sc .)"
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+
+  areas:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      # Gentle on Geofabrik's download server.
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        region: ${{ fromJSON(needs.plan.outputs.list) }}
+    name: areas ${{ matrix.region }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+          pip install shapely numpy
+      - name: Cut and measure the areas
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+          S3_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python3 pipeline/maps/build_areas.py --region ${{ matrix.region }}
+
+  index:
+    needs: [plan, areas]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: pip install shapely numpy
+      - name: Write areas/index.json
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+          S3_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python3 pipeline/maps/build_areas.py --index
+      - name: Start the second half of the world
+        if: github.event.inputs.regions == 'part1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build-areas.yml -f regions=part2
