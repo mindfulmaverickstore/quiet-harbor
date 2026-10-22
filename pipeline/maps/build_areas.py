@@ -183,6 +183,11 @@ def compass(geom, bounds):
 def inner(node, path, dens, out):
     """The towns and districts inside an area we offer, so someone zoomed in can pick just Surrey instead of all of Metro Vancouver."""
     for k in node.get('children') or []:
+        # A district with the same outline as its city (Paris is a city, a département and an arrondissement level at once)
+        # adds nothing: list what is inside it instead.
+        if k['geom'].area >= node['geom'].area * 0.98:
+            inner({**k, 'id': node['id'], 'name': node['name']}, path, dens, out)
+            continue
         size = dens.mb(k['geom'])
         if size >= SUB_MIN_MB:
             out.append({**k, 'mb': size, 'path': path + [node['name']], 'parent': node['id']})
