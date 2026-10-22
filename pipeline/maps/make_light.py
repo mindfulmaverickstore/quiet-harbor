@@ -269,5 +269,17 @@ def main(src, dst, density_path):
     json.dump({'z': DENSITY_ZOOM, 'bytes': density}, open(density_path, 'w'), separators=(',', ':'))
 
 
+def density_only(src, density_path):
+    """The density list of a map as it is (full detail), without making a light copy."""
+    _, _, _, _, tiles = read_pmtiles(src)
+    density = {}
+    for tid, run, blob in tiles:
+        z, x, y = zxy(tid)
+        if z >= DENSITY_ZOOM:
+            k = f'{x >> (z - DENSITY_ZOOM)}/{y >> (z - DENSITY_ZOOM)}'
+            density[k] = density.get(k, 0) + len(blob) * run
+    json.dump({'z': DENSITY_ZOOM, 'bytes': density}, open(density_path, 'w'), separators=(',', ':'))
+
+
 if __name__ == '__main__':
     main(*sys.argv[1:4])

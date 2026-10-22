@@ -3,6 +3,7 @@
 
   python3 pipeline/maps/light_maps.py --ids lisbon porto      # writes maps/<id>/light.pmtiles and maps/<id>/density.json
   python3 pipeline/maps/light_maps.py --summary               # writes maps/light.json: {"<id>": {"mb": .., "full_mb": ..}}
+  python3 pipeline/maps/light_maps.py --full --ids lisbon      # only writes maps/<id>/density-full.json (the full-detail map's density)
 
 Needs the aws program and S3_ENDPOINT, S3_BUCKET and AWS_* variables (GitHub Actions sets them). `pmtiles` on the PATH,
 when present, checks each new file.
@@ -18,6 +19,16 @@ ENDPOINT, BUCKET = os.environ.get('S3_ENDPOINT', ''), os.environ.get('S3_BUCKET'
 
 def aws(*args, check=True):
     return subprocess.run(['aws', 's3', *args, '--endpoint-url', ENDPOINT], check=check, capture_output=True, text=True)
+
+
+def full_density(pid, work):
+    src, dens = os.path.join(work, 'city.pmtiles'), os.path.join(work, 'density-full.json')
+    aws('cp', f's3://{BUCKET}/maps/{pid}/city.pmtiles', src, '--only-show-errors')
+    make_light.density_only(src, dens)
+    subprocess.run(['gzip', '-9', '-f', dens], check=True)
+    aws('cp', dens + '.gz', f's3://{BUCKET}/maps/{pid}/density-full.json', '--content-type', 'application/json',
+        '--content-encoding', 'gzip', '--only-show-errors')
+    print(f'{pid}: full-detail density written', flush=True)
 
 
 def one(pid, work):
@@ -54,14 +65,15 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--ids', nargs='*')
     ap.add_argument('--summary', action='store_true')
+    ap.add_argument('--full', action='store_true', help='only the full-detail density list')
     a = ap.parse_args()
-    if a.summary:
+    if a.summary and not a.full:
         summary()
     failed = []
     for pid in a.ids or []:
         with tempfile.TemporaryDirectory() as work:
             try:
-                one(pid, work)
+                (full_density if a.full else one)(pid, work)
             except Exception as e:  # one bad map shouldn't stop the others in its group
                 print(f'{pid}: FAILED {e}', flush=True)
                 failed.append(pid)

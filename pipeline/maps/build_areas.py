@@ -2,7 +2,7 @@
 """Cuts the world into download areas that follow real boundaries: towns, districts, counties.
 
 For one Geofabrik region it reads OpenStreetMap's administrative boundaries, measures each one with the density lists
-that make_light.py writes (bytes of light map per zoom-13 square), and keeps the largest boundaries that are no bigger
+that make_light.py writes (bytes of map per zoom-13 square, full detail by default), and keeps the largest boundaries that are no bigger
 than MAX_MB (45). Anything bigger is replaced by the boundaries inside it; land inside it that none of them cover becomes
 "Rest of ...". A boundary with nothing smaller inside it that is still too big is cut into quarters, named after
 the biggest town in each. Inside every area offered, its towns and districts are listed too (with "parent" set), so the
@@ -27,6 +27,8 @@ SUB_MIN_MB = 0.2  # towns inside an offered area are listed too, down to this si
 REST_MIN_MB = 2    # leftover land smaller than this is left out (it is still inside a neighbouring area's map squares)
 SIMPLIFY = 0.0008  # about 80 m: plenty for outlines drawn on a phone
 ENDPOINT, BUCKET = os.environ.get('S3_ENDPOINT', ''), os.environ.get('S3_BUCKET', '')
+# Which map the sizes are measured on: the full-detail map (chosen 22 Oct 2026) or the light one.
+DENSITY_FILE = os.environ.get('AREA_DENSITY', 'density-full.json')
 UA = {'User-Agent': 'map-build/1.0'}
 
 
@@ -50,7 +52,7 @@ def run(*cmd):
 # ---- How big is an area? ----
 
 class Density:
-    """Bytes of light map per zoom-13 square, from every map that touches the region (the largest value wins where maps overlap)."""
+    """Bytes of map per zoom-13 square, from every map that touches the region (the largest value wins where maps overlap)."""
 
     def __init__(self, bounds):
         w, s, e, n = bounds
@@ -60,7 +62,7 @@ class Density:
             if mw > e or me < w or ms > n or mn < s:
                 continue
             try:
-                d = fetch_json(f'{PUBLIC}/maps/{m["id"]}/density.json')
+                d = fetch_json(f'{PUBLIC}/maps/{m["id"]}/{DENSITY_FILE}')
             except Exception:
                 continue
             for k, v in d['bytes'].items():

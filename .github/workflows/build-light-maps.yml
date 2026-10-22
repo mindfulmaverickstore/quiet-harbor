@@ -12,6 +12,10 @@ on:
         description: 'all, or place ids separated by spaces'
         required: true
         default: 'all'
+      full:
+        description: 'yes = only measure the full-detail maps (density-full.json), no light copies'
+        required: false
+        default: 'no'
 
 jobs:
   plan:
@@ -57,7 +61,7 @@ jobs:
           AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
           S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
           S3_BUCKET: ${{ secrets.R2_BUCKET }}
-        run: python3 pipeline/maps/light_maps.py --ids ${{ matrix.group }}
+        run: python3 pipeline/maps/light_maps.py ${{ github.event.inputs.full == 'yes' && '--full' || '' }} --ids ${{ matrix.group }}
 
   summary:
     needs: [plan, light]
@@ -76,6 +80,7 @@ jobs:
           AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
           S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
           S3_BUCKET: ${{ secrets.R2_BUCKET }}
+        if: github.event.inputs.full != 'yes'
         run: python3 pipeline/maps/light_maps.py --summary
       - name: Then cut the world into download areas (only after a run over every map)
         if: github.event.inputs.places == 'all' && !cancelled()
