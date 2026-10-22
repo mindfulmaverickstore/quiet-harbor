@@ -88,3 +88,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run build-areas.yml -f regions=part2
+      - name: Then cut one map file per area (after the second half)
+        if: github.event.inputs.regions == 'part2' && !cancelled()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build-area-files.yml -f regions=part1

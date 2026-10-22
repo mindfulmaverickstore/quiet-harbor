@@ -1,0 +1,70 @@
+# Cuts one map file per download area (areas/files/<region>/<area id>.pmtiles, with sizes.json) from the full-detail maps.
+# Run it from GitHub: Actions > "Build area files" > Run workflow. Needs the areas (Build areas) first.
+#   regions: "part1" or "part2" (the two halves of the world; part1 starts part2 when it ends), or region names
+#            separated by spaces, e.g. "portugal"
+name: Build area files
+
+on:
+  workflow_dispatch:
+    inputs:
+      regions:
+        description: 'part1, part2, or region names separated by spaces'
+        required: true
+        default: 'part1'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.list.outputs.list }}
+    steps:
+      - id: list
+        run: |
+          want="${{ github.event.inputs.regions }}"
+          all="$(curl -s -A map-build/1.0 --compressed "https://pub-e5b664167e394466a0e48820dffb17df.r2.dev/areas/index.json" | jq -r '.regions[].region' | sort)"
+          case "$want" in
+            part1) want="$(echo "$all" | head -n 240)";;
+            part2) want="$(echo "$all" | tail -n +241)";;
+          esac
+          list="$(echo "$want" | tr -s ' ' '\n' | grep . | jq -R . | jq -sc .)"
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+
+  files:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        region: ${{ fromJSON(needs.plan.outputs.list) }}
+    name: files ${{ matrix.region }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: pip install shapely
+      - name: Cut and upload the area files
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+          S3_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python3 pipeline/maps/cut_areas.py --region ${{ matrix.region }}
+
+  next:
+    needs: [plan, files]
+    if: always() && !cancelled() && github.event.inputs.regions == 'part1'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Start the second half of the world
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build-area-files.yml -f regions=part2
