@@ -3,7 +3,7 @@
 
 For one Geofabrik region it reads OpenStreetMap's administrative boundaries, measures each one with the density lists
 that make_light.py writes (bytes of light map per zoom-13 square), and keeps the largest boundaries that are no bigger
-than MAX_MB. Anything bigger is replaced by the boundaries inside it; land inside it that none of them cover becomes
+than MAX_MB (40). Anything bigger is replaced by the boundaries inside it; land inside it that none of them cover becomes
 "Rest of ...". A boundary with nothing smaller inside it that is still too big is cut into quarters.
 
   python3 pipeline/maps/build_areas.py --region luxembourg.osm.pbf     # writes areas/<region>.geojson
@@ -20,7 +20,7 @@ from shapely.ops import unary_union
 
 PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
 GEOFABRIK = 'https://download.geofabrik.de/index-v1-nogeom.json'
-MAX_MB = 80        # largest area we offer as one download
+MAX_MB = 40        # largest area we offer as one download (small enough that a city splits into its towns)
 REST_MIN_MB = 2    # leftover land smaller than this is left out (it is still inside a neighbouring area's map squares)
 SIMPLIFY = 0.0008  # about 80 m: plenty for outlines drawn on a phone
 ENDPOINT, BUCKET = os.environ.get('S3_ENDPOINT', ''), os.environ.get('S3_BUCKET', '')
