@@ -121,7 +121,8 @@ def tree(units):
         best = None
         for j in idx.query(pt):
             c = units[j]
-            if c['level'] < u['level'] and c['geom'].area > u['geom'].area and c['geom'].contains(pt):
+            # (A district can share its province's exact outline, so "bigger" allows equal.)
+            if c['level'] < u['level'] and c is not u and c['geom'].area >= u['geom'].area * 0.98 and c['geom'].contains(pt):
                 if best is None or c['geom'].area < best['geom'].area:
                     best = c
         u['parent'] = best
@@ -132,10 +133,17 @@ def tree(units):
 
 # ---- Choosing the areas ----
 
-QUARTERS = (('north-west', 0, 1), ('north-east', 1, 1), ('south-west', 0, 0), ('south-east', 1, 0))
+def compass(geom, bounds):
+    """Where a piece sits inside the area it was cut from: north-west ... south-east, or centre."""
+    w, s, e, n = bounds
+    c = geom.representative_point()
+    fx, fy = (c.x - w) / ((e - w) or 1), (c.y - s) / ((n - s) or 1)
+    ns = 'north' if fy > 2 / 3 else 'south' if fy < 1 / 3 else ''
+    ew = 'east' if fx > 2 / 3 else 'west' if fx < 1 / 3 else ''
+    return '-'.join(x for x in (ns, ew) if x) or 'centre'
 
 
-def choose(node, path, dens, out):
+def choose(node, path, dens, out, top=False):
     size = dens.mb(node['geom'])
     if size <= MAX_MB:
         out.append({**node, 'mb': size, 'path': path})
@@ -145,20 +153,31 @@ def choose(node, path, dens, out):
         for k in kids:
             choose(k, path + [node['name']], dens, out)
         rest = node['geom'].difference(unary_union([k['geom'] for k in kids]))
-        if dens.mb(rest) >= REST_MIN_MB:
+        rest_mb = dens.mb(rest)
+        # Around a whole region, the leftover is mostly the strip of neighbouring countries in Geofabrik's outline; those
+        # are done by their own region. Keep it only when the boundaries here cover less than half of the map.
+        if rest_mb >= REST_MIN_MB and not (top and rest_mb < size / 2):
             choose({'id': node['id'] + '-rest', 'name': f'Rest of {node["name"]}', 'name_en': None,
                     'level': node['level'], 'geom': rest}, path + [node['name']], dens, out)
         return
+    split(node, node['name'], node['geom'].bounds, path, dens, out)
+
+
+def split(node, base, base_bounds, path, dens, out):
+    """Too big, with nothing smaller inside: cut into quarters until each piece fits. Named after where it sits."""
     w, s, e, n = node['geom'].bounds
-    if e - w < 0.02 and n - s < 0.02:  # a dense city block that can't usefully be split further
+    size = dens.mb(node['geom'])
+    if size <= MAX_MB or (e - w < 0.02 and n - s < 0.02):  # fits, or a dense city block not worth cutting further
+        if node['name'] != base:
+            node = {**node, 'name': f'{base} ({compass(node["geom"], base_bounds)})'}
         out.append({**node, 'mb': size, 'path': path})
         return
     mx, my = (w + e) / 2, (s + n) / 2
-    for label, ix, iy in QUARTERS:
-        part = node['geom'].intersection(box(w if ix == 0 else mx, s if iy == 0 else my, mx if ix == 0 else e, my if iy == 0 else n))
+    for i, (x0, y0, x1, y1) in enumerate(((w, my, mx, n), (mx, my, e, n), (w, s, mx, my), (mx, s, e, my))):
+        part = node['geom'].intersection(box(x0, y0, x1, y1))
         if not part.is_empty and dens.mb(part) > 0.2:
-            choose({'id': f'{node["id"]}-{label}', 'name': f'{node["name"]} ({label})', 'name_en': None,
-                    'level': node['level'], 'geom': part}, path, dens, out)
+            split({'id': f'{node["id"]}-{i}', 'name': '', 'name_en': None, 'level': node['level'], 'geom': part},
+                  base, base_bounds, path, dens, out)
 
 
 def region(file_id):
@@ -176,9 +195,18 @@ def region(file_id):
     units = [u for u in units if outline.contains(u['geom'].representative_point())]
     roots = tree(units)
     dens = Density(outline.bounds)
-    top = {'id': f'g-{name}', 'name': props.get('name', name), 'name_en': None, 'level': 2, 'geom': outline, 'children': roots}
+    title = props.get('name') or name
+    if '/' in title:
+        title = title.split('/')[-1].replace('-', ' ').title()
+    top = {'id': f'g-{name}', 'name': title, 'name_en': None, 'level': 2, 'geom': outline, 'children': roots}
     out = []
-    choose(top, [], dens, out)
+    choose(top, [], dens, out, top=True)
+    # Two pieces of one area can land on the same compass point; number them.
+    seen = {}
+    for a in out:
+        seen[a['name']] = seen.get(a['name'], 0) + 1
+        if seen[a['name']] > 1:
+            a['name'] = f'{a["name"]} {seen[a["name"]]}'
     feats = []
     for a in out:
         g = a['geom'].simplify(SIMPLIFY)
