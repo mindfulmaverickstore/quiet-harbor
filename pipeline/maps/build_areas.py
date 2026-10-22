@@ -162,10 +162,10 @@ def tree(units):
             if c['level'] < u['level'] and c is not u and c['geom'].area >= u['geom'].area * 0.98 and c['geom'].contains(pt):
                 if best is None or c['geom'].area < best['geom'].area:
                     best = c
-        u['parent'] = best
+        u['up'] = best
         if best:
             best['children'].append(u)
-    return [u for u in units if u['parent'] is None]
+    return [u for u in units if u['up'] is None]
 
 
 # ---- Choosing the areas ----
