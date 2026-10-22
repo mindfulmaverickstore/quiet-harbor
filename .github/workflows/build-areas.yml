@@ -83,7 +83,8 @@ jobs:
           S3_BUCKET: ${{ secrets.R2_BUCKET }}
         run: python3 pipeline/maps/build_areas.py --index
       - name: Start the second half of the world
-        if: github.event.inputs.regions == 'part1'
+        # Not after a cancelled run: its leftovers would start a second half with old code.
+        if: github.event.inputs.regions == 'part1' && !cancelled()
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run build-areas.yml -f regions=part2

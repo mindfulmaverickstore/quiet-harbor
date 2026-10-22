@@ -78,7 +78,7 @@ jobs:
           S3_BUCKET: ${{ secrets.R2_BUCKET }}
         run: python3 pipeline/maps/light_maps.py --summary
       - name: Then cut the world into download areas (only after a run over every map)
-        if: github.event.inputs.places == 'all'
+        if: github.event.inputs.places == 'all' && !cancelled()
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run build-areas.yml -f regions=part1
