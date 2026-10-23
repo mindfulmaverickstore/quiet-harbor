@@ -4,7 +4,8 @@ category and that we don't already have, one file per 1-degree square like our p
 
   HF_TOKEN=... MATCH_RULES='{...}' python3 pipeline/maps/build_fsq.py
 
-A place is "already ours" if one of ours is within 30 m, or one with the same name within 150 m. Each kept place has
+A place is "already ours" if one of ours is within 30 m, or one with the same name within 150 m. For those matched by
+name, any website, phone, Instagram or Facebook that we lack is listed under "fill" (gaps only; nothing is replaced). Each kept place has
 "fresh": true when Foursquare refreshed it in the last two years (shown as an unconfirmed pin), false otherwise (shown as
 a grey dot). It also counts how many of the Overture places we use are closed or low-confidence, to decide on a filter.
 """
@@ -44,7 +45,7 @@ for f in glob.glob(os.path.join(work, '*.json')):
     except OSError:
         pass
     for pl in json.loads(raw).get('places', []):
-        grid.setdefault((int(pl['lat'] / 0.0005), int(pl['lon'] / 0.0005)), []).append((pl['lat'], pl['lon'], norm(pl['tags'].get('name'))))
+        grid.setdefault((int(pl['lat'] / 0.0005), int(pl['lon'] / 0.0005)), []).append((pl['lat'], pl['lon'], norm(pl['tags'].get('name')), pl))
         if pl['id'].startswith('ov/'):
             ov_ids.append(pl['id'][3:])
 
@@ -54,15 +55,24 @@ def metres(a, b, c, d):
 
 
 def known(lat, lon, name):
+    """Our place for this Foursquare one, if we have it: the same name within 150 m, else anything within 30 m."""
     gy, gx = int(lat / 0.0005), int(lon / 0.0005)
     n = norm(name)
+    near = None
     for dy in range(-3, 4):
         for dx in range(-3, 4):
-            for a, b, nm in grid.get((gy + dy, gx + dx), []):
+            for a, b, nm, pl in grid.get((gy + dy, gx + dx), []):
                 m = metres(lat, lon, a, b)
-                if m <= 30 or (n and nm and (n in nm or nm in n) and m <= 150):
-                    return True
-    return False
+                if n and nm and (n in nm or nm in n) and m <= 150:
+                    return pl
+                if m <= 30 and near is None:
+                    near = pl
+    return near
+
+
+# Details we may lack, and where OpenStreetMap or Overture would keep them. We only ever fill a gap; we never replace.
+FILL = {'website': ('website', 'contact:website'), 'phone': ('phone', 'contact:phone'), 'instagram': ('contact:instagram', 'instagram'),
+        'facebook': ('contact:facebook', 'facebook')}
 
 
 def kind(labels):
@@ -71,9 +81,22 @@ def kind(labels):
 
 
 tiles = {}
+fills = {}
+gap_counts = {}
 fresh_n = 0
 for r in rows:
-    if known(r['latitude'], r['longitude'], r['name']):
+    ours = known(r['latitude'], r['longitude'], r['name'])
+    if ours:
+        # Same place: only note what Foursquare knows that we don't (only matched by name, to be sure it's the same place).
+        if norm(ours['tags'].get('name')) and (norm(r['name']) in norm(ours['tags'].get('name')) or norm(ours['tags'].get('name')) in norm(r['name'])):
+            add = {}
+            for key, src in (('website', 'website'), ('phone', 'tel'), ('instagram', 'instagram'), ('facebook', 'facebook_id')):
+                if r.get(src) and not any(k in ours['tags'] for k in FILL[key]):
+                    add[key] = str(r[src])
+                    gap_counts[key] = gap_counts.get(key, 0) + 1
+            if add:
+                fkey = f'{math.floor(ours["lat"])}_{math.floor(ours["lon"])}'
+                fills.setdefault(fkey, []).append({'id': ours['id'], **add})
         continue
     refreshed = str(r.get('date_refreshed') or '')[:10]
     fresh = refreshed >= CUTOFF
@@ -88,14 +111,16 @@ for r in rows:
     tiles.setdefault(key, []).append(p)
 total = sum(len(v) for v in tiles.values())
 print(f'kept {total} new places ({fresh_n} refreshed since {CUTOFF}) in {len(tiles)} squares')
+print(f'gaps in our places that Foursquare fills: {gap_counts} (places: {sum(len(v) for v in fills.values())})')
 
 out = tempfile.mkdtemp()
-for key, places in tiles.items():
+for key in set(tiles) | set(fills):
     with open(os.path.join(out, f'{key}.json'), 'wb') as f:
-        f.write(gzip.compress(json.dumps({'places': places}, ensure_ascii=False, separators=(',', ':')).encode(), 9))
+        f.write(gzip.compress(json.dumps({'places': tiles.get(key, []), 'fill': fills.get(key, [])}, ensure_ascii=False, separators=(',', ':')).encode(), 9))
 with open(os.path.join(out, 'index.json'), 'w') as f:
     json.dump({'built': datetime.date.today().isoformat(), 'release': RELEASE, 'fresh_since': CUTOFF,
-               'credit': 'Foursquare Open Source Places (Apache 2.0)', 'tiles': {k: len(v) for k, v in tiles.items()}}, f)
+               'credit': 'Foursquare Open Source Places (Apache 2.0)',
+               'tiles': {k: len(tiles.get(k, [])) + len(fills.get(k, [])) for k in set(tiles) | set(fills)}}, f)
 subprocess.run(['aws', 's3', 'rm', f's3://{BUCKET}/fsq/', '--recursive', '--endpoint-url', ENDPOINT, '--only-show-errors'], check=True)
 subprocess.run(['aws', 's3', 'cp', out, f's3://{BUCKET}/fsq/', '--recursive', '--endpoint-url', ENDPOINT, '--content-type',
                 'application/json', '--content-encoding', 'gzip', '--exclude', 'index.json', '--only-show-errors'], check=True)
