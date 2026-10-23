@@ -40,14 +40,15 @@ OVERTURE_RELEASE = None  # filled from the latest release at run time
 CHAINS = ["Burger King", "KFC", "Subway", "Taco Bell", "Chipotle", "Qdoba", "Del Taco", "Starbucks",
           "Tim Hortons", "A&W", "Pizza Hut", "Domino's", "Papa John's", "Panago", "Blaze Pizza", "Freshii",
           "The Chopped Leaf", "Panera Bread", "Sweetgreen", "White Castle", "Greggs", "Pret A Manger",
-          "Wagamama", "Nando's", "itsu", "Leon", "PizzaExpress", "Zizzi", "Wahaca", "Costa", "Caffè Nero"]
+          "Wagamama", "Nando's", "itsu", "Leon", "PizzaExpress", "Zizzi", "Wahaca", "Costa", "Caffè Nero",
+          "Orange Julius", "Taco Time", "Thai Express", "Freshslice Pizza"]
 
 # The OpenStreetMap tags the app uses; everything else is dropped to keep files small.
 KEEP = ["name", "amenity", "shop", "cuisine", "opening_hours", "website", "contact:website", "phone",
         "contact:phone", "contact:whatsapp", "whatsapp", "contact:instagram", "contact:facebook", "instagram", "facebook", "website:menu",
         "addr:housenumber", "addr:street", "addr:city", "addr:postcode", "addr:housename", "addr:country",
         "name:en", "brand", "brand:wikidata", "check_date", f"check_date:diet:{K}", f"diet:{K}", f"diet:{KB}", "diet:gluten_free",
-        "takeaway", "delivery", "outdoor_seating", "wheelchair"]
+        "takeaway", "delivery", "outdoor_seating", "indoor_seating", "wheelchair"]
 
 
 def overpass(query, tries=4):
