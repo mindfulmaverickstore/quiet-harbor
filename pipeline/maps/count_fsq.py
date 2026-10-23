@@ -93,9 +93,14 @@ rel = json.load(open(glob.glob(os.path.join(work, 'index.json'))[0])).get('overt
 if not rel:
     rel = json.load(urllib.request.urlopen(urllib.request.Request('https://pub-e5b664167e394466a0e48820dffb17df.r2.dev/index.json', headers={'User-Agent': 'x'})))['overture']
 db.execute('CREATE TABLE ours AS SELECT unnest(?) id', [ov_ids])
-ov_fresh = q(f"""SELECT count(*) FROM read_parquet('s3://overturemaps-us-west-2/release/{rel}/theme=places/type=place/*', hive_partitioning=1) o
+# Overture's bucket is public: read it with no keys (the ones in the environment are for our own bucket).
+db.execute("CREATE OR REPLACE SECRET ov (TYPE S3, KEY_ID '', SECRET '', REGION 'us-west-2', SCOPE 's3://overturemaps-us-west-2')")
+try:
+    ov_fresh = q(f"""SELECT count(*) FROM read_parquet('s3://overturemaps-us-west-2/release/{rel}/theme=places/type=place/*', hive_partitioning=1) o
     JOIN ours ON o.id = ours.id
     WHERE list_max([CAST(x.update_time AS DATE) for x in o.sources]) >= DATE '{CUTOFF}'""")
+except Exception as e:  # keep going to the OpenStreetMap counts
+    ov_fresh = f'failed ({e})'
 print(f'Overture places in our data: {ov_n} | updated by a source in two years: {ov_fresh}')
 
 # OpenStreetMap: our places, and how many matching ones were edited in two years (any change to the place counts).
