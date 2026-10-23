@@ -43,6 +43,20 @@ def field(no, payload):
     return put_varint((no << 3) | 2) + put_varint(len(payload)) + payload
 
 
+def glyph_id(body):
+    i = 0
+    while i < len(body):
+        k, i = varint(body, i)
+        if k & 7 == 0:
+            v, i = varint(body, i)
+            if k >> 3 == 1:
+                return v
+        else:
+            n, i = varint(body, i)
+            i += n
+    return -1
+
+
 def glyphs_of(pbf):
     """{codepoint: raw glyph message} from a glyphs file (glyphs > stacks > glyph)."""
     out = {}
@@ -61,9 +75,8 @@ def glyphs_of(pbf):
                 continue
             m, j = varint(stack, j)
             body, j = stack[j:j + m], j + m
-            if k >> 3 == 3:  # glyph
-                gid, _ = varint(body, 1)  # field 1 (id) comes first
-                out[gid] = body
+            if k >> 3 == 3:  # glyph: find its id (field 1); fields come in any order
+                out[glyph_id(body)] = body
     return out
 
 
