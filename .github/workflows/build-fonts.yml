@@ -32,4 +32,19 @@ jobs:
           ls noto/*/ | head -3; ls "noto/Noto Sans Regular" | wc -l
           python3 pipeline/maps/make_fonts.py fonts-src noto fonts-out
           aws s3 cp fonts-out "s3://$S3_BUCKET/maps/shared/glyphs/" --recursive --endpoint-url "$S3_ENDPOINT" --content-type application/x-protobuf --only-show-errors
+          # The phone saves the letters listed in base.json and packs.json: add ours next to each Noto file.
+          for f in base.json packs.json; do aws s3 cp "s3://$S3_BUCKET/maps/shared/$f" "$f" --endpoint-url "$S3_ENDPOINT" --only-show-errors; done
+          python3 - <<'PY'
+          import json
+          swap = lambda p: p.replace('Noto Sans Regular', 'VF Regular').replace('Noto Sans Medium', 'VF Medium').replace('Noto Sans Italic', 'VF Italic')
+          def add(files):
+              return list(dict.fromkeys(files + [swap(f) for f in files if 'Noto Sans' in f]))
+          b = json.load(open('base.json')); b['files'] = add(b['files']); json.dump(b, open('base.json', 'w'))
+          k = json.load(open('packs.json'))
+          for pk in k['packs']:
+              pk['files'] = add(pk['files'])
+          json.dump(k, open('packs.json', 'w'), ensure_ascii=False)
+          print(len(b['files']), 'base files')
+          PY
+          for f in base.json packs.json; do aws s3 cp "$f" "s3://$S3_BUCKET/maps/shared/$f" --endpoint-url "$S3_ENDPOINT" --content-type application/json --only-show-errors; done
           echo uploaded
