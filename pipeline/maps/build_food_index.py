@@ -51,7 +51,25 @@ def food_places(path):
                 name = p.get('name:en') or p['name']
                 # The same place can sit on a tile edge: keep one.
                 seen[(name, round(lat, 4), round(lon, 4))] = (name, p['kind'], round(lat, 5), round(lon, 5))
-    return list(seen.values())
+    return merge_close(list(seen.values()))
+
+
+def merge_close(rows):
+    """One entry per place: OpenStreetMap sometimes lists a place twice (a point and its building), a door apart. The same
+    name (accents and punctuation ignored) within 80 m is one place."""
+    import unicodedata, re
+    def simple(s):
+        return re.sub(r'[^a-z0-9]', '', unicodedata.normalize('NFKD', s.lower()))
+    kept, out = {}, []
+    for r in rows:
+        key = (simple(r[0]), round(r[2] / 0.001), round(r[3] / 0.001))
+        near = [o for dy in (-1, 0, 1) for dx in (-1, 0, 1) for o in kept.get((key[0], key[1] + dy, key[2] + dx), [])]
+        k = math.cos(math.radians(r[2]))
+        if any(math.hypot((o[2] - r[2]) * 111000, (o[3] - r[3]) * 111000 * k) < 80 for o in near):
+            continue
+        kept.setdefault(key, []).append(r)
+        out.append(r)
+    return out
 
 
 def write(rows, out, pid, upload):
