@@ -288,13 +288,35 @@ NAME_A = re.compile(RULES["name_a"])
 NAME_B = re.compile(RULES["name_b"])
 
 
+def _digits(s):
+    return re.sub(r"\D", "", s or "")[-9:]
+
+
+def _words(s):
+    return set(re.findall(r"\w+", (s or "").lower()))
+
+
+def same_place(name, tags, o):
+    """An Overture place that is one of ours under a slightly different name or address: similar names, one name
+    inside the other ("Leccornie" / "Leccornie Pasticceria Vegana"), the same phone or WhatsApp number, or the same
+    street and number written in another order ("Via Camillo Ugoni, 1" / "1 Via Camillo Ugoni")."""
+    a, b = (name or "").lower().strip(), (o["name"] or "").lower().strip()
+    if sim(name, o["name"]) >= 0.5 or (len(a) >= 4 and len(b) >= 4 and (a in b or b in a)):
+        return True
+    phone = _digits(o.get("phone"))
+    if len(phone) >= 8 and phone in {_digits(tags.get(k)) for k in ("phone", "contact:phone", "contact:whatsapp", "whatsapp")}:
+        return True
+    ours = _words(f'{tags.get("addr:housenumber", "")} {tags.get("addr:street", "")}')
+    return bool(tags.get("addr:street")) and len(ours) >= 2 and ours == _words(o.get("street"))
+
+
 def unconfirmed_places(ov, places):
     """Overture places of one category that we don't already show.
 
     These are labelled as unconfirmed in the app: nobody on OpenStreetMap or a
     a visitor has confirmed them. Places Overture marks as closed, or doubts
     exist, were already left out by overture_rows."""
-    have = [(p["lat"], p["lon"], p["tags"].get("name", "")) for p in places]
+    have = [(p["lat"], p["lon"], p["tags"].get("name", ""), p["tags"]) for p in places]
     out = []
     for o in ov:
         if not o["name"] or o["name"].strip().lower() in CHAIN_NAMES:
@@ -311,7 +333,7 @@ def unconfirmed_places(ov, places):
         else:
             continue
         dup = any(abs(la - o["lat"]) <= 0.002 and abs(lo - o["lon"]) <= 0.003
-                  and metres(lo, la, o["lon"], o["lat"]) <= 150 and sim(nm, o["name"]) >= 0.5 for la, lo, nm in have)
+                  and metres(lo, la, o["lon"], o["lat"]) <= 150 and same_place(nm, tg, o) for la, lo, nm, tg in have)
         if dup:
             continue
         tags = {"name": o["name"], "amenity": "restaurant", "ov:basis": basis}
