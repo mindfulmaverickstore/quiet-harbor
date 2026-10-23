@@ -1,0 +1,35 @@
+# Builds the Foursquare layer (fsq/<lat>_<lon>.json): places we do not have yet, with a freshness flag.
+# Secrets: HF_TOKEN (Hugging Face, read-only, with access to foursquare/fsq-os-places), MATCH_RULES, R2_* for our tiles.
+name: Build FSQ layer
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release date folder on Hugging Face'
+        required: true
+        default: '2026-10-15'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: pip install duckdb
+      - name: Build and upload
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          MATCH_RULES: ${{ secrets.MATCH_RULES }}
+          FSQ_RELEASE: ${{ github.event.inputs.release }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+          S3_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python3 pipeline/maps/build_fsq.py
