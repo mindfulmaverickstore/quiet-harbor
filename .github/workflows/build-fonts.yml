@@ -26,6 +26,10 @@ jobs:
           S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
           S3_BUCKET: ${{ secrets.R2_BUCKET }}
         run: |
-          python3 pipeline/maps/make_fonts.py fonts-src fonts-out
+          for f in "Noto Sans Regular" "Noto Sans Medium" "Noto Sans Italic"; do
+            aws s3 sync "s3://$S3_BUCKET/maps/shared/glyphs/$f/" "noto/$f/" --endpoint-url "$S3_ENDPOINT" --only-show-errors
+          done
+          ls noto/*/ | head -3; ls "noto/Noto Sans Regular" | wc -l
+          python3 pipeline/maps/make_fonts.py fonts-src noto fonts-out
           aws s3 cp fonts-out "s3://$S3_BUCKET/maps/shared/glyphs/" --recursive --endpoint-url "$S3_ENDPOINT" --content-type application/x-protobuf --only-show-errors
           echo uploaded

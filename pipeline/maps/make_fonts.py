@@ -6,13 +6,12 @@ Latin, Greek and Cyrillic, with Noto Sans filling in every other script, merged 
   shared/glyphs/VF Medium/<range>.pbf      Roboto Medium  + Noto Sans Medium
   shared/glyphs/VF Italic/<range>.pbf      Roboto Italic  + Noto Sans Italic
 
-  python3 pipeline/maps/make_fonts.py <folder with the unzipped openmaptiles fonts> <out folder>
+  python3 pipeline/maps/make_fonts.py <folder with the unzipped openmaptiles fonts> <folder with our Noto Sans glyphs> <out folder>
 
-Noto Sans comes from our own shared/glyphs (already published). Plain Python; reads and writes the glyph files directly.
+Noto Sans comes from our own shared/glyphs (copied down first; the public address is rate-limited). Plain Python; reads and writes the glyph files directly.
 """
-import os, sys, urllib.parse, urllib.request
+import os, sys
 
-PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev/maps/shared/glyphs'
 PAIRS = {'VF Regular': ('Roboto Regular', 'Noto Sans Regular'), 'VF Medium': ('Roboto Medium', 'Noto Sans Medium'),
          'VF Italic': ('Roboto Italic', 'Noto Sans Italic')}
 
@@ -68,22 +67,18 @@ def glyphs_of(pbf):
     return out
 
 
-def noto(name, rng):
-    url = f'{PUBLIC}/{urllib.parse.quote(name)}/{rng}.pbf'
-    try:
-        return urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'map-build/1.0'}), timeout=60).read()
-    except Exception:
-        return b''
+def read(path):
+    return open(path, 'rb').read() if os.path.exists(path) else b''
 
 
-def main(src, out):
+def main(src, noto_dir, out):
     for merged, (roboto, noto_name) in PAIRS.items():
         os.makedirs(os.path.join(out, merged), exist_ok=True)
         for start in range(0, 65536, 256):
             rng = f'{start}-{start + 255}'
             path = os.path.join(src, roboto, f'{rng}.pbf')
-            glyphs = glyphs_of(open(path, 'rb').read()) if os.path.exists(path) else {}
-            for gid, body in glyphs_of(noto(noto_name, rng)).items():
+            glyphs = glyphs_of(read(path))
+            for gid, body in glyphs_of(read(os.path.join(noto_dir, noto_name, f'{rng}.pbf'))).items():
                 glyphs.setdefault(gid, body)
             stack = field(1, merged.encode()) + field(2, rng.encode()) + b''.join(field(3, glyphs[g]) for g in sorted(glyphs))
             with open(os.path.join(out, merged, f'{rng}.pbf'), 'wb') as f:
@@ -92,4 +87,4 @@ def main(src, out):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], sys.argv[3])
