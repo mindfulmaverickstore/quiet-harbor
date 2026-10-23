@@ -211,12 +211,16 @@ def overture_rows(con, w, s, e, n):
     select names.primary as name, websites[1] as website, phones[1] as phone, socials as socials,
            list_distinct([x.dataset for x in sources]) as src, bbox.xmin as lon, bbox.ymin as lat,
            taxonomy.primary as cat, id as gers_id,
-           addresses[1].freeform as street, addresses[1].locality as city, addresses[1].postcode as postcode
+           addresses[1].freeform as street, addresses[1].locality as city, addresses[1].postcode as postcode,
+           operating_status as status, confidence
     from read_parquet('s3://overturemaps-us-west-2/release/{OVERTURE_RELEASE}/theme=places/type=place/*', hive_partitioning=1)
     where bbox.xmin between {w} and {e} and bbox.ymin between {s} and {n}
       and (taxonomy.hierarchy[1] = 'food_and_drink' or taxonomy.hierarchy[2] = 'food_and_beverage_store')
+      -- Closed places and ones Overture itself doubts exist (confidence under 0.3) are left out (decided 23 Oct 2026).
+      and coalesce(operating_status, 'open') <> 'permanently_closed'
+      and (confidence is null or confidence >= 0.3)
     """
-    cols = ["name", "website", "phone", "socials", "src", "lon", "lat", "cat", "gers_id", "street", "city", "postcode"]
+    cols = ["name", "website", "phone", "socials", "src", "lon", "lat", "cat", "gers_id", "street", "city", "postcode", "status", "confidence"]
     return [dict(zip(cols, r)) for r in con.execute(q).fetchall()]
 
 
@@ -287,8 +291,8 @@ def unconfirmed_places(ov, places):
     """Overture places of one category that we don't already show.
 
     These are labelled as unconfirmed in the app: nobody on OpenStreetMap or a
-    a visitor has confirmed them, and Overture carries no open/closed
-    information, so some may have closed."""
+    a visitor has confirmed them. Places Overture marks as closed, or doubts
+    exist, were already left out by overture_rows."""
     have = [(p["lat"], p["lon"], p["tags"].get("name", "")) for p in places]
     out = []
     for o in ov:
