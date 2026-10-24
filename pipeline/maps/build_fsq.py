@@ -32,7 +32,17 @@ rows = db.execute(f"""SELECT {', '.join(have)} FROM read_parquet('{BASE}/places/
     WHERE date_closed IS NULL AND latitude IS NOT NULL
       AND (list_contains(fsq_category_ids, '{MAIN}') OR regexp_matches(lower(name), '{R['name_a']}') OR regexp_matches(lower(name), '{R['name_b']}'))""").fetchall()
 rows = [dict(zip(have, r)) for r in rows]
-print('Foursquare matches:', len(rows))
+
+
+def food_place(r):
+    """A name match alone isn't enough (a dance school whose name holds our word): the place must also be one that serves food or drink."""
+    labels = ' | '.join(r.get('fsq_category_labels') or [])
+    return bool(re.search(r'Dining and Drinking|Food|Restaurant|Caf|Bakery|Grocery|Market|Juice|Dessert|Ice Cream|Deli', labels))
+
+
+before = len(rows)
+rows = [r for r in rows if food_place(r)]
+print('Foursquare matches:', len(rows), f'({before - len(rows)} dropped: not a place to eat or drink)')
 
 work = tempfile.mkdtemp()
 subprocess.run(['aws', 's3', 'sync', f's3://{BUCKET}/tiles/', work, '--endpoint-url', ENDPOINT, '--only-show-errors'], check=True)

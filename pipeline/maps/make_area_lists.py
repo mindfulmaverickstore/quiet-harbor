@@ -30,42 +30,52 @@ def fetch_json(url):
 
 
 def rings(geom):
-    """Outer outlines only, simplified to roughly 200 m, as flat lists of longitude, latitude."""
-    polys = list(geom.geoms) if geom.geom_type == 'MultiPolygon' else [geom] if geom.geom_type == 'Polygon' else []
+    """Outer outlines only, as flat lists of longitude, latitude (already simplified, see shared_simplify)."""
+    polys = list(geom.geoms) if geom.geom_type in ('MultiPolygon', 'GeometryCollection') else [geom]
     out = []
-    for p in polys:
-        if p.is_empty:
+    for q in polys:
+        if q.is_empty or q.geom_type != 'Polygon':
             continue
-        s = p.simplify(0.002, preserve_topology=False)
-        for q in (list(s.geoms) if s.geom_type == 'MultiPolygon' else [s]):
-            if q.is_empty or q.geom_type != 'Polygon':
-                continue
-            coords = list(q.exterior.coords)
-            if len(coords) < 4:
-                continue
-            # A fine outline of a very large area would be heavy: keep at most 400 points.
-            step = max(1, len(coords) // 400)
-            flat = []
-            for x, y in coords[::step]:
-                flat += [round(x, 3), round(y, 3)]
-            out.append(flat)
+        coords = list(q.exterior.coords)
+        if len(coords) < 4:
+            continue
+        # A very large area would be heavy: keep at most 1500 points.
+        step = max(1, len(coords) // 1500)
+        flat = []
+        for x, y in coords[::step]:
+            flat += [round(x, 4), round(y, 4)]
+        out.append(flat)
     return out
+
+
+def shared_simplify(geoms, tolerance=0.0006):
+    """Simplifies neighbours together, so a border shared by two towns stays one line (simplifying each town on its own
+    left slivers between them, where a tap landed on the bigger area underneath). Falls back to one by one, finer."""
+    try:
+        return list(shapely.coverage_simplify(geoms, tolerance))
+    except Exception:
+        return [g.simplify(0.0003, preserve_topology=True) for g in geoms]
 
 
 def one(region):
     data = fetch_json(f'{PUBLIC}/areas/{region}.geojson')
     sizes = fetch_json(f'{PUBLIC}/areas/files/{region}/sizes.json')
+    feats = [f for f in data['features'] if f['properties']['id'] in sizes]
+    full = [shapely.make_valid(shape(f['geometry'])) for f in feats]
+    # Areas of the same level (all the towns, all the provinces) tile the region, so each level is simplified as one cover.
+    simple = list(full)
+    for level in {f['properties']['level'] for f in feats}:
+        idx = [i for i, f in enumerate(feats) if f['properties']['level'] == level]
+        for i, g in zip(idx, shared_simplify([full[i] for i in idx])):
+            simple[i] = g
     areas = []
-    for f in data['features']:
+    for f, g, sg in zip(feats, full, simple):
         p = f['properties']
-        if p['id'] not in sizes:
-            continue
-        g = shapely.make_valid(shape(f['geometry']))
-        rs = rings(g)
+        rs = rings(sg) or rings(g.simplify(0.0003))
         if not rs:
             continue
-        w, s, e, n = g.bounds
-        a = {'id': p['id'], 'n': p['name'], 'b': sizes[p['id']], 'l': p['level'], 'x': [round(w, 3), round(s, 3), round(e, 3), round(n, 3)], 'r': rs}
+        w, s_, e, n = g.bounds
+        a = {'id': p['id'], 'n': p['name'], 'b': sizes[p['id']], 'l': p['level'], 'x': [round(w, 3), round(s_, 3), round(e, 3), round(n, 3)], 'r': rs}
         if p.get('name_en'):
             a['e'] = p['name_en']
         if p.get('parent'):
