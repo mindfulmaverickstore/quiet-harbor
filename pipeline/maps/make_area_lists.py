@@ -49,8 +49,9 @@ def rings(geom):
 
 
 def shared_simplify(geoms, tolerance=0.0006):
-    """Simplifies neighbours together, so a border shared by two towns stays one line (simplifying each town on its own
-    left slivers between them, where a tap landed on the bigger area underneath). Falls back to one by one, finer."""
+    """Simplifies neighbours together, so a border shared by two towns stays one line where the outlines allow. (The
+    outlines from build_areas.py are already simplified one by one, so thin slivers remain; the app treats a tap within
+    about 150 m of a town as in it.) Falls back to one by one, finer."""
     try:
         return list(shapely.coverage_simplify(geoms, tolerance))
     except Exception:
