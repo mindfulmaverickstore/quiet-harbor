@@ -1,0 +1,130 @@
+# Builds the places data in layers (one per source) and assembles the files the app reads. See pipeline/layers.py.
+# Run it from GitHub: Actions > "Build place layers" > Run workflow.
+#   regions: Geofabrik paths separated by spaces, or "none" to only assemble from the layers already stored.
+#   assemble: "yes" to make and publish the app's files once the regions are done.
+# Four regions build at a time; each stores its layers under layers/<region>/ in storage, so they never overwrite each
+# other, and the assemble step merges them.
+name: Build place layers
+
+on:
+  workflow_dispatch:
+    inputs:
+      regions:
+        description: 'Geofabrik paths separated by spaces, or none'
+        required: true
+        default: 'none'
+      assemble:
+        description: 'Assemble and publish afterwards: yes or no'
+        required: true
+        default: 'yes'
+      publish_to:
+        description: 'Where the assembled files go: test (layers-test/, for checking) or live (what the app reads)'
+        required: true
+        default: 'test'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      regions: ${{ steps.list.outputs.regions }}
+      any: ${{ steps.list.outputs.any }}
+    steps:
+      - id: list
+        run: |
+          want="${{ github.event.inputs.regions }}"
+          [ "$want" = "none" ] && want=""
+          echo "regions=$(echo "$want" | tr -s ' ' '\n' | grep . | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
+          [ -n "$want" ] && echo "any=yes" >> "$GITHUB_OUTPUT" || echo "any=no" >> "$GITHUB_OUTPUT"
+
+  region:
+    needs: plan
+    if: needs.plan.outputs.any == 'yes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      max-parallel: 4
+      fail-fast: false
+      matrix:
+        region: ${{ fromJSON(needs.plan.outputs.regions) }}
+    name: region ${{ matrix.region }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
+          pip install duckdb osmium
+      # The storage keys must NOT be present here: the Overture download would try to use them and be refused.
+      - name: Build the layers
+        env:
+          MATCH_RULES: ${{ secrets.MATCH_RULES }}
+        run: |
+          region="${{ matrix.region }}"
+          name="$(basename "$region")"
+          curl -sfL --retry 3 -o "$name.osm.pbf" "https://download.geofabrik.de/$region-latest.osm.pbf"
+          python3 pipeline/layers.py region --pbf "$name.osm.pbf" --poly "https://download.geofabrik.de/$region.poly" --out part
+          rm -f "$name.osm.pbf"*
+      - name: Store the layers
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          R2: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          key="$(echo "${{ matrix.region }}" | tr '/' '~')"
+          find part -name '*.json' -exec gzip -9 {} \;
+          # --delete: squares this region no longer has are removed from its own folder only.
+          aws s3 sync part "s3://$BUCKET/layers/$key" --endpoint-url "$R2" --delete --content-type application/json --content-encoding gzip --only-show-errors
+          echo "stored $(find part -name '*.gz' | wc -l) files for $key"
+
+  assemble:
+    needs: [plan, region]
+    if: ${{ !cancelled() && github.event.inputs.assemble == 'yes' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: pip install duckdb osmium
+      - name: Fetch every stored layer
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          R2: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          aws s3 sync "s3://$BUCKET/layers" layers --endpoint-url "$R2" --only-show-errors
+          find layers -name '*.gz' -exec sh -c 'gunzip -c "$1" > "${1%.gz}" && rm "$1"' _ {} \;
+          echo "$(find layers -name '*.json' | wc -l) layer files"
+      - name: Assemble
+        env:
+          MATCH_RULES: ${{ secrets.MATCH_RULES }}
+          LIST_URL: ${{ secrets.LIST_URL }}
+          LIST_KEY: ${{ secrets.LIST_KEY }}
+        run: python3 pipeline/layers.py assemble --parts layers --out dist
+      - name: Publish (squares first, index last)
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          R2: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          mkdir -p gz/tiles
+          for f in dist/tiles/*.json; do gzip -9 -c "$f" > "gz/tiles/$(basename "$f")"; done
+          gzip -9 -c dist/index.json > gz/index.json
+          [ "${{ github.event.inputs.publish_to }}" = "live" ] && to="" || to="layers-test/"
+          aws s3 sync gz/tiles "s3://$BUCKET/${to}tiles" --endpoint-url "$R2" --content-type application/json --content-encoding gzip --only-show-errors
+          aws s3 cp gz/index.json "s3://$BUCKET/${to}index.json" --endpoint-url "$R2" --content-type application/json --content-encoding gzip --only-show-errors
+          echo "published $(ls gz/tiles | wc -l) squares"
