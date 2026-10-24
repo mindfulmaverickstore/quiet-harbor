@@ -1,10 +1,10 @@
-# Sends a small request to the database twice a week, so the free plan doesn't pause it for being quiet.
+# Sends a few small requests to the database several times a day, so the free plan doesn't pause it for being quiet.
 # The address and public key are repository secrets (DB_URL, DB_KEY). Run it by hand from Actions > "Keep database awake".
 name: Keep database awake
 
 on:
   schedule:
-    - cron: '17 6 * * 1,4'
+    - cron: '17 */6 * * *'
   workflow_dispatch:
 
 jobs:
@@ -17,6 +17,9 @@ jobs:
           DB_KEY: ${{ secrets.DB_KEY }}
         run: |
           # A "permission denied" answer still means the database woke up and replied; only no answer is a failure.
-          code=$(curl -s -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 10 -H "apikey: $DB_KEY" "$DB_URL/rest/v1/reports?select=id&limit=1")
-          echo "database answered: $code"
-          test "$code" != "000" && test "$code" -lt 500
+          for i in 1 2 3 4 5; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 10 -H "apikey: $DB_KEY" "$DB_URL/rest/v1/reports?select=id&limit=1")
+            echo "database answered: $code"
+            test "$code" != "000" && test "$code" -lt 500
+            sleep 5
+          done
