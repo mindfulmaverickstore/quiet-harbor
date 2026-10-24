@@ -35,7 +35,9 @@ rows = [dict(zip(have, r)) for r in rows]
 
 
 def food_place(r):
-    """A name match alone isn't enough (a dance school whose name holds our word): the place must also be one that serves food or drink."""
+    """A name match alone isn't enough (a dance school whose name holds our word): the place must also be one that serves food or drink.
+    This is only for the food layer. Places that serve no food but matter to us (animal sanctuaries, shelters) are planned
+    as a layer of their own, chosen by their own categories, so this rule never hides them."""
     labels = ' | '.join(r.get('fsq_category_labels') or [])
     return bool(re.search(r'Dining and Drinking|Food|Restaurant|Caf|Bakery|Grocery|Market|Juice|Dessert|Ice Cream|Deli', labels))
 
