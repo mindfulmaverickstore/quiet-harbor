@@ -25,6 +25,8 @@ OVERTURE = cat['latest']
 OV_DAY = OVERTURE[:10]
 db = duckdb.connect()
 db.execute("INSTALL httpfs; LOAD httpfs; SET s3_region='us-west-2';")
+# Overture's files are public: read them without our storage keys (they would be refused).
+db.execute("CREATE OR REPLACE SECRET ov (TYPE S3, KEY_ID '', SECRET '', REGION 'us-west-2', SCOPE 's3://overturemaps-us-west-2')")
 
 ov = db.execute(f"""
     select id, names.primary, bbox.ymin, bbox.xmin, websites[1], phones[1], addresses[1].freeform, addresses[1].locality
