@@ -74,9 +74,32 @@ for fid, name, lat, lon, web, phone, street, city, refreshed in fsq:
         if v: t[k] = str(v)
     add(t)
 
+# City of Vancouver Open Data, "Food Vendors": permitted street food spots (Open Government Licence - Vancouver). Fixed spots, so
+# they are marked "fixed"; the description is kept, and a description with one of our matching words sets "diet".
+try:
+    url = 'https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/food-vendors/records?limit=100'
+    for r in json.load(urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'map-build/1.0'}), timeout=60)).get('results', []):
+        pt = r.get('geo_point_2d')
+        if not pt or r.get('status') not in (None, 'open'):
+            continue
+        desc = (r.get('description') or '').strip()
+        t = {'id': f'yvr/{r["key"]}', 'name': (r.get('business_name') or desc or 'Street food').strip(), 'lat': round(pt['lat'], 6), 'lon': round(pt['lon'], 6),
+             'src': 'City of Vancouver Open Data', 'updated': datetime.date.today().isoformat(), 'fixed': True}
+        if desc:
+            t['note'] = desc
+        if r.get('location'):
+            t['street'] = r['location']
+        t['city'] = 'Vancouver'
+        add(t)
+        if NAME_A.search(desc.lower()):
+            t['diet'] = True
+    print('Vancouver spots added')
+except Exception as e:
+    print('Vancouver feed skipped:', e)
+
 tiles = {}
 for t in trucks:
-    t['diet'] = bool(NAME_A.search(t['name'].lower()))
+    t['diet'] = t.get('diet') or bool(NAME_A.search(t['name'].lower()))
     tiles.setdefault(f'{math.floor(t["lat"])}_{math.floor(t["lon"])}', []).append(t)
 print(f'kept {len(trucks)} trucks ({sum(t["diet"] for t in trucks)} with a matching name) in {len(tiles)} squares')
 
