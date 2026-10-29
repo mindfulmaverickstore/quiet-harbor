@@ -19,7 +19,7 @@ from pmtiles.reader import Reader, MmapSource, all_tiles
 from pmtiles.tile import zxy_to_tileid  # noqa: F401  (kept for readers who want to inspect tiles)
 import mapbox_vector_tile as mvt
 
-FOOD_KINDS = {'restaurant', 'fast_food', 'cafe', 'bar', 'pub', 'ice_cream', 'bakery', 'biergarten', 'food_court'}
+FOOD_KINDS = {'restaurant', 'fast_food', 'cafe', 'bar', 'pub', 'ice_cream', 'bakery', 'biergarten', 'food_court', 'marketplace'}
 CHUNK = 20_000
 EXTENT = 4096
 
