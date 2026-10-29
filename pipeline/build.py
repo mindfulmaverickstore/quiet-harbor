@@ -48,7 +48,7 @@ KEEP = ["name", "amenity", "shop", "cuisine", "opening_hours", "website", "conta
         "contact:phone", "contact:whatsapp", "whatsapp", "contact:instagram", "contact:facebook", "instagram", "facebook", "website:menu",
         "addr:housenumber", "addr:street", "addr:city", "addr:postcode", "addr:housename", "addr:country",
         "name:en", "brand", "brand:wikidata", "check_date", f"check_date:diet:{K}", f"diet:{K}", f"diet:{KB}", "diet:gluten_free",
-        "takeaway", "delivery", "outdoor_seating", "indoor_seating", "wheelchair"]
+        "takeaway", "delivery", "outdoor_seating", "indoor_seating", "wheelchair", "level", "addr:floor"]
 
 
 def overpass(query, tries=4):
