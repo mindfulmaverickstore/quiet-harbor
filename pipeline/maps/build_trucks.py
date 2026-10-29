@@ -31,7 +31,7 @@ db.execute("INSTALL httpfs; LOAD httpfs; SET s3_region='us-west-2';")
 db.execute("CREATE OR REPLACE SECRET ov (TYPE S3, KEY_ID '', SECRET '', REGION 'us-west-2', SCOPE 's3://overturemaps-us-west-2')")
 
 ov = db.execute(f"""
-    select id, names.primary, bbox.ymin, bbox.xmin, websites[1], phones[1], addresses[1].freeform, addresses[1].locality
+    select id, names.primary, bbox.ymin, bbox.xmin, websites[1], phones[1], addresses[1].freeform, addresses[1].locality, socials
     from read_parquet('s3://overturemaps-us-west-2/release/{OVERTURE}/theme=places/type=place/*', hive_partitioning=1)
     where taxonomy.primary = 'food_truck_stand' and names.primary is not null
       and coalesce(operating_status, 'open') <> 'permanently_closed' and (confidence is null or confidence >= 0.3)""").fetchall()
@@ -39,7 +39,7 @@ print('Overture trucks:', len(ov))
 
 db.execute(f"CREATE SECRET hf (TYPE HUGGINGFACE, TOKEN '{os.environ['HF_TOKEN']}')")
 fsq = db.execute(f"""
-    select fsq_place_id, name, latitude, longitude, website, tel, address, locality, cast(date_refreshed as varchar)
+    select fsq_place_id, name, latitude, longitude, website, tel, address, locality, cast(date_refreshed as varchar), instagram, facebook_id
     from read_parquet('hf://datasets/foursquare/fsq-os-places/release/dt={FSQ_RELEASE}/places/parquet/*.parquet')
     where date_closed is null and name is not null and latitude is not null and list_contains(fsq_category_ids, '{FSQ_TRUCK}')
       and cast(date_refreshed as varchar) >= '{CUTOFF}'""").fetchall()
@@ -56,22 +56,32 @@ def add(t):
                 if abs(o['lat'] - t['lat']) < 0.0006 and abs(o['lon'] - t['lon']) < 0.0008:
                     m = norm(o['name'])
                     if n and m and (n in m or m in n):
-                        for k in ('website', 'phone', 'street', 'city'):
+                        for k in ('website', 'phone', 'street', 'city', 'instagram', 'facebook'):
                             if t.get(k) and not o.get(k):
                                 o[k] = t[k]
                         return
     grid.setdefault((gy, gx), []).append(t)
     trucks.append(t)
 
-for gid, name, lat, lon, web, phone, street, city in ov:
+for gid, name, lat, lon, web, phone, street, city, socials in ov:
     t = {'id': f'ov/{gid}', 'name': name, 'lat': round(lat, 6), 'lon': round(lon, 6), 'src': 'Overture Maps', 'updated': OV_DAY}
     for k, v in (('website', web), ('phone', phone), ('street', street), ('city', city)):
         if v: t[k] = str(v)
+    for u in socials or []:
+        low = str(u).lower()
+        if 'instagram.com' in low and 'instagram' not in t:
+            t['instagram'] = str(u)
+        elif ('facebook.com' in low or 'fb.com' in low) and 'facebook' not in t:
+            t['facebook'] = str(u)
     add(t)
-for fid, name, lat, lon, web, phone, street, city, refreshed in fsq:
+for fid, name, lat, lon, web, phone, street, city, refreshed, ig, fb in fsq:
     t = {'id': f'fsq/{fid}', 'name': name, 'lat': round(lat, 6), 'lon': round(lon, 6), 'src': 'Foursquare', 'updated': (refreshed or '')[:10]}
     for k, v in (('website', web), ('phone', phone), ('street', street), ('city', city)):
         if v: t[k] = str(v)
+    if ig:
+        t['instagram'] = f'https://www.instagram.com/{str(ig).strip().lstrip("@")}'
+    if fb:
+        t['facebook'] = f'https://www.facebook.com/{fb}'
     add(t)
 
 # City of Vancouver Open Data, "Food Vendors": permitted street food spots (Open Government Licence - Vancouver). Fixed spots, so
