@@ -127,8 +127,9 @@ def read_pbf(path):
             said_no = t.get(f"diet:{K}") == "no" or t.get(f"diet:{KB}") == "no"
             chain = t.get("brand") in wanted_chains
             if listed or second or said_no or chain:
+                ts = getattr(obj, "timestamp", None)
                 found.append({"type": kind, "id": obj.id, "center": {"lat": lat, "lon": lon},
-                              "tags": {tag.k: tag.v for tag in t}})
+                              "tags": {tag.k: tag.v for tag in t}, "ts": ts.strftime("%Y-%m-%d") if ts else None})
 
         def node(self, n):
             if n.location.valid():
@@ -275,6 +276,8 @@ def make_place(el, ov, is_chain_query=False):
                 tags["contact:facebook"] = u; fill["facebook"] = who; has_fb = True
         if not has_ph and o["phone"]:
             tags["phone"] = o["phone"]; fill["phone"] = who
+    if el.get("ts"):
+        tags["_edited"] = el["ts"]
     place = {"id": f'{el["type"]}/{el["id"]}', "lat": round(lat, 6), "lon": round(lon, 6), "tags": tags}
     if fill:
         place["fill"] = fill   # which values came from outside OpenStreetMap, and from where
