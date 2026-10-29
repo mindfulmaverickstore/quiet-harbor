@@ -17,6 +17,8 @@ RULES = json.loads(os.environ['MATCH_RULES'])
 ENDPOINT, BUCKET = os.environ['S3_ENDPOINT'], os.environ['S3_BUCKET']
 FSQ_RELEASE = os.environ.get('FSQ_RELEASE', '2026-10-15')
 FSQ_TRUCK = '4bf58dd8d48988d1cb941735'
+# Trucks come and go: only Foursquare listings refreshed in the last two years are kept.
+CUTOFF = (datetime.date.today() - datetime.timedelta(days=730)).isoformat()
 NAME_A = re.compile(RULES['name_a'])
 norm = lambda s: re.sub(r'[^a-z0-9]', '', unicodedata.normalize('NFKD', (s or '').lower()))
 
@@ -39,7 +41,8 @@ db.execute(f"CREATE SECRET hf (TYPE HUGGINGFACE, TOKEN '{os.environ['HF_TOKEN']}
 fsq = db.execute(f"""
     select fsq_place_id, name, latitude, longitude, website, tel, address, locality, cast(date_refreshed as varchar)
     from read_parquet('hf://datasets/foursquare/fsq-os-places/release/dt={FSQ_RELEASE}/places/parquet/*.parquet')
-    where date_closed is null and name is not null and latitude is not null and list_contains(fsq_category_ids, '{FSQ_TRUCK}')""").fetchall()
+    where date_closed is null and name is not null and latitude is not null and list_contains(fsq_category_ids, '{FSQ_TRUCK}')
+      and cast(date_refreshed as varchar) >= '{CUTOFF}'""").fetchall()
 print('Foursquare trucks:', len(fsq))
 
 trucks, grid = [], {}
