@@ -130,6 +130,28 @@ try:
 except Exception as e:
     print('San Francisco feed skipped:', e)
 
+# City of Brussels, "Food trucks / commerces ambulants" (CC0, public domain): the selected food truck and mobile trader spots that
+# have a map position (some only list a roaming area, so they are left out). Stalls selling jewellery and the like are skipped.
+try:
+    url = 'https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/bxl_food_trucks_commerces_ambulants/records?limit=100'
+    for r in json.load(urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'map-build/1.0'}), timeout=60)).get('results', []):
+        pt = r.get('coordonnees_geographiques')
+        food = (r.get('produits') or '').strip()
+        if not pt or not r.get('nom') or re.search(r'bijou|v[eê]tement|jewel|textile|maroquin|accessoire', food.lower()):
+            continue
+        t = {'id': f'bxl/{norm(r["nom"])[:24]}{round(pt["lat"] * 1e4)}', 'name': r['nom'].strip().title(), 'lat': round(pt['lat'], 6), 'lon': round(pt['lon'], 6),
+             'src': 'City of Brussels Open Data', 'updated': datetime.date.today().isoformat(), 'fixed': True, 'city': 'Brussels'}
+        if food:
+            t['note'] = food[:140]
+        if r.get('localisation'):
+            t['street'] = r['localisation'][:120]
+        add(t)
+        if NAME_A.search(food.lower()):
+            t['diet'] = True
+    print('Brussels spots added')
+except Exception as e:
+    print('Brussels feed skipped:', e)
+
 tiles = {}
 for t in trucks:
     t['diet'] = t.get('diet') or bool(NAME_A.search(t['name'].lower()))
