@@ -9,7 +9,7 @@ Sources: Overture Maps, category "food_truck_stand" (CDLA Permissive 2.0), and F
 Trucks move, so each one carries the day its source last had it ("updated") and the layer says so; "diet" is set only when
 the name carries one of our matching words (MATCH_RULES), since neither source flags diets for trucks.
 """
-import datetime, gzip, json, math, os, re, subprocess, tempfile, unicodedata, urllib.request
+import datetime, gzip, json, math, os, re, subprocess, tempfile, unicodedata, urllib.parse, urllib.request
 
 import duckdb
 
@@ -106,6 +106,29 @@ try:
     print('Vancouver spots added')
 except Exception as e:
     print('Vancouver feed skipped:', e)
+
+# City and County of San Francisco, "Mobile Food Facility Permit" (public domain, ODC-PDDL): trucks and carts with a current
+# permit, one record per spot they may use. Fixed spots, so they are marked "fixed"; what they sell is kept as the note.
+try:
+    url = "https://data.sf.gov/resource/rqzj-sfat.json?$limit=5000&$where=status in('APPROVED','ISSUED')"
+    sf = json.load(urllib.request.urlopen(urllib.request.Request(urllib.parse.quote(url, safe=":/?=&$,'()"), headers={'User-Agent': 'map-build/1.0'}), timeout=60))
+    today = datetime.date.today().isoformat()
+    for r in sf:
+        if not r.get('latitude') or not r.get('applicant') or str(r.get('expirationdate', '9999'))[:10] < today:
+            continue
+        food = (r.get('fooditems') or '').strip()
+        t = {'id': f'sf/{r["objectid"]}', 'name': r['applicant'].strip(), 'lat': round(float(r['latitude']), 6), 'lon': round(float(r['longitude']), 6),
+             'src': 'City and County of San Francisco', 'updated': today, 'fixed': True, 'city': 'San Francisco'}
+        if food:
+            t['note'] = food[:140]
+        if r.get('address'):
+            t['street'] = r['address'].title()
+        add(t)
+        if NAME_A.search(food.lower()):
+            t['diet'] = True
+    print('San Francisco spots added')
+except Exception as e:
+    print('San Francisco feed skipped:', e)
 
 tiles = {}
 for t in trucks:
