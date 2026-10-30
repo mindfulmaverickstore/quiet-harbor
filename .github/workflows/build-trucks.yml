@@ -1,8 +1,11 @@
-# Builds the food truck layer (trucks/<lat>_<lon>.json) from Overture and Foursquare. Monthly is enough for these sources.
+# Builds the food truck layer (trucks/<lat>_<lon>.json) from Overture, Foursquare and city feeds. Runs every day (about 10 minutes,
+# free on a public repository): Overture and Foursquare change monthly, but the city feeds change daily. It can also be run by hand.
 # Secrets: HF_TOKEN (Hugging Face, read-only, with access to foursquare/fsq-os-places), MATCH_RULES, R2_* for our tiles.
 name: Build food truck layer
 
 on:
+  schedule:
+    - cron: '40 9 * * *'
   workflow_dispatch:
     inputs:
       release:
@@ -24,7 +27,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           MATCH_RULES: ${{ secrets.MATCH_RULES }}
-          FSQ_RELEASE: ${{ github.event.inputs.release }}
+          FSQ_RELEASE: ${{ github.event.inputs.release || '2026-10-15' }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: auto
