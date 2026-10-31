@@ -29,6 +29,8 @@ jobs:
               sleep 5
             done
           }
-          if [ -n "$DB_URL" ]; then ping "$DB_URL" "$DB_KEY" "database 1"; fi
-          if [ -n "$DB_URL_2" ]; then ping "$DB_URL_2" "$DB_KEY_2" "database 2"; else echo "database 2 is not set up"; fi
+          # Say which project each one is (by the first letters of its address), so a log shows what was kept awake.
+          name() { case "$1" in *gpzy*) echo "real database" ;; *ffku*) echo "test database" ;; *) echo "database $2" ;; esac; }
+          if [ -n "$DB_URL" ]; then ping "$DB_URL" "$DB_KEY" "$(name "$DB_URL" 1)"; fi
+          if [ -n "$DB_URL_2" ]; then ping "$DB_URL_2" "$DB_KEY_2" "$(name "$DB_URL_2" 2)"; else echo "second database is not set up"; fi
           exit $fail
