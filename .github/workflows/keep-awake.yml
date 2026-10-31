@@ -1,5 +1,6 @@
-# Sends a few small requests to the database several times a day, so the free plan doesn't pause it for being quiet.
-# The address and public key are repository secrets (DB_URL, DB_KEY). Run it by hand from Actions > "Keep database awake".
+# Sends a few small requests to every database listed in the repository secrets, several times a day, so the free plan doesn't
+# pause them for being quiet. Each database has an address and a public key: DB_URL and DB_KEY (the first), DB_URL_2 and DB_KEY_2
+# (the second). Run it by hand from Actions > "Keep database awake".
 name: Keep database awake
 
 on:
@@ -11,15 +12,23 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ask the database for one row
+      - name: Ask each database for one row
         env:
           DB_URL: ${{ secrets.DB_URL }}
           DB_KEY: ${{ secrets.DB_KEY }}
+          DB_URL_2: ${{ secrets.DB_URL_2 }}
+          DB_KEY_2: ${{ secrets.DB_KEY_2 }}
         run: |
           # A "permission denied" answer still means the database woke up and replied; only no answer is a failure.
-          for i in 1 2 3 4 5; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 10 -H "apikey: $DB_KEY" "$DB_URL/rest/v1/reports?select=id&limit=1")
-            echo "database answered: $code"
-            test "$code" != "000" && test "$code" -lt 500
-            sleep 5
-          done
+          fail=0
+          ping() {
+            for i in 1 2 3; do
+              code=$(curl -s -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 10 --max-time 30 -H "apikey: $2" "$1/rest/v1/reports?select=id&limit=1")
+              echo "$3 answered: $code"
+              if [ "$code" = "000" ] || [ "$code" -ge 500 ]; then fail=1; fi
+              sleep 5
+            done
+          }
+          if [ -n "$DB_URL" ]; then ping "$DB_URL" "$DB_KEY" "database 1"; fi
+          if [ -n "$DB_URL_2" ]; then ping "$DB_URL_2" "$DB_KEY_2" "database 2"; else echo "database 2 is not set up"; fi
+          exit $fail
