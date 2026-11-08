@@ -1,0 +1,35 @@
+# Shows how much space each folder of the storage bucket uses (read only: nothing is changed or deleted).
+# Run it from GitHub: Actions > "Bucket sizes" > Run workflow, then open the run and read the summary.
+name: Bucket sizes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sizes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add up each folder
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+          S3_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          size() { aws s3 ls "s3://$S3_BUCKET/$1" --recursive --endpoint-url "$S3_ENDPOINT" | awk '{n++; b+=$3} END {printf "%d files, %.1f GB\n", n, b/1e9}'; }
+          {
+            echo "### Bucket sizes"
+            echo
+            echo "| Folder | Size |"
+            echo "|---|---|"
+            for top in $(aws s3 ls "s3://$S3_BUCKET/" --endpoint-url "$S3_ENDPOINT" | awk '$1=="PRE" {print $2}'); do
+              echo "| $top | $(size "$top") |"
+              # One level down, for the big folders (maps/, areas/ and so on).
+              for sub in $(aws s3 ls "s3://$S3_BUCKET/$top" --endpoint-url "$S3_ENDPOINT" | awk '$1=="PRE" {print $2}' | head -40); do
+                echo "| &nbsp;&nbsp;$top$sub | $(size "$top$sub") |"
+              done
+            done
+          } | tee -a "$GITHUB_STEP_SUMMARY"
