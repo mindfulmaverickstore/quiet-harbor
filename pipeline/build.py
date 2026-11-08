@@ -362,7 +362,7 @@ def closed_ids():
     url, key = os.environ.get("LIST_URL"), os.environ.get("LIST_KEY")
     if not url or not key:
         return set()
-    req = urllib.request.Request(url + "/rest/v1/closed_places?select=place_id", headers={"apikey": key, "User-Agent": UA})
+    req = urllib.request.Request(url + "/rest/v1/closed_places?select=place_id&reinstated_at=is.null", headers={"apikey": key, "User-Agent": UA})
     try:
         return {r["place_id"] for r in json.load(urllib.request.urlopen(req, timeout=30))}
     except Exception as ex:
