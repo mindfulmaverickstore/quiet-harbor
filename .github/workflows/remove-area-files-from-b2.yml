@@ -1,9 +1,14 @@
-# Removes ONLY areas/files/ from the Backblaze bucket (the partial copy of 8 Nov 2026). Touches nothing else, and never R2.
+# Removes one folder from the Backblaze bucket (default areas/files/; "everything" empties the bucket). Never touches R2.
 # Run it from GitHub: Actions > "Remove area files from Backblaze" > Run workflow.
 name: Remove area files from Backblaze
 
 on:
   workflow_dispatch:
+    inputs:
+      folder:
+        description: 'Folder to remove, e.g. areas/files/ (or "everything")'
+        required: true
+        default: 'areas/files/'
 
 jobs:
   remove:
@@ -16,18 +21,20 @@ jobs:
       RCLONE_CONFIG_B2_ENDPOINT: ${{ secrets.B2_ENDPOINT }}
       RCLONE_CONFIG_B2_REGION: us-west-004
       B2_BUCKET: ${{ secrets.B2_BUCKET }}
+      FOLDER: ${{ github.event.inputs.folder }}
     steps:
       - name: Get rclone
         run: curl -fsSL https://rclone.org/install.sh | sudo bash
-      - name: Remove areas/files/ and show what is left
+      - name: Remove the folder and show what is left
         run: |
           {
             echo "### Backblaze clean-up"
             echo
-            echo "Before: $(rclone size "b2:$B2_BUCKET/areas/files/" --json)"
-            rclone delete "b2:$B2_BUCKET/areas/files/" --s3-no-check-bucket --checkers 32 --transfers 32 --rmdirs || true
+            if [ "$FOLDER" = "everything" ]; then path=""; else path="${FOLDER#/}"; fi
+            echo "Before: $(rclone size "b2:$B2_BUCKET/$path" --json)"
+            rclone delete "b2:$B2_BUCKET/$path" --s3-no-check-bucket --checkers 32 --transfers 32 --rmdirs || true
             echo
-            echo "After: $(rclone size "b2:$B2_BUCKET/areas/files/" --json)"
+            echo "After: $(rclone size "b2:$B2_BUCKET/$path" --json)"
             echo
             echo "Whole bucket now: $(rclone size "b2:$B2_BUCKET" --json)"
           } | tee -a "$GITHUB_STEP_SUMMARY"
