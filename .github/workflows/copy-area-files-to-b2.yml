@@ -1,0 +1,72 @@
+# Copies the offline area files (areas/files/) from Cloudflare R2 to Backblaze B2, server to server (nothing is kept here).
+# Copy only: nothing is deleted from R2. Running it again only copies what is missing or changed.
+# Run it from GitHub: Actions > "Copy area files to Backblaze" > Run workflow.
+name: Copy area files to Backblaze
+
+on:
+  workflow_dispatch:
+
+env:
+  # Cloudflare R2 (source)
+  RCLONE_CONFIG_R2_TYPE: s3
+  RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+  RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+  RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  RCLONE_CONFIG_R2_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+  RCLONE_CONFIG_R2_REGION: auto
+  RCLONE_CONFIG_R2_NO_CHECK_BUCKET: 'true'
+  # Backblaze B2 (destination), through its S3-style address
+  RCLONE_CONFIG_B2_TYPE: s3
+  RCLONE_CONFIG_B2_PROVIDER: Other
+  RCLONE_CONFIG_B2_ACCESS_KEY_ID: ${{ secrets.B2_KEY_ID }}
+  RCLONE_CONFIG_B2_SECRET_ACCESS_KEY: ${{ secrets.B2_APP_KEY }}
+  RCLONE_CONFIG_B2_ENDPOINT: ${{ secrets.B2_ENDPOINT }}
+  RCLONE_CONFIG_B2_REGION: us-west-004
+  RCLONE_CONFIG_B2_NO_CHECK_BUCKET: 'true'
+  R2_BUCKET: ${{ secrets.R2_BUCKET }}
+  B2_BUCKET: ${{ secrets.B2_BUCKET }}
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    name: copy part ${{ matrix.shard }}
+    steps:
+      - name: Get rclone
+        run: curl -fsSL https://rclone.org/install.sh | sudo bash
+      - name: Copy this part's regions
+        run: |
+          rclone lsf "r2:$R2_BUCKET/areas/files/" --dirs-only | sort > regions.txt
+          echo "$(wc -l < regions.txt) regions in all"
+          awk -v s=${{ matrix.shard }} 'NR % 20 == s' regions.txt > mine.txt
+          while read -r r; do
+            echo "== $r"
+            rclone copy "r2:$R2_BUCKET/areas/files/$r" "b2:$B2_BUCKET/areas/files/$r" --transfers 16 --checkers 32 --s3-no-check-bucket --stats-one-line --stats 60s
+          done < mine.txt
+
+  check:
+    needs: copy
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get rclone
+        run: curl -fsSL https://rclone.org/install.sh | sudo bash
+      - name: Compare both sides
+        run: |
+          {
+            echo "### Area files: R2 and Backblaze compared"
+            echo
+            echo "R2: $(rclone size "r2:$R2_BUCKET/areas/files/" --json)"
+            echo
+            echo "Backblaze: $(rclone size "b2:$B2_BUCKET/areas/files/" --json)"
+            echo
+            # Can a phone read a copied file from Backblaze with no key? (the bucket must be public)
+            f="$(rclone lsf -R "b2:$B2_BUCKET/areas/files/portugal/" --files-only | head -1)"
+            url="${{ secrets.B2_ENDPOINT }}/$B2_BUCKET/areas/files/portugal/$f"
+            echo "Public read test: HTTP $(curl -s -o /dev/null -w '%{http_code}' -r 0-99 "$url")"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
