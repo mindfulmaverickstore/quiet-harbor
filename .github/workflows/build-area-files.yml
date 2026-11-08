@@ -54,6 +54,11 @@ jobs:
           AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
           S3_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
           S3_BUCKET: ${{ secrets.R2_BUCKET }}
+          # The area files themselves go to Backblaze, where the app downloads them.
+          B2_ENDPOINT: ${{ secrets.B2_ENDPOINT }}
+          B2_BUCKET: ${{ secrets.B2_BUCKET }}
+          B2_KEY_ID: ${{ secrets.B2_KEY_ID }}
+          B2_APP_KEY: ${{ secrets.B2_APP_KEY }}
         run: python3 pipeline/maps/cut_areas.py --region ${{ matrix.region }}
 
   next:

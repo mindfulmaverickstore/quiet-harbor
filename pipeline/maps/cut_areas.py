@@ -6,7 +6,9 @@
 Each file holds every map square (zoom 6 to 15) that touches the area's outline, so it can be shown on its own with no
 signal. The squares are copied, not redrawn, from whichever of our maps holds them (the smallest one first).
 sizes.json lists the exact size of every file, which is what the app shows before you tap Save.
-Plain Python plus shapely; needs the aws program and S3_ENDPOINT, S3_BUCKET and AWS_* variables.
+Plain Python plus shapely; needs the aws program and S3_ENDPOINT, S3_BUCKET and AWS_* variables (R2: our maps are
+read from there, and sizes.json is written there for make_area_lists.py). The area files themselves go to Backblaze
+(B2_ENDPOINT, B2_BUCKET, B2_KEY_ID, B2_APP_KEY), where the app downloads them; sizes.json is copied there too.
 """
 import argparse, gzip, json, math, os, struct, subprocess, sys, tempfile, urllib.request
 
@@ -34,6 +36,18 @@ def fetch_json(url):
 
 def aws(*args):
     return subprocess.run(['aws', 's3', *args, '--endpoint-url', ENDPOINT], check=True, capture_output=True, text=True)
+
+
+B2_ENDPOINT, B2_BUCKET = os.environ.get('B2_ENDPOINT', ''), os.environ.get('B2_BUCKET', '')
+if B2_ENDPOINT and not B2_ENDPOINT.startswith('http'):
+    B2_ENDPOINT = 'https://' + B2_ENDPOINT
+
+
+def b2(*args):
+    """The same aws program, pointed at Backblaze with its own key."""
+    env = {**os.environ, 'AWS_ACCESS_KEY_ID': os.environ['B2_KEY_ID'], 'AWS_SECRET_ACCESS_KEY': os.environ['B2_APP_KEY'],
+           'AWS_DEFAULT_REGION': 'us-west-004'}
+    return subprocess.run(['aws', 's3', *args, '--endpoint-url', B2_ENDPOINT], check=True, capture_output=True, text=True, env=env)
 
 
 # ---- Map squares ----
@@ -191,12 +205,13 @@ def region(name):
         head[119:127] = struct.pack('<2i', int(c.x * 1e7), int(c.y * 1e7))
         out = os.path.join(work, f'{aid}.pmtiles')
         write_pmtiles(out, bytes(head), template[1], tiles)
-        aws('cp', out, f's3://{BUCKET}/areas/files/{name}/{aid}.pmtiles', '--content-type', 'application/vnd.pmtiles', '--only-show-errors')
+        b2('cp', out, f's3://{B2_BUCKET}/areas/files/{name}/{aid}.pmtiles', '--content-type', 'application/vnd.pmtiles', '--only-show-errors')
         sizes[aid] = os.path.getsize(out)
         os.remove(out)
     with open(os.path.join(work, 'sizes.json'), 'w') as f:
         json.dump(sizes, f, separators=(',', ':'))
     aws('cp', os.path.join(work, 'sizes.json'), f's3://{BUCKET}/areas/files/{name}/sizes.json', '--content-type', 'application/json')
+    b2('cp', os.path.join(work, 'sizes.json'), f's3://{B2_BUCKET}/areas/files/{name}/sizes.json', '--content-type', 'application/json')
     big = sorted(sizes.values())
     print(f'{name}: {len(sizes)} files, {sum(big) / 1e6:.0f} MB in all, largest {big[-1] / 1e6:.1f} MB' if big else f'{name}: no files')
 
