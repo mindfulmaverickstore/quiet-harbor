@@ -1,0 +1,53 @@
+# Checks the Backblaze copy of the area files: compares the actual bytes of a sample of regions with R2,
+# and tests that a phone could download a file from Backblaze with no key. Read-only: changes nothing.
+name: Verify Backblaze area files
+
+on:
+  workflow_dispatch:
+    inputs:
+      regions:
+        description: 'Regions to compare byte for byte (space separated)'
+        default: 'portugal malta ireland'
+
+env:
+  # Cloudflare R2 (source)
+  RCLONE_CONFIG_R2_TYPE: s3
+  RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+  RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+  RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  RCLONE_CONFIG_R2_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+  RCLONE_CONFIG_R2_REGION: auto
+  RCLONE_CONFIG_R2_NO_CHECK_BUCKET: 'true'
+  # Backblaze B2 (destination), through its S3-style address
+  RCLONE_CONFIG_B2_TYPE: s3
+  RCLONE_CONFIG_B2_PROVIDER: Other
+  RCLONE_CONFIG_B2_ACCESS_KEY_ID: ${{ secrets.B2_KEY_ID }}
+  RCLONE_CONFIG_B2_SECRET_ACCESS_KEY: ${{ secrets.B2_APP_KEY }}
+  RCLONE_CONFIG_B2_ENDPOINT: ${{ secrets.B2_ENDPOINT }}
+  RCLONE_CONFIG_B2_REGION: us-west-004
+  RCLONE_CONFIG_B2_NO_CHECK_BUCKET: 'true'
+  R2_BUCKET: ${{ secrets.R2_BUCKET }}
+  B2_BUCKET: ${{ secrets.B2_BUCKET }}
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Get rclone
+        run: curl -fsSL https://rclone.org/install.sh | sudo bash
+      - name: Compare file contents (sample regions)
+        run: |
+          for r in ${{ inputs.regions }}; do
+            echo "### $r" | tee -a "$GITHUB_STEP_SUMMARY"
+            rclone check "r2:$R2_BUCKET/areas/files/$r/" "b2:$B2_BUCKET/areas/files/$r/" --download --one-way --checkers 16 2>&1 | tail -5 | tee -a "$GITHUB_STEP_SUMMARY"
+          done
+      - name: Public download test (no key)
+        run: |
+          f="$(rclone lsf "b2:$B2_BUCKET/areas/files/portugal/" --files-only --include '*.pmtiles' | head -1)"
+          host="${{ secrets.B2_ENDPOINT }}"; host="${host#https://}"; host="${host#http://}"
+          echo "Endpoint has scheme: $([[ '${{ secrets.B2_ENDPOINT }}' == http* ]] && echo yes || echo no)" | tee -a "$GITHUB_STEP_SUMMARY"
+          for url in "https://$host/$B2_BUCKET/areas/files/portugal/$f" "https://$B2_BUCKET.$host/areas/files/portugal/$f" "https://f004.backblazeb2.com/file/$B2_BUCKET/areas/files/portugal/$f"; do
+            code="$(curl -s -o /dev/null -w '%{http_code} %{size_download}B %{time_total}s' -r 0-99 "$url" || true)"
+            echo "- $(echo "$url" | sed "s#$B2_BUCKET#BUCKET#; s#$host#HOST#"): $code" | tee -a "$GITHUB_STEP_SUMMARY"
+          done
