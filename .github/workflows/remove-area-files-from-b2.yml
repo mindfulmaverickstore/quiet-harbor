@@ -9,6 +9,10 @@ on:
         description: 'Folder to remove, e.g. areas/files/ (or "everything")'
         required: true
         default: 'areas/files/'
+      old_versions:
+        description: 'Also remove hidden old versions (yes/no)'
+        required: true
+        default: 'yes'
 
 jobs:
   remove:
@@ -22,6 +26,7 @@ jobs:
       RCLONE_CONFIG_B2_REGION: us-west-004
       B2_BUCKET: ${{ secrets.B2_BUCKET }}
       FOLDER: ${{ github.event.inputs.folder }}
+      OLD: ${{ github.event.inputs.old_versions }}
     steps:
       - name: Get rclone
         run: curl -fsSL https://rclone.org/install.sh | sudo bash
@@ -33,6 +38,13 @@ jobs:
             if [ "$FOLDER" = "everything" ]; then path=""; else path="${FOLDER#/}"; fi
             echo "Before: $(rclone size "b2:$B2_BUCKET/$path" --json)"
             rclone delete "b2:$B2_BUCKET/$path" --s3-no-check-bucket --checkers 32 --transfers 32 --rmdirs || true
+            # Backblaze only hides deleted files (it keeps old versions); this removes those hidden copies for good.
+            if [ "$OLD" = "yes" ]; then
+              echo "Hidden old versions before: $(rclone size "b2:$B2_BUCKET/$path" --s3-versions --json)"
+              rclone delete "b2:$B2_BUCKET/$path" --s3-versions --s3-no-check-bucket --checkers 32 --transfers 32 || true
+              echo
+              echo "Hidden old versions after: $(rclone size "b2:$B2_BUCKET/$path" --s3-versions --json)"
+            fi
             echo
             echo "After: $(rclone size "b2:$B2_BUCKET/$path" --json)"
             echo
