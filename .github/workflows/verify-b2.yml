@@ -51,3 +51,8 @@ jobs:
             code="$(curl -s -o /dev/null -w '%{http_code} %{size_download}B %{time_total}s' -r 0-99 "$url" || true)"
             echo "- $(echo "$url" | sed "s#$B2_BUCKET#BUCKET#; s#$host#HOST#"): $code" | tee -a "$GITHUB_STEP_SUMMARY"
           done
+          # The way the app reads a map it hasn't saved: a version tag on the address, and small pieces from the middle.
+          u="https://f004.backblazeb2.com/file/$B2_BUCKET/areas/files/portugal/$f?v=0"
+          echo "With ?v=0, first bytes: $(curl -s -o /dev/null -w '%{http_code} %{size_download}B' -r 0-16383 "$u")" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "With ?v=0, middle bytes: $(curl -s -o /dev/null -w '%{http_code} %{size_download}B' -r 200000-200999 "$u")" | tee -a "$GITHUB_STEP_SUMMARY"
+          curl -s -D - -o /dev/null -r 0-99 "$u" | grep -iE '^(HTTP|content-type|content-range|accept-ranges|content-encoding|cache-control|access-control)' | tee -a "$GITHUB_STEP_SUMMARY"
