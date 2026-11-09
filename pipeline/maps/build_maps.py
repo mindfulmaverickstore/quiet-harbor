@@ -94,13 +94,14 @@ def upload_encoded(local, remote):
 
 def published_info(pid):
     """(size in bytes, version) of the published map for this id, or None if it isn't there.
-    The version is the day it was uploaded (YYYYMMDD). The app puts it on the map's web address, so a rebuilt map is a
-    new address and a phone never mixes pieces of the old file with the new one."""
+    The version is the minute it was uploaded (YYYYMMDDHHMM). The app puts it on the map's web address, so a rebuilt map is a
+    new address and a phone never mixes pieces of the old file with the new one. (It used to be the day only, so a map rebuilt
+    twice in one day kept its address and phones could mix the two copies.)"""
     try:
         req = urllib.request.Request(f'{PUBLIC}/maps/{pid}/city.pmtiles', method='HEAD', headers=UA)
         with urllib.request.urlopen(req, timeout=20) as r:
             modified = email.utils.parsedate_to_datetime(r.headers['Last-Modified']) if r.headers.get('Last-Modified') else None
-            return int(r.headers.get('Content-Length') or 0), modified.strftime('%Y%m%d') if modified else '0'
+            return int(r.headers.get('Content-Length') or 0), modified.strftime('%Y%m%d%H%M') if modified else '0'
     except Exception:
         return None
 

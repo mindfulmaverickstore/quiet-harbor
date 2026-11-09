@@ -1,0 +1,26 @@
+# Read-only: reads the published Thailand maps the way the app does and says whether they are healthy.
+# Run it from GitHub: Actions > "Check Thai maps" > Run workflow. Changes nothing.
+name: Check Thai maps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: pip install pmtiles mapbox-vector-tile requests
+      - name: Read the maps and the catalogue
+        run: |
+          base="https://pub-e5b664167e394466a0e48820dffb17df.r2.dev"
+          curl -s -A map-check/1.0 --compressed "$base/maps/catalog.json" | jq -r '.maps[] | select(.id=="chiangmai" or .id=="bangkok" or .id=="phuket" or (.id|startswith("p-tha"))) | "\(.id) v=\(.v) mb=\(.mb)"'
+          urls=""
+          for id in chiangmai bangkok phuket p-tha-1 p-tha-2 p-tha-3 p-tha-4; do
+            v="$(curl -s -A map-check/1.0 --compressed "$base/maps/catalog.json" | jq -r ".maps[] | select(.id==\"$id\") | .v")"
+            urls="$urls $base/maps/$id/city.pmtiles?v=$v"
+          done
+          python3 pipeline/maps/check_map_file.py $urls
