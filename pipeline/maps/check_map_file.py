@@ -50,9 +50,34 @@ def check(url, lon, lat, zooms=(8, 12, 14, 15)):
         print(f'  z{z}: decodes, layers {sorted(layers)}, road features {roads}, features with name:en {en}')
 
 
+def road_names(url, word='มหิดล', lon=98.98, lat=18.78, z=14, span=4):
+    """Prints how roads whose Thai name contains `word` are named in the file: the Thai name and the English one the app shows."""
+    import math
+    reader = Reader(getter(url))
+    n = 2 ** z
+    x0 = int((lon + 180) / 360 * n)
+    y0 = int((1 - math.asinh(math.tan(math.radians(lat))) / math.pi) / 2 * n)
+    found = {}
+    for dx in range(-span, span + 1):
+        for dy in range(-span, span + 1):
+            raw = reader.get(z, x0 + dx, y0 + dy)
+            if raw is None:
+                continue
+            for layer, body in mvt.decode(plain(raw)).items():
+                for f in body['features']:
+                    p = f['properties']
+                    if word in str(p.get('name', '')):
+                        found[(layer, p.get('name'), p.get('name:en'), p.get('name:th-Latn'))] = 1
+    print(f'  roads and places with "{word}" in the name near Chiang Mai: {len(found)}')
+    for layer, name, en, lat_ in sorted(found, key=str)[:15]:
+        print(f'    {layer}: name={name!r} name:en={en!r} name:th-Latn={lat_!r}')
+
+
 if __name__ == '__main__':
     for u in sys.argv[1:]:
         try:
             check(u, 98.99, 18.79)
+            if '/chiangmai/' in u:
+                road_names(u)
         except Exception as ex:
             print('  FAILED:', repr(ex))
