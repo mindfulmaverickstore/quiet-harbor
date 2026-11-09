@@ -47,6 +47,11 @@ def run(cmd, **kw):
     return subprocess.run(cmd, capture_output=True, text=True, **kw)
 
 
+def needs_latin_names(place):
+    """Maps of Thailand (cities and the country's pieces): names written only in Thai get a Latin spelling."""
+    return place.get('country') == 'th' or place['id'].startswith('p-tha') or place.get('parent') == 'w-tha'
+
+
 def cut_area(place):
     """What to cut out: the place's exact outline when it has one (a file in regions/), else its box."""
     if place.get('region'):
@@ -181,6 +186,15 @@ def main():
                     print('  extract failed:', (r.stderr or r.stdout)[-200:])
                     failed.append(p['id'])
                     continue
+                if needs_latin_names(p):
+                    # Thai-only names get a Latin spelling, so the map is readable for visitors (add_latin_names.py).
+                    spelt = os.path.join(tmp, 'latin.pmtiles')
+                    r = run([sys.executable, os.path.join(HERE, 'add_latin_names.py'), out, spelt])
+                    print('  Latin names:', (r.stdout or r.stderr).strip()[-200:])
+                    if r.returncode != 0 or not os.path.exists(spelt):
+                        failed.append(p['id'])  # never publish a Thai map without its spellings by accident
+                        continue
+                    os.replace(spelt, out)
                 size_mb = os.path.getsize(out) / 1e6
                 if not a.no_upload and not upload(out, f"maps/{p['id']}/city.pmtiles", 'application/octet-stream'):
                     print('  upload failed')
