@@ -66,6 +66,8 @@ jobs:
         run: |
           gh release download -R protomaps/go-pmtiles -p '*Linux_x86_64*' -D tool
           cd tool && (ls *.tar.gz >/dev/null 2>&1 && tar xzf *.tar.gz || unzip -o *.zip) && chmod +x pmtiles && ./pmtiles version
+      - name: Latin spellings for Thai names (Thailand maps only)
+        run: pip install pythainlp
       - name: Cut the map and upload it
         env:
           AWS_ACCESS_KEY_ID: ${{ github.event.inputs.target == 'b2' && secrets.B2_KEY_ID || secrets.R2_ACCESS_KEY_ID }}
