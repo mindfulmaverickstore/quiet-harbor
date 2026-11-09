@@ -8,9 +8,10 @@ area's map file) it writes areas/lists/<region>.json:
   {"built": "2026-10-24", "region": "portugal", "areas": [
      {"id": "r123", "n": "Viana do Castelo", "e": "English name or absent", "b": 1234567 (bytes), "p": "parent id or absent",
       "l": 8 (admin level), "x": [west, south, east, north], "r": [[lon, lat, lon, lat, ...], ...] (rough outline, about 200 m)}]}
+Areas named only in another alphabet get an English or Latin-letter name from OpenStreetMap when it has one (Overpass).
 Plain Python plus shapely; needs the aws program and S3_ENDPOINT, S3_BUCKET and AWS_* variables.
 """
-import argparse, datetime, gzip, json, os, subprocess, sys, tempfile, urllib.request
+import argparse, datetime, gzip, json, os, subprocess, sys, tempfile, urllib.parse, urllib.request
 
 import shapely
 from shapely.geometry import shape
@@ -58,6 +59,31 @@ def shared_simplify(geoms, tolerance=0.0006):
         return [g.simplify(0.0003, preserve_topology=True) for g in geoms]
 
 
+LATIN_NAME_KEYS = ('name:en', 'int_name')
+
+
+def latin_names(ids):
+    """English or Latin-letter names from OpenStreetMap today, for areas whose outline was saved without an English name
+    (some Thai sub-districts, for example). Asks the Overpass service by relation id, a few hundred at a time; an area it
+    has nothing for keeps its own name. Uses name:en, then int_name, then any name written in Latin letters (name:th-Latn)."""
+    found = {}
+    rel = [i[1:] for i in ids if i.startswith('r') and i[1:].isdigit()]
+    for start in range(0, len(rel), 400):
+        query = f'[out:json][timeout:120];rel(id:{",".join(rel[start:start + 400])});out tags;'
+        try:
+            req = urllib.request.Request('https://overpass-api.de/api/interpreter', data=urllib.parse.urlencode({'data': query}).encode(), headers=UA)
+            elements = json.loads(urllib.request.urlopen(req, timeout=180).read())['elements']
+        except Exception as e:
+            print(f'  English names: Overpass did not answer ({e!r}); keeping the names we have', flush=True)
+            return found
+        for el in elements:
+            tags = el.get('tags', {})
+            name = next((tags[k] for k in LATIN_NAME_KEYS if tags.get(k)), None) or next((v for k, v in sorted(tags.items()) if k.startswith('name:') and k.endswith('-Latn')), None)
+            if name and name != tags.get('name'):
+                found[f'r{el["id"]}'] = name
+    return found
+
+
 def one(region):
     data = fetch_json(f'{PUBLIC}/areas/{region}.geojson')
     sizes = fetch_json(f'{PUBLIC}/areas/files/{region}/sizes.json')
@@ -82,6 +108,13 @@ def one(region):
         if p.get('parent'):
             a['p'] = p['parent']
         areas.append(a)
+    missing = [a['id'] for a in areas if 'e' not in a and any(ord(ch) > 0x24F for ch in a['n'])]
+    if missing:
+        names = latin_names(missing)
+        for a in areas:
+            if a['id'] in names:
+                a['e'] = names[a['id']]
+        print(f'{region}: {len(missing)} areas had no English name, {len(names)} found', flush=True)
     body = gzip.compress(json.dumps({'built': datetime.date.today().isoformat(), 'region': region, 'areas': areas}, ensure_ascii=False, separators=(',', ':')).encode(), 9)
     with tempfile.NamedTemporaryFile(delete=False) as f:
         f.write(body)
