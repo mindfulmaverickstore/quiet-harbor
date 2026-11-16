@@ -331,7 +331,7 @@ def same_place(name, tags, o, our_forms, distance):
 
 # Overture places that are not food places at all (found by testers); they are left out of the unconfirmed layer.
 NOT_FOOD_PLACES = {
-    "0481d43b-7bbd-4872-b3c7-3d3a0642119e",  # "The Vegan App" (Freehold NJ): a phone app, not a restaurant
+    "0481d43b-7bbd-4872-b3c7-3d3a0642119e",  # a phone app (Freehold NJ), not a restaurant
 }
 
 
