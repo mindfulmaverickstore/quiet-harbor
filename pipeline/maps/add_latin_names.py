@@ -4,6 +4,8 @@ still sees something readable ("Thanon Nimman He Min" next to the Thai street na
 
   python3 pipeline/maps/add_latin_names.py city.pmtiles city-latin.pmtiles
 
+Known wrong spellings already in `name:en` (WRONG_ENGLISH) are corrected too.
+
 Every feature whose `name` contains Thai letters and that has no `name:en` of its own gets a `name:en` made by the Royal
 Thai General System of Transcription (pythainlp's "royin" engine). Names OpenStreetMap already gives in English are never
 touched, and nothing else in the tile changes. The app already prefers `name:en` over `name` for English-reading phones
@@ -32,6 +34,10 @@ FIXES = {
     'ช้างคลาน': 'Chang Khlan', 'ห้วยแก้ว': 'Huai Kaeo', 'สุเทพ': 'Suthep', 'ช้างเผือก': 'Chang Phueak', 'มหาราช': 'Maharat',
     'สุวรรณภูมิ': 'Suvarnabhumi', 'ดอนเมือง': 'Don Mueang', 'พระราม': 'Rama', 'กรุงเทพ': 'Bangkok', 'ภูเก็ต': 'Phuket',
 }
+# Wrong English spellings that OpenStreetMap itself carries in `name:en` (a mapper typed "Mahidon Road"). Replaced as whole words
+# wherever they appear in an English name, so one entry fixes every street and soi that uses the word.
+WRONG_ENGLISH = {'Mahidon': 'Mahidol'}
+_WRONG_RE = re.compile(r'\b(' + '|'.join(WRONG_ENGLISH) + r')\b')
 _FIXES_RE = re.compile('(' + '|'.join(re.escape(k) for k in sorted(FIXES, key=len, reverse=True)) + ')')
 
 
@@ -61,6 +67,10 @@ def latin(name):
             words.append(w)
     text = ' '.join(words)
     return text if text and text != name else None
+
+
+def corrected(text):
+    return _WRONG_RE.sub(lambda m: WRONG_ENGLISH[m.group(1)], text)
 
 
 def string_of(value_message):
@@ -117,6 +127,13 @@ def rewrite_layer(body):
                 parts.append(None)  # where the tags go
             else:
                 parts.append(f[start:end])
+        pairs = list(zip(tags[::2], tags[1::2]))
+        for i in range(0, len(tags), 2):  # English names already on the feature: correct known wrong spellings
+            if tags[i] == en_key:
+                old = string_of(values[tags[i + 1]])
+                if old and corrected(old) != old:
+                    tags[i + 1] = value_id(corrected(old))
+                    changed = True
         pairs = list(zip(tags[::2], tags[1::2]))
         spelt = None
         if any(k == name_key for k, _ in pairs) and not any(k == en_key for k, _ in pairs):
