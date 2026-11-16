@@ -16,6 +16,7 @@ file is far more reliable than asking the busy public Overpass server.
 """
 import argparse, json, math, os, re, sys, time, unicodedata, urllib.parse, urllib.request
 import duckdb
+from latin_names import is_latin, latin_forms, latin_tags, same_sound
 
 def load_rules():
     # The matching words live in pipeline/rules.json (private repo) or, on the public builder, in the MATCH_RULES secret.
@@ -26,6 +27,7 @@ def load_rules():
 RULES = load_rules()
 K = RULES["k"]  # the word used in the source data
 KB = RULES["cat_b"].split("_")[0]  # the second diet word in the source data
+DIET_WORDS = {K, KB, "veggie"}  # carry no identity when two names are compared
 
 try:
     import osmium  # reads OpenStreetMap .pbf files
@@ -210,7 +212,7 @@ def clean_url(url):
 def overture_rows(con, w, s, e, n):
     """Overture food places in a box, with everything we use from them."""
     q = f"""
-    select names.primary as name, websites[1] as website, phones[1] as phone, socials as socials,
+    select names.primary as name, names.common as common, websites[1] as website, phones[1] as phone, socials as socials,
            list_distinct([x.dataset for x in sources]) as src, bbox.xmin as lon, bbox.ymin as lat,
            taxonomy.primary as cat, id as gers_id,
            addresses[1].freeform as street, addresses[1].locality as city, addresses[1].postcode as postcode,
@@ -222,7 +224,7 @@ def overture_rows(con, w, s, e, n):
       and coalesce(operating_status, 'open') <> 'permanently_closed'
       and (confidence is null or confidence >= 0.3)
     """
-    cols = ["name", "website", "phone", "socials", "src", "lon", "lat", "cat", "gers_id", "street", "city", "postcode", "status", "confidence"]
+    cols = ["name", "common", "website", "phone", "socials", "src", "lon", "lat", "cat", "gers_id", "street", "city", "postcode", "status", "confidence"]
     return [dict(zip(cols, r)) for r in con.execute(q).fetchall()]
 
 
@@ -276,6 +278,9 @@ def make_place(el, ov, is_chain_query=False):
                 tags["contact:facebook"] = u; fill["facebook"] = who; has_fb = True
         if not has_ph and o["phone"]:
             tags["phone"] = o["phone"]; fill["phone"] = who
+    # A Latin-script name for places named in another script (see names.py).
+    tags.update(latin_tags(t["name"], t, best[2]["common"] if best else None))
+    # The day the object was last edited in OpenStreetMap: the app shows the newest of this and any check date.
     if el.get("ts"):
         tags["_edited"] = el["ts"]
     place = {"id": f'{el["type"]}/{el["id"]}', "lat": round(lat, 6), "lon": round(lon, 6), "tags": tags}
@@ -299,18 +304,35 @@ def _words(s):
     return set(re.findall(r"\w+", (s or "").lower()))
 
 
-def same_place(name, tags, o):
+# Two places named in different scripts (Thai and Latin, say) are the same place only when they are this close.
+CROSS_SCRIPT_METRES = 40
+
+
+def same_place(name, tags, o, our_forms, distance):
     """An Overture place that is one of ours under a slightly different name or address: similar names, one name
-    inside the other ("Leccornie" / "Leccornie Pasticceria Vegana"), the same phone or WhatsApp number, or the same
-    street and number written in another order ("Via Camillo Ugoni, 1" / "1 Via Camillo Ugoni")."""
+    inside the other ("Leccornie" / "Leccornie Pasticceria Vegana"), the same phone or WhatsApp number, the same
+    street and number written in another order ("Via Camillo Ugoni, 1" / "1 Via Camillo Ugoni"), or, when one of the
+    names is not in Latin letters, within 40 m with the Latin forms of the two names sounding the same ("Ming Kwan" /
+    "มิ่งขวัญ", spelled out). our_forms is latin_forms() of our place."""
     a, b = (name or "").lower().strip(), (o["name"] or "").lower().strip()
     if sim(name, o["name"]) >= 0.5 or (len(a) >= 4 and len(b) >= 4 and (a in b or b in a)):
         return True
+    if distance <= CROSS_SCRIPT_METRES and not (is_latin(name) and is_latin(o["name"] or "")):
+        if "forms" not in o:
+            o["forms"] = latin_forms(o["name"] or "", {}, o.get("common"))
+        if same_sound(our_forms, o["forms"], DIET_WORDS):
+            return True
     phone = _digits(o.get("phone"))
     if len(phone) >= 8 and phone in {_digits(tags.get(k)) for k in ("phone", "contact:phone", "contact:whatsapp", "whatsapp")}:
         return True
     ours = _words(f'{tags.get("addr:housenumber", "")} {tags.get("addr:street", "")}')
     return bool(tags.get("addr:street")) and len(ours) >= 2 and ours == _words(o.get("street"))
+
+
+# Overture places that are not food places at all (found by testers); they are left out of the unconfirmed layer.
+NOT_FOOD_PLACES = {
+    "0481d43b-7bbd-4872-b3c7-3d3a0642119e",  # "The Vegan App" (Freehold NJ): a phone app, not a restaurant
+}
 
 
 def unconfirmed_places(ov, places):
@@ -319,10 +341,10 @@ def unconfirmed_places(ov, places):
     These are labelled as unconfirmed in the app: nobody on OpenStreetMap or a
     a visitor has confirmed them. Places Overture marks as closed, or doubts
     exist, were already left out by overture_rows."""
-    have = [(p["lat"], p["lon"], p["tags"].get("name", ""), p["tags"]) for p in places]
+    have = [(p["lat"], p["lon"], p["tags"].get("name", ""), p["tags"], latin_forms(p["tags"].get("name", ""), p["tags"])) for p in places]
     out = []
     for o in ov:
-        if not o["name"] or o["name"].strip().lower() in CHAIN_NAMES:
+        if not o["name"] or o["name"].strip().lower() in CHAIN_NAMES or o.get("gers_id") in NOT_FOOD_PLACES:
             continue
         # Why we think it might be listed: Overture's own listed category, a alt listing (in much of
         # Asia this is where fully listed places end up), or a name that says listed.
@@ -335,11 +357,16 @@ def unconfirmed_places(ov, places):
             basis = RULES["cat_b"].split("_")[0]
         else:
             continue
-        dup = any(abs(la - o["lat"]) <= 0.002 and abs(lo - o["lon"]) <= 0.003
-                  and metres(lo, la, o["lon"], o["lat"]) <= 150 and same_place(nm, tg, o) for la, lo, nm, tg in have)
+        dup = False
+        for la, lo, nm, tg, forms in have:
+            if abs(la - o["lat"]) <= 0.002 and abs(lo - o["lon"]) <= 0.003:
+                d = metres(lo, la, o["lon"], o["lat"])
+                if d <= 150 and same_place(nm, tg, o, forms, d):
+                    dup = True
+                    break
         if dup:
             continue
-        tags = {"name": o["name"], "amenity": "restaurant", "ov:basis": basis}
+        tags = {"name": o["name"], "amenity": "restaurant", "ov:basis": basis, **latin_tags(o["name"], {}, o.get("common"))}
         fill = {K: source_name(o["src"])}
         for kind, u in [clean_url(o["website"])] + [clean_url(x) for x in (o["socials"] or [])]:
             if kind == "website" and "website" not in tags:
@@ -452,6 +479,7 @@ def main():
                 if p.get("unconfirmed"):
                     continue
                 tags = dict(p["tags"])
+                tags.pop("_latin", None); tags.pop("_latin_m", None)   # worked out again below
                 for field, tag in (("website", "website"), ("phone", "phone"), ("instagram", "contact:instagram"), ("facebook", "contact:facebook")):
                     if field in p.get("fill", {}):
                         tags.pop(tag, None)

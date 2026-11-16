@@ -39,7 +39,7 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
-      - run: pip install duckdb osmium
+      - run: pip install duckdb osmium pythainlp pypinyin pykakasi anyascii
 
       - name: Fetch what is already published (so borders merge)
         env:
