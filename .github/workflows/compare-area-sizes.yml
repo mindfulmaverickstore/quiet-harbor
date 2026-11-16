@@ -1,0 +1,48 @@
+# Read only: compares the number of files and bytes of the area files on R2 and on Backblaze, lists files missing
+# or different in size on Backblaze, and shows the Backblaze bucket's version-keeping rule. Changes nothing.
+name: Compare area file sizes
+
+on:
+  workflow_dispatch:
+
+env:
+  RCLONE_CONFIG_R2_TYPE: s3
+  RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+  RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+  RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  RCLONE_CONFIG_R2_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+  RCLONE_CONFIG_R2_REGION: auto
+  RCLONE_CONFIG_R2_NO_CHECK_BUCKET: 'true'
+  RCLONE_CONFIG_B2_TYPE: s3
+  RCLONE_CONFIG_B2_PROVIDER: Other
+  RCLONE_CONFIG_B2_ACCESS_KEY_ID: ${{ secrets.B2_KEY_ID }}
+  RCLONE_CONFIG_B2_SECRET_ACCESS_KEY: ${{ secrets.B2_APP_KEY }}
+  RCLONE_CONFIG_B2_ENDPOINT: ${{ secrets.B2_ENDPOINT }}
+  RCLONE_CONFIG_B2_REGION: us-west-004
+  RCLONE_CONFIG_B2_NO_CHECK_BUCKET: 'true'
+  R2_BUCKET: ${{ secrets.R2_BUCKET }}
+  B2_BUCKET: ${{ secrets.B2_BUCKET }}
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Get rclone
+        run: curl -fsSL https://rclone.org/install.sh | sudo bash
+      - name: Count and compare
+        run: |
+          {
+            echo "### Area files: R2 vs Backblaze"
+            echo "R2 areas/files/: $(rclone size "r2:$R2_BUCKET/areas/files/" --json)"
+            echo "B2 areas/files/: $(rclone size "b2:$B2_BUCKET/areas/files/" --json)"
+            echo "B2 whole bucket: $(rclone size "b2:$B2_BUCKET/" --json)"
+            echo "B2 including old versions: $(rclone size "b2:$B2_BUCKET/areas/files/" --s3-versions --json)"
+            echo '#### rclone check (names and sizes, R2 -> B2)'
+            rclone check "r2:$R2_BUCKET/areas/files/" "b2:$B2_BUCKET/areas/files/" --size-only --one-way --checkers 32 2>&1 | tail -8
+          } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Backblaze lifecycle rule
+        run: |
+          pip install -q awscli >/dev/null 2>&1 || true
+          export AWS_ACCESS_KEY_ID='${{ secrets.B2_KEY_ID }}' AWS_SECRET_ACCESS_KEY='${{ secrets.B2_APP_KEY }}' AWS_DEFAULT_REGION=us-west-004
+          { echo '#### B2 lifecycle'; aws s3api get-bucket-lifecycle-configuration --bucket "$B2_BUCKET" --endpoint-url '${{ secrets.B2_ENDPOINT }}' 2>&1 | head -30; } | tee -a "$GITHUB_STEP_SUMMARY"
