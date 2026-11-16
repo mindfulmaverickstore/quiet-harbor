@@ -39,10 +39,14 @@ jobs:
             echo "B2 whole bucket: $(rclone size "b2:$B2_BUCKET/" --json)"
             echo "B2 including old versions: $(rclone size "b2:$B2_BUCKET/areas/files/" --s3-versions --json)"
             echo '#### rclone check (names and sizes, R2 -> B2)'
-            rclone check "r2:$R2_BUCKET/areas/files/" "b2:$B2_BUCKET/areas/files/" --size-only --one-way --checkers 32 2>&1 | tail -8
+            rclone check "r2:$R2_BUCKET/areas/files/" "b2:$B2_BUCKET/areas/files/" --size-only --one-way --checkers 32 > check.log 2>&1 || true
+            tail -4 check.log
+            echo '#### differing files per region (R2 vs B2 size)'
+            grep -E 'ERROR' check.log | sed -E 's/.*ERROR : ([^/]+)\/.*: (.*)/\1 \2/' | sort | uniq -c | sort -rn | head -40
           } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Backblaze lifecycle rule
         run: |
+          B2_HOST='${{ secrets.B2_ENDPOINT }}'; B2_HOST="${B2_HOST#https://}"
           pip install -q awscli >/dev/null 2>&1 || true
           export AWS_ACCESS_KEY_ID='${{ secrets.B2_KEY_ID }}' AWS_SECRET_ACCESS_KEY='${{ secrets.B2_APP_KEY }}' AWS_DEFAULT_REGION=us-west-004
-          { echo '#### B2 lifecycle'; aws s3api get-bucket-lifecycle-configuration --bucket "$B2_BUCKET" --endpoint-url '${{ secrets.B2_ENDPOINT }}' 2>&1 | head -30; } | tee -a "$GITHUB_STEP_SUMMARY"
+          { echo '#### B2 lifecycle'; aws s3api get-bucket-lifecycle-configuration --bucket "$B2_BUCKET" --endpoint-url "https://${B2_HOST}" 2>&1 | head -30; } | tee -a "$GITHUB_STEP_SUMMARY"
