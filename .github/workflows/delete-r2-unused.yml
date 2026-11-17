@@ -1,0 +1,73 @@
+# Deletes unused files from the Cloudflare R2 bucket. ONLY these (a fixed allow-list, anything else is refused):
+#   1. everything under layers-test/
+#   2. maps/<region>/light.pmtiles and maps/<region>/density.json
+# Everything else (city.pmtiles, density-full.json, food*.json, catalog.json, light.json, maps/shared/, areas/, tiles/, ...) is never touched.
+# It starts as a dry run (lists and counts only). Run it from GitHub: Actions > "Delete unused R2 files" > Run workflow.
+name: Delete unused R2 files
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (only list and count, delete nothing). Set to "false" to really delete.'
+        required: true
+        default: 'true'
+
+env:
+  RCLONE_CONFIG_R2_TYPE: s3
+  RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+  RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+  RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  RCLONE_CONFIG_R2_ENDPOINT: ${{ format('https://{0}.r2.cloudflarestorage.com', secrets.R2_ACCOUNT_ID) }}
+  RCLONE_CONFIG_R2_REGION: auto
+  RCLONE_CONFIG_R2_NO_CHECK_BUCKET: 'true'
+  R2_BUCKET: ${{ secrets.R2_BUCKET }}
+  DRY: ${{ github.event.inputs.dry_run }}
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Get rclone
+        run: curl -fsSL https://rclone.org/install.sh | sudo bash
+      - name: List, check and (if not a dry run) delete
+        run: |
+          set -euo pipefail
+          ALLOW='^(layers-test/.+|maps/[^/]+/(light\.pmtiles|density\.json))$'
+          {
+            echo "### Delete unused R2 files (dry_run=$DRY)"
+            echo
+            # Candidates: only names matching the allow-list filters.
+            rclone lsf "r2:$R2_BUCKET" --recursive --files-only \
+              --include "/layers-test/**" --include "/maps/*/light.pmtiles" --include "/maps/*/density.json" > all.txt
+            # Hard check: every candidate must match the allow-list, anything else aborts.
+            grep -Ev "$ALLOW" all.txt > bad.txt || true
+            if [ -s bad.txt ]; then echo "REFUSED: files outside the allow-list matched:"; head -20 bad.txt; exit 1; fi
+            grep -c '^layers-test/' all.txt > /dev/null || true
+            echo "layers-test/: $(grep -c '^layers-test/' all.txt || true) files"
+            echo "maps/*/light.pmtiles: $(grep -cE '^maps/[^/]+/light\.pmtiles$' all.txt || true) files"
+            echo "maps/*/density.json: $(grep -cE '^maps/[^/]+/density\.json$' all.txt || true) files"
+            echo
+            echo "Sizes:"
+            rclone size "r2:$R2_BUCKET/layers-test/" --json || true
+            rclone size "r2:$R2_BUCKET" --json --include "/maps/*/light.pmtiles" || true
+            rclone size "r2:$R2_BUCKET" --json --include "/maps/*/density.json" || true
+            echo
+            echo "Sample candidates:"; head -8 all.txt; echo ...; tail -4 all.txt
+            echo
+            echo "Kept (must still exist) before:"
+            for k in maps/catalog.json maps/light.json index.json app-config.json; do
+              echo "- $k: $(rclone lsf "r2:$R2_BUCKET/$k" | wc -l)"
+            done
+            echo "- maps/*/city.pmtiles: $(rclone lsf "r2:$R2_BUCKET" -R --files-only --include '/maps/*/city.pmtiles' | wc -l)"
+            echo "- maps/*/density-full.json: $(rclone lsf "r2:$R2_BUCKET" -R --files-only --include '/maps/*/density-full.json' | wc -l)"
+            if [ "$DRY" != "false" ]; then
+              echo; echo "DRY RUN: nothing deleted."
+            else
+              echo; echo "Deleting $(wc -l < all.txt) files..."
+              rclone delete "r2:$R2_BUCKET" --files-from all.txt --checkers 32 --transfers 32 --stats-one-line -v 2>&1 | tail -5
+              echo "Deleted. Remaining candidates: $(rclone lsf "r2:$R2_BUCKET" -R --files-only --include '/layers-test/**' --include '/maps/*/light.pmtiles' --include '/maps/*/density.json' | wc -l)"
+              echo "Kept after: city.pmtiles $(rclone lsf "r2:$R2_BUCKET" -R --files-only --include '/maps/*/city.pmtiles' | wc -l), density-full.json $(rclone lsf "r2:$R2_BUCKET" -R --files-only --include '/maps/*/density-full.json' | wc -l)"
+            fi
+          } 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
