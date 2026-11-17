@@ -17,6 +17,8 @@ import shapely
 from shapely.geometry import shape
 
 PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
+# The area files and their sizes.json live on Backblaze (the app downloads them from there).
+AREA_FILES = 'https://f004.backblazeb2.com/file/harbor-maps'
 ENDPOINT, BUCKET = os.environ.get('S3_ENDPOINT', ''), os.environ.get('S3_BUCKET', '')
 UA = {'User-Agent': 'map-build/1.0'}
 
@@ -86,7 +88,7 @@ def latin_names(ids):
 
 def one(region):
     data = fetch_json(f'{PUBLIC}/areas/{region}.geojson')
-    sizes = fetch_json(f'{PUBLIC}/areas/files/{region}/sizes.json')
+    sizes = fetch_json(f'{AREA_FILES}/areas/files/{region}/sizes.json')
     feats = [f for f in data['features'] if f['properties']['id'] in sizes]
     full = [shapely.make_valid(shape(f['geometry'])) for f in feats]
     # Areas of the same level (all the towns, all the provinces) tile the region, so each level is simplified as one cover.
