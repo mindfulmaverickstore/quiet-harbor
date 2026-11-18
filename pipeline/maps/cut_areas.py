@@ -25,8 +25,10 @@ MIN_ZOOM, MAX_ZOOM = 6, 15  # below 6 the app draws the shared world overview
 UA = {'User-Agent': 'map-build/1.0'}
 
 
-# An area must get at least this share of the map squares its outline touches, or it is treated as a stub (empty file).
+# A stub is an area that gets under this share of the map squares its outline touches AND has fewer than STUB_MAX_TILES
+# squares in all. (An outline that is mostly open sea, like a whole island nation, can have a tiny share and still be real.)
 STUB_MIN_SHARE = 0.05
+STUB_MAX_TILES = 500
 
 
 def fetch_json(url):
@@ -204,7 +206,7 @@ def region(name):
         # Stub check: an area whose outline touches many map squares but gets almost none of them from our maps would be
         # published as a blank or nearly blank file. Leave it out (so the app does not offer it) and fail the run below.
         found = len(tiles) / len(set(ts))
-        if found < STUB_MIN_SHARE:
+        if found < STUB_MIN_SHARE and len(tiles) < STUB_MAX_TILES:
             stubs.append(f'{aid} ({len(tiles)} of {len(set(ts))} map squares, {found:.1%})')
             continue
         head = bytearray(template[0])
