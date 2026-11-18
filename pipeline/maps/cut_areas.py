@@ -25,6 +25,10 @@ MIN_ZOOM, MAX_ZOOM = 6, 15  # below 6 the app draws the shared world overview
 UA = {'User-Agent': 'map-build/1.0'}
 
 
+# An area must get at least this share of the map squares its outline touches, or it is treated as a stub (empty file).
+STUB_MIN_SHARE = 0.05
+
+
 def fetch_json(url):
     raw = urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=120).read()
     try:
@@ -186,6 +190,7 @@ def region(name):
     store.close()
     store = open(os.path.join(work, 'tiles.bin'), 'rb')
     sizes = {}
+    stubs = []
     for aid, (g, ts) in want.items():
         tiles = []
         for tid in sorted(set(ts)):
@@ -194,6 +199,13 @@ def region(name):
                 store.seek(o)
                 tiles.append((tid, 1, store.read(ln)))
         if not tiles:
+            stubs.append(f'{aid} (no map squares at all)')
+            continue
+        # Stub check: an area whose outline touches many map squares but gets almost none of them from our maps would be
+        # published as a blank or nearly blank file. Leave it out (so the app does not offer it) and fail the run below.
+        found = len(tiles) / len(set(ts))
+        if found < STUB_MIN_SHARE:
+            stubs.append(f'{aid} ({len(tiles)} of {len(set(ts))} map squares, {found:.1%})')
             continue
         head = bytearray(template[0])
         head[98] = 2  # gzipped tiles, as in our maps
@@ -212,6 +224,9 @@ def region(name):
         json.dump(sizes, f, separators=(',', ':'))
     aws('cp', os.path.join(work, 'sizes.json'), f's3://{BUCKET}/areas/files/{name}/sizes.json', '--content-type', 'application/json')
     b2('cp', os.path.join(work, 'sizes.json'), f's3://{B2_BUCKET}/areas/files/{name}/sizes.json', '--content-type', 'application/json')
+    if stubs:
+        # sizes.json above has only the good areas, so the area list built from it leaves the stubs out.
+        raise RuntimeError(f'{len(stubs)} area(s) left out because our maps do not cover them (a missing map piece?): ' + '; '.join(stubs[:20]))
     big = sorted(sizes.values())
     print(f'{name}: {len(sizes)} files, {sum(big) / 1e6:.0f} MB in all, largest {big[-1] / 1e6:.1f} MB' if big else f'{name}: no files')
 
