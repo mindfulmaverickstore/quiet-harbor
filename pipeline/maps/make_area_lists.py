@@ -7,8 +7,10 @@ From areas/<region>.geojson (outlines and measured sizes) and areas/files/<regio
 area's map file) it writes areas/lists/<region>.json:
   {"built": "2026-10-24", "region": "portugal", "areas": [
      {"id": "r123", "n": "Viana do Castelo", "e": "English name or absent", "b": 1234567 (bytes), "p": "parent id or absent",
+      "f": "friendly name, only when it differs (see friendly_names.py; n stays the official name)",
       "l": 8 (admin level), "x": [west, south, east, north], "r": [[lon, lat, lon, lat, ...], ...] (rough outline, about 200 m)}]}
 Areas named only in another alphabet get an English or Latin-letter name from OpenStreetMap when it has one (Overpass).
+Friendly names (friendly_names.py) need osmium-tool and a connection to Geofabrik; CHECK_ONLY=1 prints the renamed areas and uploads nothing.
 Plain Python plus shapely; needs the aws program and S3_ENDPOINT, S3_BUCKET and AWS_* variables.
 """
 import argparse, datetime, gzip, json, os, subprocess, sys, tempfile, urllib.parse, urllib.request
@@ -16,9 +18,12 @@ import argparse, datetime, gzip, json, os, subprocess, sys, tempfile, urllib.par
 import shapely
 from shapely.geometry import shape
 
-PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
-# The area files and their sizes.json live on Backblaze (the app downloads them from there).
-AREA_FILES = 'https://f004.backblazeb2.com/file/harbor-maps'
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import friendly_names
+
+PUBLIC = 'https://maps.beetstreets.com'
+# The area files and their sizes.json live on Backblaze.
+AREA_FILES_PUBLIC = 'https://f004.backblazeb2.com/file/harbor-maps'
 ENDPOINT, BUCKET = os.environ.get('S3_ENDPOINT', ''), os.environ.get('S3_BUCKET', '')
 UA = {'User-Agent': 'map-build/1.0'}
 
@@ -86,9 +91,33 @@ def latin_names(ids):
     return found
 
 
+GEOFABRIK = 'https://download.geofabrik.de/index-v1-nogeom.json'
+
+
+def region_places(region):
+    """Places and administrative names of the region's OpenStreetMap extract, or None when it cannot be had (the lists are
+    then made without friendly names rather than not at all)."""
+    try:
+        gf = {f['properties']['urls']['pbf'].split('/')[-1].replace('-latest', ''): f['properties'] for f in fetch_json(GEOFABRIK)['features']}
+        url = gf[f'{region}.osm.pbf']['urls']['pbf']
+        with tempfile.TemporaryDirectory() as work:
+            pbf = os.path.join(work, 'region.osm.pbf')
+            # "-latest" points at today's file, which Geofabrik sometimes has not finished (404/503): then yesterday's, or the day before's.
+            tries = [url] + [url.replace('-latest.osm.pbf', f'-{(datetime.date.today() - datetime.timedelta(days=d)).strftime("%y%m%d")}.osm.pbf') for d in (1, 2)]
+            for i, u in enumerate(tries):
+                if subprocess.run(['curl', '-sSfL', '--retry', '3', '--retry-delay', '5', '-A', UA['User-Agent'], '-o', pbf, u]).returncode == 0:
+                    break
+                if i == len(tries) - 1:
+                    raise RuntimeError('no download of the last three days worked')
+            return friendly_names.load_places(pbf, work), gf[f'{region}.osm.pbf'].get('name') or region
+    except Exception as e:
+        print(f'{region}: no friendly names ({e!r})', flush=True)
+        return None, None
+
+
 def one(region):
     data = fetch_json(f'{PUBLIC}/areas/{region}.geojson')
-    sizes = fetch_json(f'{AREA_FILES}/areas/files/{region}/sizes.json')
+    sizes = fetch_json(f'{AREA_FILES_PUBLIC}/areas/files/{region}/sizes.json')
     feats = [f for f in data['features'] if f['properties']['id'] in sizes]
     full = [shapely.make_valid(shape(f['geometry'])) for f in feats]
     # Areas of the same level (all the towns, all the provinces) tile the region, so each level is simplified as one cover.
@@ -110,6 +139,25 @@ def one(region):
         if p.get('parent'):
             a['p'] = p['parent']
         areas.append(a)
+    loaded, official_title = region_places(region)
+    title = None
+    if loaded:
+        places, admin_names = loaded
+        places += friendly_names.wikidata_archipelagos([[min(a['x'][0] for a in areas), min(a['x'][1] for a in areas), max(a['x'][2] for a in areas), max(a['x'][3] for a in areas)]] if max(a['x'][2] for a in areas) - min(a['x'][0] for a in areas) < 60 else [])
+        kids = {}
+        for a in areas:
+            if 'p' in a:
+                kids.setdefault(a['p'], []).append(a['id'])
+        geoms = {p['id']: g for p, g in ((f['properties'], g) for f, g in zip(feats, full))}
+        byid = {a['id']: a for a in areas}
+        friendly_kid = lambda k: k.get('e') or k['n']
+        rows = [{'id': a['id'], 'name': a['n'], 'name_en': a.get('e'), 'geom': geoms[a['id']], 'kid_list': [{'name': friendly_kid(k), 'geom': geoms[k['id']], 'b': k['b']} for k in (byid[i] for i in kids.get(a['id'], []) if i in geoms)], 'kids': shapely.union_all([geoms[k] for k in kids[a['id']] if k in geoms]) if a['id'] in kids else None} for a in areas]
+        got = friendly_names.name_areas(rows, places)
+        for a in areas:
+            if a['id'] in got:
+                a['f'] = got[a['id']]
+        title = friendly_names.region_title(official_title, places, admin_names, shapely.union_all(list(geoms.values())))
+        print(f'{region}: {len(got)} of {len(areas)} areas got a friendly name; region title {title!r}', flush=True)
     missing = [a['id'] for a in areas if 'e' not in a and any(ord(ch) > 0x24F for ch in a['n'])]
     if missing:
         names = latin_names(missing)
@@ -117,7 +165,12 @@ def one(region):
             if a['id'] in names:
                 a['e'] = names[a['id']]
         print(f'{region}: {len(missing)} areas had no English name, {len(names)} found', flush=True)
-    body = gzip.compress(json.dumps({'built': datetime.date.today().isoformat(), 'region': region, 'areas': areas}, ensure_ascii=False, separators=(',', ':')).encode(), 9)
+    if os.environ.get('CHECK_ONLY'):
+        for a in areas:
+            if 'f' in a:
+                print(f'  {a["n"]}  ->  {a["f"]}')
+        return
+    body = gzip.compress(json.dumps({'built': datetime.date.today().isoformat(), 'region': region, **({'title': title} if title else {}), 'areas': areas}, ensure_ascii=False, separators=(',', ':')).encode(), 9)
     with tempfile.NamedTemporaryFile(delete=False) as f:
         f.write(body)
     subprocess.run(['aws', 's3', 'cp', f.name, f's3://{BUCKET}/areas/lists/{region}.json', '--endpoint-url', ENDPOINT, '--content-type', 'application/json',

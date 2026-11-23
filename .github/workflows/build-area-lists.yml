@@ -20,7 +20,7 @@ jobs:
         run: |
           want="${{ github.event.inputs.regions }}"
           if [ "$want" = "all" ]; then
-            want="$(curl -s -A map-build/1.0 --compressed "https://pub-e5b664167e394466a0e48820dffb17df.r2.dev/areas/index.json" | jq -r '.regions[].region' | tr '\n' ' ')"
+            want="$(curl -s -A map-build/1.0 --compressed "https://maps.beetstreets.com/areas/index.json" | jq -r '.regions[].region' | tr '\n' ' ')"
           fi
           groups="$(echo "$want" | tr -s ' ' '\n' | grep . | paste -d' ' - - - - - - - - - - | jq -R . | jq -sc .)"
           echo "groups=$groups" >> "$GITHUB_OUTPUT"
@@ -41,6 +41,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install shapely
+      - name: Install osmium-tool (reads the places each name is chosen from)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool
       - name: Make the lists
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
