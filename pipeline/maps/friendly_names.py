@@ -206,7 +206,7 @@ def wikidata_archipelagos(boxes):
         q = ('SELECT ?l ?c WHERE { SERVICE wikibase:box { ?i wdt:P625 ?c . bd:serviceParam wikibase:cornerSouthWest "Point(%s %s)"^^geo:wktLiteral . '
              'bd:serviceParam wikibase:cornerNorthEast "Point(%s %s)"^^geo:wktLiteral } ?i wdt:P31 wd:Q33837 . ?i rdfs:label ?l FILTER(LANG(?l)="en") }') % (w, s, e, n)
         try:
-            raw = subprocess.run(['curl', '-s', '--max-time', '90', '-A', 'BeetStreetsMapBuild/1.0 (https://maps.beetstreets.com)', '-H', 'Accept: application/sparql-results+json',
+            raw = subprocess.run(['curl', '-s', '--max-time', '90', '-A', 'quiet-harbor-map-build/1.0 (https://github.com/mindfulmaverickstore/quiet-harbor)', '-H', 'Accept: application/sparql-results+json',
                                   '--data-urlencode', 'query=' + q, 'https://query.wikidata.org/sparql'], capture_output=True, check=True).stdout
             for b in json.loads(raw)['results']['bindings']:
                 x, y = b['c']['value'][6:-1].split()

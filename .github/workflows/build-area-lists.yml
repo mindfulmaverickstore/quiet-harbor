@@ -20,7 +20,7 @@ jobs:
         run: |
           want="${{ github.event.inputs.regions }}"
           if [ "$want" = "all" ]; then
-            want="$(curl -s -A map-build/1.0 --compressed "https://maps.beetstreets.com/areas/index.json" | jq -r '.regions[].region' | tr '\n' ' ')"
+            want="$(curl -s -A map-build/1.0 --compressed "https://pub-e5b664167e394466a0e48820dffb17df.r2.dev/areas/index.json" | jq -r '.regions[].region' | tr '\n' ' ')"
           fi
           groups="$(echo "$want" | tr -s ' ' '\n' | grep . | paste -d' ' - - - - - - - - - - | jq -R . | jq -sc .)"
           echo "groups=$groups" >> "$GITHUB_OUTPUT"

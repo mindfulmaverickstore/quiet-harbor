@@ -21,7 +21,7 @@ from shapely.geometry import shape
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import friendly_names
 
-PUBLIC = 'https://maps.beetstreets.com'
+PUBLIC = 'https://pub-e5b664167e394466a0e48820dffb17df.r2.dev'
 # The area files and their sizes.json live on Backblaze.
 AREA_FILES_PUBLIC = 'https://f004.backblazeb2.com/file/harbor-maps'
 ENDPOINT, BUCKET = os.environ.get('S3_ENDPOINT', ''), os.environ.get('S3_BUCKET', '')
